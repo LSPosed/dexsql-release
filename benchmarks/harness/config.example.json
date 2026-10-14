@@ -1,0 +1,18 @@
+{
+  "apk": "C:/inputs/QQ_9.3.55.apk",
+  "dexsql": "C:/tools/dexsql.exe",
+  "jadx_jar": "C:/tools/jadx-1.5.6-all.jar",
+  "probe_classes": "C:/bench/classes",
+  "jadx_config": "C:/bench/jadx-config",
+  "mcp_python": "C:/bench/jadx-mcp-venv/Scripts/python.exe",
+  "jadx_mcp_server": "C:/bench/jadx-mcp-server/jadx_mcp_server.py",
+  "dexdec": "C:/tools/dexdec-mcp.exe",
+  "ddc": "C:/tools/ddc.exe",
+  "garlic": "C:/tools/garlic-win64.exe",
+  "duckdb": "C:/tools/duckdb/duckdb.exe",
+  "asc_python": "C:/bench/asc-venv/Scripts/python.exe",
+  "droidsaw": "C:/bench/droidsaw/bin/droidsaw-mcp.exe",
+  "droidsaw_cli": "C:/bench/droidsaw/bin/droidsaw.exe",
+  "threads": 8,
+  "timeout": 60
+}

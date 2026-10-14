@@ -1,0 +1,4884 @@
+{
+  "schema_version": 2,
+  "measured_date": "2026-10-15",
+  "input": {
+    "name": "QQ_9.3.55.apk",
+    "bytes": 389727209,
+    "sha256": "e5752cad5274f8c28291d9fba91a99cbdb856cb49fdfea9803770f1d6d8e00dc",
+    "dex_files": 41,
+    "dex_bytes": 411819364
+  },
+  "environment": {
+    "cpu": "AMD Ryzen 9 9950X3D",
+    "cores": 16,
+    "logical_processors": 32,
+    "os": "Windows 11 Pro 10.0.26200",
+    "visible_memory_kib": 64393564,
+    "java": "OpenJDK 26.0.1",
+    "python": "CPython 3.14.6",
+    "os_file_cache_flushed": false
+  },
+  "versions": {
+    "dexsql": "0.1.0 Windows release build",
+    "dexsql_source_revision": "77988ee4bfaf4d4bc162a405cc97ac9faa0a4c12",
+    "jadx": "1.5.6",
+    "jadx_ai_mcp": "V6.4.1",
+    "jadx_ai_mcp_source_revision": "d2dd72e6c0d84735b78773067075dac8cea651c1",
+    "fastmcp": "4.1.0",
+    "mcp": "2.3.0",
+    "httpx": "0.28.1",
+    "ASC": {
+      "version": "0.1.1.post5",
+      "commit": "a458f41a42a8ecfc29e9f4fa202b8374243a67af",
+      "url": "https://github.com/MG1937/ASC"
+    },
+    "DexDec": {
+      "version": "1.0.2",
+      "commit": "6c083d91f5b5541ca56b4d2775228b5123bdb72f",
+      "url": "https://github.com/asLody/dexdec"
+    },
+    "ddc": {
+      "version": "0.1.29",
+      "url": "https://github.com/ejfkdev/ddc"
+    },
+    "droidsaw": {
+      "version": "2.0.0",
+      "commit": "50eb045b5672431ea787c2696100baed44163918",
+      "url": "https://github.com/droidsaw/droidsaw",
+      "build": "cargo install droidsaw --version 2.0.0 --features mcp --locked; release; x86_64-pc-windows-gnu; rustc 1.94.0"
+    },
+    "psutil": "7.2.2",
+    "garlic": {
+      "version": "1.8",
+      "tag": "v1.8-release",
+      "commit": "b3dce15c7911cc8698c9a1a693975be13ff41546",
+      "url": "https://github.com/neocanable/garlic",
+      "build": "Official garlic-win64.exe release binary, unmodified"
+    },
+    "duckdb": {
+      "version": "1.5.6",
+      "build": "069cc9f9b5",
+      "url": "https://github.com/duckdb/duckdb/releases/tag/v1.5.6"
+    }
+  },
+  "artifacts": {
+    "dexsql": {
+      "name": "dexsql-windows-amd64.exe",
+      "bytes": 21365760,
+      "sha256": "f354ebcf715de9a66ef8ebe08b2b36807ab58e25cd5a1c0812e497fc1fcfc448"
+    },
+    "jadx_jar": {
+      "name": "jadx-1.5.6-all.jar",
+      "sha256": "fe3e12c45acf75f92369685fd02d1d7a7323385dc725680a9b98a0dac0ea554b"
+    },
+    "ddc": {
+      "name": "ddc.exe",
+      "sha256": "8e5fcb98cf92b3e141b55cbcb5a77ebdeadd00221fec66cc42808a05846143a7"
+    },
+    "dexdec": {
+      "name": "dexdec-mcp.exe",
+      "sha256": "0307fc27ac3ae7b0d273df602a80e734d1b38104e13f7656a407c9f6f27a3212"
+    },
+    "droidsaw": {
+      "name": "droidsaw-mcp.exe",
+      "sha256": "438d99d511c4d30397c4e75aa68a542a1c84234583619a4135a5e24993c82de3"
+    },
+    "droidsaw_cli": {
+      "name": "droidsaw.exe",
+      "sha256": "21ed8cd000107be4932bb2321eac7827a3e7f3d73bbf6927cd279bc211a0ca3e"
+    },
+    "garlic": {
+      "name": "garlic-win64.exe",
+      "sha256": "0c4e3017f43e36875688cae0893520408e312c8f7a687166d76053010e2ee4b4"
+    },
+    "duckdb": {
+      "name": "duckdb.exe",
+      "sha256": "2c6a856516a9efb863482a9146242eba5ad919029a082ff773f4770ae0a7816b",
+      "release_archive_sha256": "798eae475d07c645ff3b914f7b0e676d06502b5412dd7552638fafed81f9e916"
+    }
+  },
+  "threads": 8,
+  "java_heap": "24g",
+  "deadline_seconds": 60,
+  "memory_interval_ms": 50,
+  "resident_sampling": "3 fresh workflow processes, first invocation then 3 measured repeats per case (9 repeats total). Multi-backend runs rotated backend order; DexSQL used three fresh processes sequentially. No separate discarded warm-up. ASC and ddc can reparse on a repeated query.",
+  "droidsaw_sampling": "3 independent CLI invocations per completed case (one first plus two repeats); each includes input loading. Two-hop and string+call each tested once with a shared 60-second deadline over composed calls.",
+  "sql": {
+    "class": "SELECT descriptor FROM classes WHERE descriptor = 'Lcom/tencent/mobileqq/activity/SplashActivity;'",
+    "method": "SELECT DISTINCT class_descriptor FROM class_methods WHERE method_name LIKE '%matchPayload%' ORDER BY class_descriptor",
+    "string": "SELECT DISTINCT method_class FROM method_strings WHERE value = 'closeQuietly(): Exception when connHttp.getInputStream()!,There may be no network, or no INTERNET permission' ORDER BY method_class",
+    "string_call": "SELECT DISTINCT m.descriptor\nFROM methods AS m\nWHERE EXISTS (\n        SELECT 1 FROM method_strings AS s\n        WHERE s.file_id = m.file_id AND s.method_idx = m.method_idx\n          AND s.value = 'gifFilePath gifPath:'\n      )\n  AND EXISTS (\n        SELECT 1 FROM method_calls AS c\n        WHERE c.file_id = m.file_id AND c.method_idx = m.method_idx\n          AND c.callee_class = 'Landroid/graphics/Bitmap;'\n          AND c.callee_name = 'getWidth'\n          AND c.callee = 'Landroid/graphics/Bitmap;->getWidth()I'\n      )\nORDER BY m.descriptor;\n",
+    "four_fact": "SELECT DISTINCT m.descriptor, m.class_descriptor\nFROM methods AS m\nWHERE EXISTS (\n        SELECT 1 FROM method_strings AS s\n        WHERE s.file_id = m.file_id AND s.method_idx = m.method_idx\n          AND s.value = 'gifFilePath gifPath:'\n      )\n  AND EXISTS (\n        SELECT 1 FROM method_calls AS c\n        WHERE c.file_id = m.file_id AND c.method_idx = m.method_idx\n          AND c.callee = 'Landroid/graphics/Bitmap;->getWidth()I'\n      )\n  AND EXISTS (\n        SELECT 1 FROM method_field_accesses AS f\n        WHERE f.file_id = m.file_id AND f.method_idx = m.method_idx\n          AND f.field_class = 'Landroid/graphics/Point;'\n          AND f.field_name = 'x'\n          AND f.field_type = 'I'\n      )\n  AND EXISTS (\n        SELECT 1 FROM method_using_numbers AS n\n        WHERE n.file_id = m.file_id AND n.method_idx = m.method_idx\n          AND n.long_value = 99\n      )\nORDER BY m.descriptor;\n",
+    "complex": "WITH\nstring_groups AS (\n    SELECT file_id, class_idx, method_idx, method,\n           COUNT(DISTINCT value) AS invariant_count\n    FROM method_strings\n    WHERE value IN ('ByteUnitConvertUtils', 'GB', 'KB', 'MB')\n    GROUP BY file_id, class_idx, method_idx, method\n    HAVING COUNT(DISTINCT value) = 4\n),\nsignature_pool AS (\n    SELECT DISTINCT file_id, class_idx, method_idx, descriptor AS method\n    FROM methods\n    WHERE access_flags IS NOT NULL\n      AND return_descriptor = 'Ljava/lang/String;'\n      AND param_count = 2\n      AND param_descriptors = 'J,Z'\n),\nset_candidates AS (\n    SELECT file_id, class_idx, method_idx, method FROM string_groups\n    INTERSECT\n    SELECT file_id, class_idx, method_idx, method FROM signature_pool\n    EXCEPT\n    SELECT file_id, class_idx, method_idx, method\n    FROM method_strings\n    WHERE value = '__round13_impossible_bad_marker__'\n),\nshared AS (\n    SELECT c.file_id, c.class_idx, c.method_idx, c.method\n    FROM set_candidates c\n    WHERE EXISTS (\n        SELECT 1\n        FROM method_calls mc\n        WHERE mc.file_id = c.file_id\n          AND mc.class_idx = c.class_idx\n          AND mc.method_idx = c.method_idx\n          AND mc.callee = 'Ljava/lang/Math;->round(D)J'\n    )\n),\nfield_consumer AS (\n    SELECT s.file_id, s.class_idx, s.method_idx, s.method\n    FROM shared s\n    WHERE (s.file_id, s.class_idx, s.method_idx) IN (\n        SELECT fa.file_id, fa.class_idx, fa.method_idx\n        FROM method_field_accesses fa\n        WHERE fa.field = 'Ljava/math/RoundingMode;->HALF_UP:Ljava/math/RoundingMode;'\n        GROUP BY fa.file_id, fa.class_idx, fa.method_idx\n        HAVING COUNT(*) >= 1\n    )\n),\ncall_consumer AS (\n    SELECT s.file_id, s.class_idx, s.method_idx, s.method\n    FROM shared s\n    WHERE (\n        SELECT COUNT(*)\n        FROM method_calls mc\n        WHERE mc.file_id = s.file_id\n          AND mc.class_idx = s.class_idx\n          AND mc.method_idx = s.method_idx\n          AND mc.callee IN (\n              'Ljava/lang/Math;->round(D)J',\n              'Ljava/text/DecimalFormat;->format(J)Ljava/lang/String;'\n          )\n    ) >= 2\n      AND NOT EXISTS (\n          SELECT 1\n          FROM method_strings bad\n          WHERE bad.file_id = s.file_id\n            AND bad.class_idx = s.class_idx\n            AND bad.method_idx = s.method_idx\n            AND bad.value = '__round13_excluded__'\n      )\n),\nmerged AS (\n    SELECT file_id, class_idx, method_idx, method FROM field_consumer\n    UNION\n    SELECT file_id, class_idx, method_idx, method FROM call_consumer\n)\nSELECT DISTINCT m.method\nFROM merged m\nWHERE EXISTS (\n    SELECT 1 FROM field_consumer f\n    WHERE f.file_id = m.file_id\n      AND f.class_idx = m.class_idx\n      AND f.method_idx = m.method_idx\n)\nAND EXISTS (\n    SELECT 1 FROM call_consumer c\n    WHERE c.file_id = m.file_id\n      AND c.class_idx = m.class_idx\n      AND c.method_idx = m.method_idx\n)\nORDER BY m.method\n",
+    "callers": "SELECT DISTINCT method FROM method_calls WHERE callee = 'Liu3/a;->a(JZ)Ljava/lang/String;' ORDER BY method",
+    "twohop": "WITH first_hop AS (SELECT DISTINCT method FROM method_calls WHERE callee = 'Liu3/a;->a(JZ)Ljava/lang/String;') SELECT DISTINCT c.method FROM method_calls c JOIN first_hop f ON c.callee=f.method ORDER BY c.method"
+  },
+  "records": [
+    {
+      "backend": "jadx-core",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 32.551700016483665,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 9.530899988021702,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 15.569800045341253,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 8.619300031568855,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 106.69589997269213,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 72.67909997608513,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 67.34479998704046,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 68.82500002393499,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 198.88799998443574,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 280.98430001409724,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 230.03669996978715,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 163.4708999772556,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 647.4351999931969,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 718.637400015723,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 677.715600002557,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 700.6087000481784,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1690.6621999805793,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1096.7783000087366,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1177.993300021626,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1244.1265999805182,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 250.92329998733476,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 228.59419998712838,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 222.67320001265034,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 229.1448999894783,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 205.68309997906908,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 198.2523999758996,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 192.3506999737583,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 204.862900020089,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "complex": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 113.44960000133142,
+            "count": 1,
+            "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+          },
+          "samples": [
+            {
+              "wall_ms": 116.54690001159906,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 93.04439998231828,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 96.02860000450164,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            }
+          ],
+          "matches_reference": true
+        }
+      },
+      "prepare_ms": 52574.52080002986,
+      "ready_memory": {
+        "private_bytes": 19250597888,
+        "rss_bytes": 13003952128,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 19251355648,
+        "rss_bytes": 13004529664,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 833,
+        "peak_private_bytes": 19261616128,
+        "peak_rss_bytes": 13004529664
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 997,
+        "peak_private_bytes": 23974092800,
+        "peak_rss_bytes": 22400860160
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "dexdec",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2905.316299991682,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 206.00479998392984,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 205.13269997900352,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 208.79509998485446,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 113.91719995299354,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 113.02719998639077,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 111.3290999783203,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 112.6813999726437,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "unsupported",
+          "reason": "find_references supports class/field/method, not const-string"
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 771.9870999571867,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 0.4118000506423414,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 0.229199999012053,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 0.1810999820008874,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 11627.897300000768,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 2.2145999828353524,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1.4949000324122608,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1.3213999918662012,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "unsupported",
+          "reason": "No const-string reference tool"
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 4685.032599954866,
+      "ready_memory": {
+        "private_bytes": 3317563392,
+        "rss_bytes": 3200241664,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 3771854848,
+        "rss_bytes": 3632603136,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 128,
+        "peak_private_bytes": 3898335232,
+        "peak_rss_bytes": 3758706688
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 329,
+        "peak_private_bytes": 3898335232,
+        "peak_rss_bytes": 3758706688
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "ddc",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 131.5152999595739,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 138.77079996746033,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 151.64989995537326,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 124.94309997418895,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 484.2966999858618,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 493.62620001193136,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 487.776699999813,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 479.5927000232041,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 96.50599997257814,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 63.36989998817444,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 63.74480004888028,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 68.15390003612265,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 76.8297000322491,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 69.73310001194477,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 76.46469998871908,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 76.6987000242807,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1047.2241999814287,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1026.6934999963269,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1038.2698000175878,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1024.3610000470653,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 198.45460000215098,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 177.06470005214214,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 187.46069999178872,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 190.2554000262171,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 215.50370001932606,
+      "ready_memory": {
+        "private_bytes": 40046592,
+        "rss_bytes": 35577856,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 848125952,
+        "rss_bytes": 369557504,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 11,
+        "peak_private_bytes": 894152704,
+        "peak_rss_bytes": 735477760
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 123,
+        "peak_private_bytes": 1340571648,
+        "peak_rss_bytes": 1329704960
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "asc",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 362.16520000016317,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 408.4399999701418,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 377.9003999661654,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 358.7650000117719,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "unsupported",
+          "reason": "No global method-declaration search command in the tested ASC interface"
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 373.38060000911355,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 318.5397999477573,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 313.87159996666014,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 344.09740002593026,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 594.2640999564901,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 625.5926999729127,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 609.194100019522,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 593.384400010109,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1304.3390999664553,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1283.3393999608234,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1295.2545000007376,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1304.8743000254035,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1245.9488000022247,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 1201.5937000396661,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 1194.5186000084504,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 1186.4000000059605,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 105.33049999503419,
+      "ready_memory": {
+        "private_bytes": 16371712,
+        "rss_bytes": 32165888,
+        "processes": 3
+      },
+      "after_first_query_memory": {
+        "private_bytes": 16375808,
+        "rss_bytes": 32358400,
+        "processes": 3
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 24,
+        "peak_private_bytes": 98754560,
+        "peak_rss_bytes": 217026560
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 242,
+        "peak_private_bytes": 1002553344,
+        "peak_rss_bytes": 1204076544
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 424.95970003074035,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 64.26670000655577,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 47.716999950353056,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 46.644700050819665,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "timeout",
+          "deadline_seconds": 60
+        }
+      },
+      "prepare_ms": 92379.96759999078,
+      "ready_memory": {
+        "private_bytes": 19908993024,
+        "rss_bytes": 18230636544,
+        "processes": 5
+      },
+      "after_first_query_memory": {
+        "private_bytes": 19923730432,
+        "rss_bytes": 18244329472,
+        "processes": 5
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1467,
+        "peak_private_bytes": 19926061056,
+        "peak_rss_bytes": 18246782976
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 2208,
+        "peak_private_bytes": 26880131072,
+        "peak_rss_bytes": 26498740224
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "droidsaw",
+      "trial": 1,
+      "cases": {},
+      "setup_error": "{'jsonrpc': '2.0', 'id': 2, 'error': {'code': -32603, 'message': 'parse: parse budget exhausted (Memory) at dex-parse-input', 'data': {'category': 'internal-error', 'request_id': '18de68616b263eec'}}}",
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 86,
+        "peak_private_bytes": 2401681408,
+        "peak_rss_bytes": 1813901312
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "jadx-core",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 35.852800006978214,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 9.281199949327856,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 14.887800032738596,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 14.197700016666204,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 102.22180001437664,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 76.12949999747798,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 69.8345999699086,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 71.57440000446513,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 258.69250000687316,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 148.6847000196576,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 154.7288000001572,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 159.12839997326955,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 727.0137000014074,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 621.9156000297517,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 724.2311000009067,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 647.5076000206172,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1204.348300001584,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1242.4277000245638,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1399.394400010351,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1496.9616000307724,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 232.66450001392514,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 216.83970000594854,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 212.37720001954585,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 221.06660000281408,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 222.15240000514314,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 229.5592000009492,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 224.89499999210238,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 284.0363999712281,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "complex": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 141.49469998665154,
+            "count": 1,
+            "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+          },
+          "samples": [
+            {
+              "wall_ms": 111.69829999562353,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 111.30649998085573,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 130.08460000855848,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            }
+          ],
+          "matches_reference": true
+        }
+      },
+      "prepare_ms": 52746.96079996647,
+      "ready_memory": {
+        "private_bytes": 19280936960,
+        "rss_bytes": 14019571712,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 19281473536,
+        "rss_bytes": 14020055040,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 833,
+        "peak_private_bytes": 19281473536,
+        "peak_rss_bytes": 14020055040
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 997,
+        "peak_private_bytes": 25082830848,
+        "peak_rss_bytes": 23257812992
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "dexdec",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2775.746100000106,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 202.81669998075813,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 202.40730000659823,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 202.447600022424,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 117.23939998773858,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 112.2305000317283,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 112.27590002818033,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 110.9005999751389,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "unsupported",
+          "reason": "find_references supports class/field/method, not const-string"
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 756.1255000182427,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 0.3421000437811017,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 0.24969998048618436,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 0.1996000064536929,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 11186.051799973939,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 2.0602000295184553,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1.727700000628829,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1.5572999836876988,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "unsupported",
+          "reason": "No const-string reference tool"
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 4701.9299999810755,
+      "ready_memory": {
+        "private_bytes": 3307356160,
+        "rss_bytes": 3188113408,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 3764027392,
+        "rss_bytes": 3625467904,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 126,
+        "peak_private_bytes": 3890237440,
+        "peak_rss_bytes": 3746164736
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 319,
+        "peak_private_bytes": 3890237440,
+        "peak_rss_bytes": 3746164736
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "ddc",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 125.57039997773245,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 119.35029999585822,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 123.10609995620325,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 120.95299997599795,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 478.668799973093,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 486.6024000220932,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 474.6937999734655,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 476.93920001620427,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 96.03679995052516,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 62.12169997161254,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 60.57999999029562,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 59.46980003500357,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 72.87309999810532,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 76.5613000257872,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 75.61230001738295,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 70.60049998108298,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1053.4390999819152,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1040.7233000150882,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1058.2383000291884,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1092.5615999731235,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 174.8119000112638,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 184.07920002937317,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 180.1040999707766,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 184.5828999648802,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 208.8340999907814,
+      "ready_memory": {
+        "private_bytes": 40124416,
+        "rss_bytes": 35893248,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 878100480,
+        "rss_bytes": 383336448,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 10,
+        "peak_private_bytes": 929239040,
+        "peak_rss_bytes": 762585088
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 123,
+        "peak_private_bytes": 1343516672,
+        "peak_rss_bytes": 1354608640
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "asc",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 362.69239999819547,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 410.1117999525741,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 361.991300014779,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 362.66809998778626,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "unsupported",
+          "reason": "No global method-declaration search command in the tested ASC interface"
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 363.67170000448823,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 313.5448999819346,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 317.97229999210685,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 336.63629996590316,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 599.0685999859124,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 626.5946999774314,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 604.423200013116,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 592.590200016275,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1277.8563000028953,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1300.312799983658,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1249.369100027252,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1259.854700008873,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1176.9124999991618,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 1215.3621999896131,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 1201.496199995745,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 1187.5294000492431,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 99.1306999931112,
+      "ready_memory": {
+        "private_bytes": 16052224,
+        "rss_bytes": 31813632,
+        "processes": 3
+      },
+      "after_first_query_memory": {
+        "private_bytes": 16904192,
+        "rss_bytes": 32026624,
+        "processes": 3
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 24,
+        "peak_private_bytes": 105947136,
+        "peak_rss_bytes": 222978048
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 240,
+        "peak_private_bytes": 1015390208,
+        "peak_rss_bytes": 1218166784
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 352.34480001963675,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 48.11390000395477,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 44.84860005322844,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 47.60270001133904,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "timeout",
+          "deadline_seconds": 60
+        }
+      },
+      "prepare_ms": 91026.76889998838,
+      "ready_memory": {
+        "private_bytes": 19848925184,
+        "rss_bytes": 17753493504,
+        "processes": 5
+      },
+      "after_first_query_memory": {
+        "private_bytes": 19864522752,
+        "rss_bytes": 17767751680,
+        "processes": 5
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1441,
+        "peak_private_bytes": 19867435008,
+        "peak_rss_bytes": 17770180608
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 2205,
+        "peak_private_bytes": 26293231616,
+        "peak_rss_bytes": 25830092800
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "droidsaw",
+      "trial": 2,
+      "cases": {},
+      "setup_error": "{'jsonrpc': '2.0', 'id': 2, 'error': {'code': -32603, 'message': 'parse: parse budget exhausted (Memory) at dex-parse-input', 'data': {'category': 'internal-error', 'request_id': '18de689f9fc32f8c'}}}",
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 85,
+        "peak_private_bytes": 2349195264,
+        "peak_rss_bytes": 1763528704
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "dexdec",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2725.575699994806,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 201.1452000006102,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 207.9350000130944,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 201.14249998005107,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 112.27390001295134,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 117.68619995564222,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 111.75879999063909,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 111.29889998119324,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "unsupported",
+          "reason": "find_references supports class/field/method, not const-string"
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 756.8680999684148,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 0.36990002263337374,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 0.3136000013910234,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 0.20730000687763095,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 11218.103599967435,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.9612000323832035,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1.6815999988466501,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1.6212000045925379,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "unsupported",
+          "reason": "No const-string reference tool"
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 4685.151599987876,
+      "ready_memory": {
+        "private_bytes": 3299315712,
+        "rss_bytes": 3184926720,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 3765522432,
+        "rss_bytes": 3625205760,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 128,
+        "peak_private_bytes": 3892064256,
+        "peak_rss_bytes": 3746881536
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 328,
+        "peak_private_bytes": 3892064256,
+        "peak_rss_bytes": 3746881536
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "ddc",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 129.1588000021875,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 108.93029998987913,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 122.1516999648884,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 123.00060002598912,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 475.4718000185676,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 474.29569996893406,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 474.9763999716379,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 474.3066999944858,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 105.11780000524595,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 60.678399982862175,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 72.3285999847576,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 67.50619999365881,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 67.61979998555034,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 72.23639998119324,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 67.71429994842038,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 69.00509999832138,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 999.5246999897063,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1008.5659000324085,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1009.1094999806955,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1019.1675000241958,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 189.10949997371063,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 171.5408000163734,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 186.51569995563477,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 174.56369998399168,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 197.49320001574233,
+      "ready_memory": {
+        "private_bytes": 40071168,
+        "rss_bytes": 35622912,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 874983424,
+        "rss_bytes": 401715200,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 11,
+        "peak_private_bytes": 928112640,
+        "peak_rss_bytes": 798367744
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 120,
+        "peak_private_bytes": 1358589952,
+        "peak_rss_bytes": 1390321664
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "asc",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 386.44039997598156,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 353.20499999215826,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 364.5271999994293,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 401.6254000016488,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "unsupported",
+          "reason": "No global method-declaration search command in the tested ASC interface"
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 336.0969999921508,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 317.83409998752177,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 333.24410003842786,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 316.7795999906957,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 622.766499989666,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 591.7388000525534,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 619.6779999881983,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 598.6165000358596,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1252.8249000315554,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1246.6862999717705,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1262.003600015305,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1255.8673999737948,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1184.4594999565743,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 1193.1909999693744,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 1173.9510000334121,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 1174.689200008288,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+        }
+      },
+      "prepare_ms": 99.76999997161329,
+      "ready_memory": {
+        "private_bytes": 16457728,
+        "rss_bytes": 32280576,
+        "processes": 3
+      },
+      "after_first_query_memory": {
+        "private_bytes": 17076224,
+        "rss_bytes": 32468992,
+        "processes": 3
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 24,
+        "peak_private_bytes": 118816768,
+        "peak_rss_bytes": 218968064
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 236,
+        "peak_private_bytes": 999075840,
+        "peak_rss_bytes": 1200377856
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 368.25920001138,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 61.28520000493154,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 46.38730001170188,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 44.81210000813007,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "timeout",
+          "deadline_seconds": 60
+        }
+      },
+      "prepare_ms": 89560.02950004768,
+      "ready_memory": {
+        "private_bytes": 18512203776,
+        "rss_bytes": 16735535104,
+        "processes": 5
+      },
+      "after_first_query_memory": {
+        "private_bytes": 18526138368,
+        "rss_bytes": 16748589056,
+        "processes": 5
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1411,
+        "peak_private_bytes": 18529153024,
+        "peak_rss_bytes": 16751083520
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 2176,
+        "peak_private_bytes": 26512338944,
+        "peak_rss_bytes": 25821704192
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "droidsaw",
+      "trial": 3,
+      "cases": {},
+      "setup_error": "{'jsonrpc': '2.0', 'id': 2, 'error': {'code': -32603, 'message': 'parse: parse budget exhausted (Memory) at dex-parse-input', 'data': {'category': 'internal-error', 'request_id': '18de68ce614993d4'}}}",
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 85,
+        "peak_private_bytes": 2368557056,
+        "peak_rss_bytes": 1780461568
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "jadx-core",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 32.97900001052767,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 9.211299999151379,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 23.27320002950728,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 9.475700033362955,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 102.85869997460395,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 70.36399998469278,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 67.56019999738783,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 238.6199000175111,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 200.12659998610616,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 160.66579998005182,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 211.3396999775432,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 157.80320001067594,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 602.7083999942988,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 568.265900015831,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 578.577000007499,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 606.9677000050433,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1147.0447999890894,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 1036.530000041239,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1103.5082999733277,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 1111.7558000260033,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 236.53150000609457,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 213.96700001787394,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 213.30489998217672,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 196.0395000060089,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 193.59709997661412,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 192.73249997058883,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 197.42590002715588,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 191.4773000171408,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "complex": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 121.80010002339259,
+            "count": 1,
+            "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+          },
+          "samples": [
+            {
+              "wall_ms": 90.36470000864938,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 92.0062999939546,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 90.05370002705604,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            }
+          ],
+          "matches_reference": true
+        }
+      },
+      "prepare_ms": 51810.90639997274,
+      "ready_memory": {
+        "private_bytes": 20229042176,
+        "rss_bytes": 14956847104,
+        "processes": 2
+      },
+      "after_first_query_memory": {
+        "private_bytes": 20230766592,
+        "rss_bytes": 14957248512,
+        "processes": 2
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 815,
+        "peak_private_bytes": 20241633280,
+        "peak_rss_bytes": 14957248512
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 962,
+        "peak_private_bytes": 22817673216,
+        "peak_rss_bytes": 21507710976
+      },
+      "run_group": "formal"
+    },
+    {
+      "backend": "droidsaw-cli",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 9616.556900029536,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 9578.049800009467,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 9624.081299989484,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 9937.623799953144,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 9930.649299989454,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 9970.485000056215,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 30439.795699960086,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 30405.235300015192,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 30343.090599984862,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 30430.159599985927,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 30577.59200001601,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 31650.80310002668,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "timeout",
+          "deadline_seconds": 60
+        }
+      },
+      "prepare_ms": 0.0038999714888632298,
+      "ready_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "after_first_query_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 457,
+        "peak_private_bytes": 6436507648,
+        "peak_rss_bytes": 5670739968
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 4797,
+        "peak_private_bytes": 6768750592,
+        "peak_rss_bytes": 5991624704
+      },
+      "run_group": "formal-droid"
+    },
+    {
+      "backend": "droidsaw-cli",
+      "trial": 1,
+      "cases": {
+        "string_call": {
+          "status": "timeout",
+          "deadline_seconds": 60
+        }
+      },
+      "prepare_ms": 0.0037999707274138927,
+      "ready_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 941,
+        "peak_private_bytes": 6755938304,
+        "peak_rss_bytes": 5980160000
+      },
+      "run_group": "droid-string-call"
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 1,
+      "cases": {
+        "callers": {
+          "status": "unsupported",
+          "reason": "Xref tool omits caller prototypes and target overload selection; response received",
+          "non_equivalent_probe": {
+            "wall_ms": 3159.8300999612547,
+            "response_sha256": "9bb1372de1aade7d1a2f5459f18c8affe26e94b2029d356746bbb8012e7320e3"
+          }
+        }
+      },
+      "prepare_ms": 98534.72880000481,
+      "ready_memory": {
+        "private_bytes": 19531685888,
+        "rss_bytes": 16918384640,
+        "processes": 5
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1578,
+        "peak_private_bytes": 19633041408,
+        "peak_rss_bytes": 17113800704
+      },
+      "run_group": "mcp-callers"
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 1,
+      "run_group": "prior-independent-string-probe",
+      "cases": {
+        "string": {
+          "status": "timeout",
+          "deadline_seconds": 60
+        }
+      },
+      "provenance": "qq-9.3.55.json supplemental_string_runs; same APK, versions and deadline; no memory sampling in this probe"
+    },
+    {
+      "backend": "garlic",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 137.92480004485697,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 132.50479998532683,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 124.44680003682151,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 136.4735999959521,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 178.24620002647862,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 183.92079998739064,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 176.31599999731407,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 177.5368000380695,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 110.11190002318472,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 114.84370002290234,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 117.16470000101253,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 107.12679999414831,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 137.9235999775119,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 143.9832000178285,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 147.70990004763007,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 136.37390005169436,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 150.3231999813579,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 168.1189999799244,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 149.5491999667138,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 159.88580003613606,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 153.87439995538443,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 149.70180002273992,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 147.47450000140816,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 161.8470999528654,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "Imported schema has no field-access or numeric-constant references"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "Imported graph omits field accesses and call-site multiplicity"
+        }
+      },
+      "prepare_ms": 121920.0414000079,
+      "ready_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "preparation_steps": {
+        "call_graph_ms": 105068.38579999749,
+        "cg_import_ms": 16851.49209998781
+      },
+      "after_first_query_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1918,
+        "peak_private_bytes": 4039270400,
+        "peak_rss_bytes": 4050841600
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1965,
+        "peak_private_bytes": 4039270400,
+        "peak_rss_bytes": 4050841600
+      },
+      "run_group": "garlic-three-rounds"
+    },
+    {
+      "backend": "garlic",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 131.51799998013303,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 127.89499998325482,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 126.91370001994073,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 128.51680000312626,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 185.8436000184156,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 188.92460002098233,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 182.5542000005953,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 178.02860005758703,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 117.26369999814779,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 119.72099996637553,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 111.05229996610433,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 118.26849996577948,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 132.5652999803424,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 134.36840003123507,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 134.36009996803477,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 140.21839998895302,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 166.32989997742698,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 161.18789999745786,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 165.83379998337477,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 166.97489999933168,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 174.99969998607412,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 150.65409999806434,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 160.77230003429577,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 160.50759999779984,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "Imported schema has no field-access or numeric-constant references"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "Imported graph omits field accesses and call-site multiplicity"
+        }
+      },
+      "prepare_ms": 122100.11359996861,
+      "ready_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "preparation_steps": {
+        "call_graph_ms": 105316.14859995898,
+        "cg_import_ms": 16783.78540003905
+      },
+      "after_first_query_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1923,
+        "peak_private_bytes": 4043431936,
+        "peak_rss_bytes": 4054986752
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1969,
+        "peak_private_bytes": 4043431936,
+        "peak_rss_bytes": 4054986752
+      },
+      "run_group": "garlic-three-rounds"
+    },
+    {
+      "backend": "garlic",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 142.48620002763346,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 135.36529999691993,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 136.1583000398241,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 124.08709997544065,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 183.25200001709163,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 186.7490999866277,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 177.2415000014007,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 182.69569997210056,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 114.02239999733865,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 109.67700002947822,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 110.02399999415502,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 112.99080000026152,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 134.76310000987723,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 136.16039999760687,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 135.86710003437474,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 134.00640001054853,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 159.96439999435097,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 150.4980000318028,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 152.94319996610284,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 149.4851000024937,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 154.11979996133596,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 150.1931000384502,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 148.7030999851413,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 155.95719998236746,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "reason": "Imported schema has no field-access or numeric-constant references"
+        },
+        "complex": {
+          "status": "unsupported",
+          "reason": "Imported graph omits field accesses and call-site multiplicity"
+        }
+      },
+      "prepare_ms": 115966.85599995544,
+      "ready_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "preparation_steps": {
+        "call_graph_ms": 100489.35289995279,
+        "cg_import_ms": 15477.341399993747
+      },
+      "after_first_query_memory": {
+        "private_bytes": 0,
+        "rss_bytes": 0,
+        "processes": 0
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1844,
+        "peak_private_bytes": 4039315456,
+        "peak_rss_bytes": 4050870272
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 1890,
+        "peak_private_bytes": 4039315456,
+        "peak_rss_bytes": 4050870272
+      },
+      "run_group": "garlic-three-rounds"
+    },
+    {
+      "backend": "dexsql",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 3.8512000464834273,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.0144999832846224,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 0.7091999868862331,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 0.5850000306963921,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 4.363899992313236,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 3.577499999664724,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 3.2109000021591783,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 2.8911999543197453,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 21.814699983224273,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.419499982148409,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 0.977999996393919,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 0.8313999860547483,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1.7979000112973154,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.7048000008799136,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 1.3426000368781388,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 1.253900001756847,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2.9039999935775995,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 2.8644000412896276,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 9.826399968005717,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 2.811899990774691,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 3.364900010637939,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 4.011500044725835,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 2.8173000318929553,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 2.6402000221423805,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 8.360499981790781,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 4.570000048261136,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 3.6411999608390033,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 3.5031000152230263,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "complex": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 14.570900006219745,
+            "count": 1,
+            "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+          },
+          "samples": [
+            {
+              "wall_ms": 9.593199996743351,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 9.219800005666912,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 8.937600010540336,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            }
+          ],
+          "matches_reference": true
+        }
+      },
+      "prepare_ms": 533.0932000069879,
+      "ready_memory": {
+        "private_bytes": 1404248064,
+        "rss_bytes": 668520448,
+        "processes": 4
+      },
+      "after_first_query_memory": {
+        "private_bytes": 1406382080,
+        "rss_bytes": 673849344,
+        "processes": 4
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 8,
+        "peak_private_bytes": 1760268288,
+        "peak_rss_bytes": 854786048
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 12,
+        "peak_private_bytes": 1760268288,
+        "peak_rss_bytes": 854786048
+      },
+      "run_group": "dexsql-20261015"
+    },
+    {
+      "backend": "dexsql",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2.1986999781802297,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.0607999865897,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 0.7616999791935086,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 0.6436000112444162,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 3.6836000508628786,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 3.450899966992438,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 3.1525000231340528,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 3.066800010856241,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 25.420899968594313,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.482799998484552,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 1.0839999886229634,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 0.9697999921627343,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1.754299970343709,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 2.026899950578809,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 1.5179000329226255,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 1.344099990092218,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2.6348999817855656,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 2.827199990861118,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 2.312100026756525,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 2.121100027579814,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2.981300000101328,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 8.341899956576526,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 3.0727999983355403,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 2.685599960386753,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 7.615600014105439,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 4.5847000437788665,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 3.5351000260561705,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 3.411300014704466,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "complex": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 8.406399982050061,
+            "count": 1,
+            "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+          },
+          "samples": [
+            {
+              "wall_ms": 9.536100027617067,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 8.345300040673465,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 8.025099989026785,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            }
+          ],
+          "matches_reference": true
+        }
+      },
+      "prepare_ms": 531.8940000142902,
+      "ready_memory": {
+        "private_bytes": 1404461056,
+        "rss_bytes": 686063616,
+        "processes": 4
+      },
+      "after_first_query_memory": {
+        "private_bytes": 1406337024,
+        "rss_bytes": 687792128,
+        "processes": 4
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 8,
+        "peak_private_bytes": 1759510528,
+        "peak_rss_bytes": 853864448
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 12,
+        "peak_private_bytes": 1759510528,
+        "peak_rss_bytes": 853864448
+      },
+      "run_group": "dexsql-20261015"
+    },
+    {
+      "backend": "dexsql",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2.6523999986238778,
+            "count": 1,
+            "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.1034999624826014,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 0.775399967096746,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            },
+            {
+              "wall_ms": 0.6751000182703137,
+              "count": 1,
+              "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+            }
+          ],
+          "matches_reference": true
+        },
+        "method": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 3.7755999946966767,
+            "count": 43,
+            "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+          },
+          "samples": [
+            {
+              "wall_ms": 3.7819999852217734,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 3.182400017976761,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            },
+            {
+              "wall_ms": 2.8466000221669674,
+              "count": 43,
+              "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 28.355199960060418,
+            "count": 1,
+            "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.3360000448301435,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 0.9805000154301524,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            },
+            {
+              "wall_ms": 0.8630999946035445,
+              "count": 1,
+              "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+            }
+          ],
+          "matches_reference": true
+        },
+        "callers": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 1.920500013511628,
+            "count": 15,
+            "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+          },
+          "samples": [
+            {
+              "wall_ms": 1.6691000200808048,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 1.3957000337541103,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            },
+            {
+              "wall_ms": 1.3472999562509358,
+              "count": 15,
+              "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8"
+            }
+          ],
+          "matches_reference": true
+        },
+        "twohop": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 2.6775000151246786,
+            "count": 16,
+            "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+          },
+          "samples": [
+            {
+              "wall_ms": 3.2955999486148357,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 2.3831999860703945,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            },
+            {
+              "wall_ms": 2.1558000007644296,
+              "count": 16,
+              "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6"
+            }
+          ],
+          "matches_reference": true
+        },
+        "string_call": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 3.041299991309643,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 8.713899995200336,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 4.119699995499104,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 2.754799963440746,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 7.695099979173392,
+            "count": 1,
+            "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+          },
+          "samples": [
+            {
+              "wall_ms": 4.487600002903491,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 3.519199963193387,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            },
+            {
+              "wall_ms": 3.8471000152640045,
+              "count": 1,
+              "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f"
+            }
+          ],
+          "matches_reference": true
+        },
+        "complex": {
+          "status": "ok",
+          "first": {
+            "wall_ms": 11.652500019408762,
+            "count": 1,
+            "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+          },
+          "samples": [
+            {
+              "wall_ms": 8.693700016010553,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 8.654300007037818,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            },
+            {
+              "wall_ms": 9.028300002682954,
+              "count": 1,
+              "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be"
+            }
+          ],
+          "matches_reference": true
+        }
+      },
+      "prepare_ms": 532.3128000018187,
+      "ready_memory": {
+        "private_bytes": 1408249856,
+        "rss_bytes": 687370240,
+        "processes": 4
+      },
+      "after_first_query_memory": {
+        "private_bytes": 1410392064,
+        "rss_bytes": 689352704,
+        "processes": 4
+      },
+      "class_workflow_memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 8,
+        "peak_private_bytes": 1775702016,
+        "peak_rss_bytes": 851398656
+      },
+      "memory": {
+        "sampling_interval_ms": 50,
+        "sample_count": 12,
+        "peak_private_bytes": 1775702016,
+        "peak_rss_bytes": 851398656
+      },
+      "run_group": "dexsql-20261015"
+    }
+  ],
+  "summary": {
+    "asc": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 364.5271999994293,
+          "samples": 9,
+          "first_median_ms": 362.69239999819547,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No global method-declaration search command in the tested ASC interface"
+          ],
+          "chart_note": "Tested ASC API has no global method-declaration search"
+        },
+        "string": {
+          "status": "ok",
+          "median_ms": 317.97229999210685,
+          "samples": 9,
+          "first_median_ms": 363.67170000448823,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "all_sets_match": true
+        },
+        "callers": {
+          "status": "ok",
+          "median_ms": 604.423200013116,
+          "samples": 9,
+          "first_median_ms": 599.0685999859124,
+          "count": 15,
+          "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8",
+          "all_sets_match": true
+        },
+        "twohop": {
+          "status": "ok",
+          "median_ms": 1262.003600015305,
+          "samples": 9,
+          "first_median_ms": 1277.8563000028953,
+          "count": 16,
+          "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6",
+          "all_sets_match": true
+        },
+        "string_call": {
+          "status": "ok",
+          "median_ms": 1193.1909999693744,
+          "samples": 9,
+          "first_median_ms": 1184.4594999565743,
+          "count": 1,
+          "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f",
+          "all_sets_match": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+          ],
+          "chart_note": "Not implemented in adapter: field + number predicates"
+        },
+        "complex": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+          ],
+          "chart_note": "Not implemented in adapter: field + call-count predicates"
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 218968064,
+        "suite_peak_rss_bytes": 1204076544,
+        "ready_rss_bytes": 32165888,
+        "after_first_query_rss_bytes": 32358400,
+        "class_workflow_peak_private_bytes": 105947136,
+        "suite_peak_private_bytes": 1002553344,
+        "ready_private_bytes": 16371712,
+        "after_first_query_private_bytes": 16904192,
+        "rounds": 3
+      },
+      "prepare_median_ms": 99.76999997161329,
+      "first_class_total_median_ms": 467.49569999519736
+    },
+    "ddc": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 123.00060002598912,
+          "samples": 9,
+          "first_median_ms": 129.1588000021875,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "ok",
+          "median_ms": 476.93920001620427,
+          "samples": 9,
+          "first_median_ms": 478.668799973093,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "all_sets_match": true
+        },
+        "string": {
+          "status": "ok",
+          "median_ms": 63.36989998817444,
+          "samples": 9,
+          "first_median_ms": 96.50599997257814,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "all_sets_match": true
+        },
+        "callers": {
+          "status": "ok",
+          "median_ms": 72.23639998119324,
+          "samples": 9,
+          "first_median_ms": 72.87309999810532,
+          "count": 15,
+          "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8",
+          "all_sets_match": true
+        },
+        "twohop": {
+          "status": "ok",
+          "median_ms": 1026.6934999963269,
+          "samples": 9,
+          "first_median_ms": 1047.2241999814287,
+          "count": 16,
+          "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6",
+          "all_sets_match": true
+        },
+        "string_call": {
+          "status": "ok",
+          "median_ms": 184.07920002937317,
+          "samples": 9,
+          "first_median_ms": 189.10949997371063,
+          "count": 1,
+          "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f",
+          "all_sets_match": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+          ],
+          "chart_note": "Not implemented in adapter: field + number predicates"
+        },
+        "complex": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+          ],
+          "chart_note": "Not implemented in adapter: field + call-count predicates"
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 762585088,
+        "suite_peak_rss_bytes": 1354608640,
+        "ready_rss_bytes": 35622912,
+        "after_first_query_rss_bytes": 383336448,
+        "class_workflow_peak_private_bytes": 928112640,
+        "suite_peak_private_bytes": 1343516672,
+        "ready_private_bytes": 40071168,
+        "after_first_query_private_bytes": 874983424,
+        "rounds": 3
+      },
+      "prepare_median_ms": 208.8340999907814,
+      "first_class_total_median_ms": 334.40449996851385
+    },
+    "dexdec": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 202.81669998075813,
+          "samples": 9,
+          "first_median_ms": 2775.746100000106,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "ok",
+          "median_ms": 112.2305000317283,
+          "samples": 9,
+          "first_median_ms": 113.91719995299354,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "all_sets_match": true
+        },
+        "string": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "find_references supports class/field/method, not const-string"
+          ],
+          "chart_note": "MCP has no const-string reference target"
+        },
+        "callers": {
+          "status": "ok",
+          "median_ms": 0.24969998048618436,
+          "samples": 9,
+          "first_median_ms": 756.8680999684148,
+          "count": 15,
+          "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8",
+          "all_sets_match": true
+        },
+        "twohop": {
+          "status": "ok",
+          "median_ms": 1.6815999988466501,
+          "samples": 9,
+          "first_median_ms": 11218.103599967435,
+          "count": 16,
+          "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6",
+          "all_sets_match": true
+        },
+        "string_call": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No const-string reference tool"
+          ],
+          "chart_note": "MCP has no const-string reference target"
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+          ],
+          "chart_note": "Not implemented in adapter: field + number predicates"
+        },
+        "complex": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "No equivalent numeric/field/count predicate query implemented for this exposed interface"
+          ],
+          "chart_note": "Not implemented in adapter: field + call-count predicates"
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 3746881536,
+        "suite_peak_rss_bytes": 3746881536,
+        "ready_rss_bytes": 3188113408,
+        "after_first_query_rss_bytes": 3625467904,
+        "class_workflow_peak_private_bytes": 3892064256,
+        "suite_peak_private_bytes": 3892064256,
+        "ready_private_bytes": 3307356160,
+        "after_first_query_private_bytes": 3765522432,
+        "rounds": 3
+      },
+      "prepare_median_ms": 4685.151599987876,
+      "first_class_total_median_ms": 7477.676099981181
+    },
+    "dexsql": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 0.7616999791935086,
+          "samples": 9,
+          "first_median_ms": 2.6523999986238778,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "ok",
+          "median_ms": 3.182400017976761,
+          "samples": 9,
+          "first_median_ms": 3.7755999946966767,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "all_sets_match": true
+        },
+        "string": {
+          "status": "ok",
+          "median_ms": 0.9805000154301524,
+          "samples": 9,
+          "first_median_ms": 25.420899968594313,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "all_sets_match": true
+        },
+        "callers": {
+          "status": "ok",
+          "median_ms": 1.3957000337541103,
+          "samples": 9,
+          "first_median_ms": 1.7979000112973154,
+          "count": 15,
+          "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8",
+          "all_sets_match": true
+        },
+        "twohop": {
+          "status": "ok",
+          "median_ms": 2.811899990774691,
+          "samples": 9,
+          "first_median_ms": 2.6775000151246786,
+          "count": 16,
+          "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6",
+          "all_sets_match": true
+        },
+        "string_call": {
+          "status": "ok",
+          "median_ms": 3.0727999983355403,
+          "samples": 9,
+          "first_median_ms": 3.041299991309643,
+          "count": 1,
+          "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f",
+          "all_sets_match": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "median_ms": 3.6411999608390033,
+          "samples": 9,
+          "first_median_ms": 7.695099979173392,
+          "count": 1,
+          "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f",
+          "all_sets_match": true
+        },
+        "complex": {
+          "status": "ok",
+          "median_ms": 8.937600010540336,
+          "samples": 9,
+          "first_median_ms": 11.652500019408762,
+          "count": 1,
+          "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be",
+          "all_sets_match": true
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 853864448,
+        "suite_peak_rss_bytes": 853864448,
+        "ready_rss_bytes": 686063616,
+        "after_first_query_rss_bytes": 687792128,
+        "class_workflow_peak_private_bytes": 1760268288,
+        "suite_peak_private_bytes": 1760268288,
+        "ready_private_bytes": 1404461056,
+        "after_first_query_private_bytes": 1406382080,
+        "rounds": 3
+      },
+      "prepare_median_ms": 532.3128000018187,
+      "first_class_total_median_ms": 534.9652000004426
+    },
+    "droidsaw": {
+      "cases": {
+        "class": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        },
+        "method": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        },
+        "string": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        },
+        "callers": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        },
+        "twohop": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        },
+        "string_call": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        },
+        "four_fact": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        },
+        "complex": {
+          "status": "setup_error",
+          "chart_note": "MCP load rejected: 100 MiB DEX parse budget",
+          "reasons": [
+            "The MCP loader rejected the APK because its fixed 100 MiB DEX parse budget was exhausted."
+          ]
+        }
+      },
+      "memory": {
+        "suite_peak_rss_bytes": 1780461568,
+        "suite_peak_private_bytes": 2368557056,
+        "rounds": 3
+      },
+      "setup_errors": [
+        "{'jsonrpc': '2.0', 'id': 2, 'error': {'code': -32603, 'message': 'parse: parse budget exhausted (Memory) at dex-parse-input', 'data': {'category': 'internal-error', 'request_id': '18de68616b263eec'}}}",
+        "{'jsonrpc': '2.0', 'id': 2, 'error': {'code': -32603, 'message': 'parse: parse budget exhausted (Memory) at dex-parse-input', 'data': {'category': 'internal-error', 'request_id': '18de689f9fc32f8c'}}}",
+        "{'jsonrpc': '2.0', 'id': 2, 'error': {'code': -32603, 'message': 'parse: parse budget exhausted (Memory) at dex-parse-input', 'data': {'category': 'internal-error', 'request_id': '18de68ce614993d4'}}}"
+      ]
+    },
+    "droidsaw-cli": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 9616.556900029536,
+          "samples": 3,
+          "first_median_ms": 9616.556900029536,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "ok",
+          "median_ms": 9937.623799953144,
+          "samples": 3,
+          "first_median_ms": 9937.623799953144,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "all_sets_match": true
+        },
+        "string": {
+          "status": "ok",
+          "median_ms": 30405.235300015192,
+          "samples": 3,
+          "first_median_ms": 30439.795699960086,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "all_sets_match": true
+        },
+        "callers": {
+          "status": "ok",
+          "median_ms": 30577.59200001601,
+          "samples": 3,
+          "first_median_ms": 30430.159599985927,
+          "count": 15,
+          "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8",
+          "all_sets_match": true
+        },
+        "twohop": {
+          "status": "timeout",
+          "observations": 1,
+          "reasons": []
+        },
+        "string_call": {
+          "status": "timeout",
+          "observations": 1,
+          "reasons": []
+        },
+        "four_fact": {
+          "status": "not_run",
+          "chart_note": "Skipped after two-hop timeout; no separate probe",
+          "reasons": [
+            "The CLI workflow ended at the two-hop caller timeout before this case; no independent probe was run for this case."
+          ]
+        },
+        "complex": {
+          "status": "not_run",
+          "chart_note": "Skipped after two-hop timeout; no separate probe",
+          "reasons": [
+            "The CLI workflow ended at the two-hop caller timeout before this case; no independent probe was run for this case."
+          ]
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 5670739968,
+        "suite_peak_rss_bytes": 5991624704,
+        "ready_rss_bytes": 0,
+        "after_first_query_rss_bytes": 0,
+        "class_workflow_peak_private_bytes": 6436507648,
+        "suite_peak_private_bytes": 6768750592,
+        "ready_private_bytes": 0,
+        "after_first_query_private_bytes": 0,
+        "rounds": 1
+      },
+      "first_class_total_median_ms": 9616.556900029536
+    },
+    "jadx-core": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 9.530899988021702,
+          "samples": 9,
+          "first_median_ms": 32.97900001052767,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "ok",
+          "median_ms": 70.36399998469278,
+          "samples": 9,
+          "first_median_ms": 102.85869997460395,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "all_sets_match": true
+        },
+        "string": {
+          "status": "ok",
+          "median_ms": 160.66579998005182,
+          "samples": 9,
+          "first_median_ms": 200.12659998610616,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "all_sets_match": true
+        },
+        "callers": {
+          "status": "ok",
+          "median_ms": 647.5076000206172,
+          "samples": 9,
+          "first_median_ms": 647.4351999931969,
+          "count": 15,
+          "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8",
+          "all_sets_match": true
+        },
+        "twohop": {
+          "status": "ok",
+          "median_ms": 1177.993300021626,
+          "samples": 9,
+          "first_median_ms": 1204.348300001584,
+          "count": 16,
+          "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6",
+          "all_sets_match": true
+        },
+        "string_call": {
+          "status": "ok",
+          "median_ms": 216.83970000594854,
+          "samples": 9,
+          "first_median_ms": 236.53150000609457,
+          "count": 1,
+          "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f",
+          "all_sets_match": true
+        },
+        "four_fact": {
+          "status": "ok",
+          "median_ms": 198.2523999758996,
+          "samples": 9,
+          "first_median_ms": 205.68309997906908,
+          "count": 1,
+          "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f",
+          "all_sets_match": true
+        },
+        "complex": {
+          "status": "ok",
+          "median_ms": 96.02860000450164,
+          "samples": 9,
+          "first_median_ms": 121.80010002339259,
+          "count": 1,
+          "answer_sha256": "2067e7f771c04a2032d82a2bcd90a54a894b300fb852f92000c993652a0799be",
+          "all_sets_match": true
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 14020055040,
+        "suite_peak_rss_bytes": 22400860160,
+        "ready_rss_bytes": 14019571712,
+        "after_first_query_rss_bytes": 14020055040,
+        "class_workflow_peak_private_bytes": 19281473536,
+        "suite_peak_private_bytes": 23974092800,
+        "ready_private_bytes": 19280936960,
+        "after_first_query_private_bytes": 19281473536,
+        "rounds": 3
+      },
+      "prepare_median_ms": 52574.52080002986,
+      "first_class_total_median_ms": 52607.07250004634
+    },
+    "jadx-mcp": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 47.60270001133904,
+          "samples": 9,
+          "first_median_ms": 368.25920001138,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "timeout",
+          "observations": 3,
+          "reasons": []
+        },
+        "string": {
+          "status": "timeout",
+          "observations": 1,
+          "reasons": []
+        },
+        "callers": {
+          "status": "name_only_result",
+          "observations": 1,
+          "reasons": [
+            "Xref tool omits caller prototypes and target overload selection; response received"
+          ],
+          "probe_ms": 3159.8300999612547,
+          "name_projection_matches": true,
+          "projected_count": 15,
+          "note": "One independent first query, after preparation. Returned owner/name pairs omit prototypes; their complete projection matches the 15 exact callers."
+        },
+        "twohop": {
+          "status": "not_run",
+          "chart_note": "Skipped after method-search timeout; no separate probe",
+          "reasons": [
+            "The main runs ended at the method-name search timeout before this case; no independent probe was run for this case."
+          ]
+        },
+        "string_call": {
+          "status": "not_run",
+          "chart_note": "Skipped after method-search timeout; no separate probe",
+          "reasons": [
+            "The main runs ended at the method-name search timeout before this case; no independent probe was run for this case."
+          ]
+        },
+        "four_fact": {
+          "status": "not_run",
+          "chart_note": "Skipped after method-search timeout; no separate probe",
+          "reasons": [
+            "The main runs ended at the method-name search timeout before this case; no independent probe was run for this case."
+          ]
+        },
+        "complex": {
+          "status": "not_run",
+          "chart_note": "Skipped after method-search timeout; no separate probe",
+          "reasons": [
+            "The main runs ended at the method-name search timeout before this case; no independent probe was run for this case."
+          ]
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 17770180608,
+        "suite_peak_rss_bytes": 25830092800,
+        "ready_rss_bytes": 17753493504,
+        "after_first_query_rss_bytes": 17767751680,
+        "class_workflow_peak_private_bytes": 19867435008,
+        "suite_peak_private_bytes": 26512338944,
+        "ready_private_bytes": 19848925184,
+        "after_first_query_private_bytes": 19864522752,
+        "rounds": 3
+      },
+      "prepare_median_ms": 91026.76889998838,
+      "first_class_total_median_ms": 91379.11370000802
+    },
+    "garlic": {
+      "cases": {
+        "class": {
+          "status": "ok",
+          "median_ms": 128.51680000312626,
+          "samples": 9,
+          "first_median_ms": 137.92480004485697,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "all_sets_match": true
+        },
+        "method": {
+          "status": "ok",
+          "median_ms": 182.5542000005953,
+          "samples": 9,
+          "first_median_ms": 183.25200001709163,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "all_sets_match": true
+        },
+        "string": {
+          "status": "ok",
+          "median_ms": 112.99080000026152,
+          "samples": 9,
+          "first_median_ms": 114.02239999733865,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "all_sets_match": true
+        },
+        "callers": {
+          "status": "ok",
+          "median_ms": 136.16039999760687,
+          "samples": 9,
+          "first_median_ms": 134.76310000987723,
+          "count": 15,
+          "answer_sha256": "298ae19532d6e48ec4091b8202dee209125e3101ce18ef08590a95b85c567ec8",
+          "all_sets_match": true
+        },
+        "twohop": {
+          "status": "ok",
+          "median_ms": 159.88580003613606,
+          "samples": 9,
+          "first_median_ms": 159.96439999435097,
+          "count": 16,
+          "answer_sha256": "e80f9ac72bb140a8e5285274919640a0fa0246c6a93c7328e5ca7d67d4c5d9b6",
+          "all_sets_match": true
+        },
+        "string_call": {
+          "status": "ok",
+          "median_ms": 150.65409999806434,
+          "samples": 9,
+          "first_median_ms": 154.11979996133596,
+          "count": 1,
+          "answer_sha256": "0cb0dfd50a985d657fcdef58e31ed2a16f52a7f3debc12587536f610bc42808f",
+          "all_sets_match": true
+        },
+        "four_fact": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "Imported schema has no field-access or numeric-constant references"
+          ],
+          "chart_note": "Imported schema lacks field and numeric-constant references"
+        },
+        "complex": {
+          "status": "unsupported",
+          "observations": 3,
+          "reasons": [
+            "Imported graph omits field accesses and call-site multiplicity"
+          ],
+          "chart_note": "Imported graph omits fields and call-site counts"
+        }
+      },
+      "memory": {
+        "class_workflow_peak_rss_bytes": 4050870272,
+        "suite_peak_rss_bytes": 4050870272,
+        "ready_rss_bytes": 0,
+        "after_first_query_rss_bytes": 0,
+        "class_workflow_peak_private_bytes": 4039315456,
+        "suite_peak_private_bytes": 4039315456,
+        "ready_private_bytes": 0,
+        "after_first_query_private_bytes": 0,
+        "rounds": 3
+      },
+      "prepare_median_ms": 121920.0414000079,
+      "first_class_total_median_ms": 122057.96620005276,
+      "preparation_steps_median_ms": {
+        "call_graph_ms": 105068.38579999749,
+        "cg_import_ms": 16783.78540003905
+      }
+    }
+  },
+  "asc_python_packages": {
+    "axml": "0.0.2",
+    "droidasc": "0.1.1.post5",
+    "lxml": "6.1.3",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2",
+    "mutf8": "1.1.0",
+    "psutil": "7.2.2",
+    "Pygments": "2.21.0",
+    "rich": "15.0.0"
+  },
+  "memory_sampling": "50 ms wait between polling passes. Sampling work and OS scheduling add to the actual interval; brief peaks may be missed. RSS sums process working sets and can double-count shared pages. Private Bytes is Windows committed private memory, not RSS.",
+  "garlic_sampling": "Separate three-round run on the same machine and APK. Each round creates a new call graph and imports a new database. One first query then three repeats per case; charts use nine repeats. Every tool call uses a fresh MCP process because a second tools/call in one released server process exited. Query timers include server launch, initialization, DuckDB subprocesses, decoding, normalization, sorting and shutdown. The database is reused on disk. Graph generation and import are preparation costs.",
+  "garlic_threads": {
+    "call_graph": "Serial APK/DEX traversal in the tested release; no thread argument in MCP tool",
+    "cg_import": 4,
+    "cg_import_memory_limit": "4GB",
+    "cg_query": 8
+  },
+  "garlic_sql": {
+    "class": "SELECT DISTINCT split_part(method_raw, '->', 1) AS value FROM java_cg_nodes WHERE starts_with(method_raw, 'Lcom/tencent/mobileqq/activity/SplashActivity;->') ORDER BY value",
+    "method": "SELECT DISTINCT split_part(method_raw, '->', 1) AS value FROM java_cg_nodes WHERE lower(split_part(split_part(method_raw, '->', 2), '(', 1)) LIKE '%matchpayload%' ORDER BY value",
+    "string": "SELECT DISTINCT split_part(n.method_raw, '->', 1) AS value FROM string_nodes s JOIN string_edges e ON e.string_id=s.id JOIN java_cg_nodes n ON n.node_id=e.method_id WHERE s.str='closeQuietly(): Exception when connHttp.getInputStream()!,There may be no network, or no INTERNET permission' ORDER BY value",
+    "callers": "SELECT DISTINCT caller.method_raw AS value FROM java_cg_edges e JOIN java_cg_nodes caller ON caller.node_id=e.src_id JOIN java_cg_nodes callee ON callee.node_id=e.dst_id WHERE callee.method_raw='Liu3/a;->a(JZ)Ljava/lang/String;' ORDER BY value",
+    "twohop": "WITH first_hop AS (SELECT DISTINCT caller.method_raw AS value FROM java_cg_edges e JOIN java_cg_nodes caller ON caller.node_id=e.src_id JOIN java_cg_nodes callee ON callee.node_id=e.dst_id WHERE callee.method_raw='Liu3/a;->a(JZ)Ljava/lang/String;') SELECT DISTINCT caller.method_raw AS value FROM java_cg_edges e JOIN java_cg_nodes caller ON caller.node_id=e.src_id JOIN java_cg_nodes callee ON callee.node_id=e.dst_id JOIN first_hop f ON f.value=callee.method_raw ORDER BY value",
+    "string_call": "SELECT DISTINCT n.method_raw AS value FROM string_nodes s JOIN string_edges se ON se.string_id=s.id JOIN java_cg_nodes n ON n.node_id=se.method_id JOIN java_cg_edges ce ON ce.src_id=n.node_id JOIN java_cg_nodes callee ON callee.node_id=ce.dst_id WHERE s.str='gifFilePath gifPath:' AND callee.method_raw='Landroid/graphics/Bitmap;->getWidth()I' ORDER BY value"
+  },
+  "garlic_mcp_reuse_probe": {
+    "query": "SELECT 1 AS value",
+    "first_call": "completed with value 1",
+    "second_call": "process exited before returning a response",
+    "exit_code": 3221225477,
+    "windows_status": "0xC0000005",
+    "workaround": "Fresh MCP server per tool call; launch and handshake are timed"
+  },
+  "measurement_dates": {
+    "asc": "2026-10-14",
+    "ddc": "2026-10-14",
+    "dexdec": "2026-10-14",
+    "dexsql": "2026-10-15",
+    "droidsaw": "2026-10-14",
+    "droidsaw-cli": "2026-10-14",
+    "jadx-core": "2026-10-14",
+    "jadx-mcp": "2026-10-14",
+    "garlic": "2026-10-14"
+  },
+  "measurement_note": "Measurements collected on 2026-10-14 and 2026-10-15; per-backend dates are recorded in measurement_dates."
+}

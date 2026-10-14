@@ -1,0 +1,537 @@
+{
+  "input": {
+    "name": "QQ_9.3.55.apk",
+    "bytes": 389727209,
+    "sha256": "e5752cad5274f8c28291d9fba91a99cbdb856cb49fdfea9803770f1d6d8e00dc",
+    "dex_files": 41,
+    "dex_bytes": 411819364
+  },
+  "dexsql_sha256": "123320ec9136a03378eb7453d2a270ce20712f41675d448f7f5a281a325118fe",
+  "jadx_sha256": "fe3e12c45acf75f92369685fd02d1d7a7323385dc725680a9b98a0dac0ea554b",
+  "threads": 8,
+  "java_heap": "24g",
+  "timeout_s": 60,
+  "warm_samples": 5,
+  "sql": {
+    "class": "SELECT descriptor FROM classes WHERE descriptor = 'Lcom/tencent/mobileqq/activity/SplashActivity;'",
+    "method": "SELECT DISTINCT class_descriptor FROM class_methods WHERE method_name LIKE '%matchPayload%' ORDER BY class_descriptor",
+    "string": "SELECT DISTINCT method_class FROM method_strings WHERE value = 'closeQuietly(): Exception when connHttp.getInputStream()!,There may be no network, or no INTERNET permission' ORDER BY method_class"
+  },
+  "runs": [
+    {
+      "backend": "dexsql",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 3.284199978224933,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            0.7121000089682639,
+            0.5982999573461711,
+            0.5196999991312623,
+            0.5034999921917915,
+            0.5147999618202448
+          ],
+          "median_ms": 0.5196999991312623
+        },
+        "method": {
+          "status": "ok",
+          "first_ms": 3.8392000133171678,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "warm_ms": [
+            3.084600029978901,
+            2.745000005234033,
+            2.9997999663464725,
+            2.6335999718867242,
+            2.6376000023446977
+          ],
+          "median_ms": 2.745000005234033
+        },
+        "string": {
+          "status": "ok",
+          "first_ms": 19.40889999968931,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "warm_ms": [
+            1.0232000495307148,
+            0.7848999812267721,
+            0.78219996066764,
+            0.7871999987401068,
+            0.701200042385608
+          ],
+          "median_ms": 0.7848999812267721
+        }
+      },
+      "prepare_ms": 474.21810001833364,
+      "prepare_internal_ms": 445.3214
+    },
+    {
+      "backend": "jadx-core",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 36.45150002557784,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            17.164800025057048,
+            8.932400029152632,
+            8.263399999123067,
+            9.549999958835542,
+            7.9190999967977405
+          ],
+          "median_ms": 8.932400029152632
+        },
+        "method": {
+          "status": "ok",
+          "first_ms": 117.96659999527037,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "warm_ms": [
+            74.74449998699129,
+            84.63559998199344,
+            80.78780001960695,
+            77.84480002010241,
+            82.60029996745288
+          ],
+          "median_ms": 80.78780001960695
+        },
+        "string": {
+          "status": "ok",
+          "first_ms": 218.40539999539033,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "warm_ms": [
+            160.8035999815911,
+            158.3978999988176,
+            161.57459997339174,
+            157.11629996076226,
+            182.22370004514232
+          ],
+          "median_ms": 160.8035999815911
+        }
+      },
+      "prepare_ms": 51483.676700037904,
+      "prepare_internal_ms": 51384.912
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 1,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 343.12469995347783,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            50.06350000621751,
+            48.158899997361004,
+            48.86760003864765,
+            46.927499992307276,
+            47.58569999830797
+          ],
+          "median_ms": 48.158899997361004
+        },
+        "method": {
+          "status": "timeout",
+          "elapsed_ms": 60012.230499996804
+        }
+      },
+      "prepare_ms": 92191.14310003351,
+      "prepare_internal_ms": null
+    },
+    {
+      "backend": "jadx-core",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 39.257600030396134,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            18.10220000334084,
+            11.565099994186312,
+            8.213300025090575,
+            12.312700040638447,
+            7.041700009722263
+          ],
+          "median_ms": 11.565099994186312
+        },
+        "method": {
+          "status": "ok",
+          "first_ms": 126.91240001004189,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "warm_ms": [
+            96.11990000121295,
+            96.72889998182654,
+            95.8414999768138,
+            96.73849999671802,
+            96.78309998707846
+          ],
+          "median_ms": 96.72889998182654
+        },
+        "string": {
+          "status": "ok",
+          "first_ms": 481.39570001512766,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "warm_ms": [
+            257.6404000283219,
+            183.14910004846752,
+            188.4483000030741,
+            192.52640003105626,
+            214.59990000585094
+          ],
+          "median_ms": 192.52640003105626
+        }
+      },
+      "prepare_ms": 55180.3809000412,
+      "prepare_internal_ms": 55046.1054
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 371.0605999804102,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            54.425999987870455,
+            52.23000003024936,
+            51.44249997101724,
+            51.96999997133389,
+            52.44569998467341
+          ],
+          "median_ms": 52.23000003024936
+        },
+        "method": {
+          "status": "timeout",
+          "elapsed_ms": 60005.54079998983
+        }
+      },
+      "prepare_ms": 96701.74169994425,
+      "prepare_internal_ms": null
+    },
+    {
+      "backend": "dexsql",
+      "trial": 2,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 4.987500025890768,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            1.2654000311158597,
+            1.1837999918498099,
+            0.9198000188916922,
+            0.7745999610051513,
+            0.7118000066839159
+          ],
+          "median_ms": 0.9198000188916922
+        },
+        "method": {
+          "status": "ok",
+          "first_ms": 5.1707999664358795,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "warm_ms": [
+            3.278599993791431,
+            3.494800010230392,
+            3.289800020866096,
+            2.9842000221833587,
+            2.7775000198744237
+          ],
+          "median_ms": 3.278599993791431
+        },
+        "string": {
+          "status": "ok",
+          "first_ms": 31.520599965006113,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "warm_ms": [
+            1.7238000291399658,
+            1.3472000136971474,
+            1.2678999919444323,
+            1.0898999753408134,
+            0.937800039537251
+          ],
+          "median_ms": 1.2678999919444323
+        }
+      },
+      "prepare_ms": 509.4589000218548,
+      "prepare_internal_ms": 478.6495
+    },
+    {
+      "backend": "jadx-mcp",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 372.61469999793917,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            56.22730002505705,
+            57.01819999376312,
+            56.347800011280924,
+            49.26970001542941,
+            53.34340000990778
+          ],
+          "median_ms": 56.22730002505705
+        },
+        "method": {
+          "status": "timeout",
+          "elapsed_ms": 60009.331699984614
+        }
+      },
+      "prepare_ms": 93167.42749995319,
+      "prepare_internal_ms": null
+    },
+    {
+      "backend": "dexsql",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 5.3322999738156796,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            1.382300048135221,
+            1.325499964877963,
+            1.0856000008061528,
+            1.0084999958053231,
+            1.0064999805763364
+          ],
+          "median_ms": 1.0856000008061528
+        },
+        "method": {
+          "status": "ok",
+          "first_ms": 5.455999984405935,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "warm_ms": [
+            3.5679999855346978,
+            3.547400003299117,
+            3.4402000019326806,
+            3.5749999806284904,
+            3.047299978788942
+          ],
+          "median_ms": 3.547400003299117
+        },
+        "string": {
+          "status": "ok",
+          "first_ms": 33.58490002574399,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "warm_ms": [
+            1.784500025678426,
+            1.4361999928951263,
+            1.2380999978631735,
+            1.0774999973364174,
+            0.8982000290416181
+          ],
+          "median_ms": 1.2380999978631735
+        }
+      },
+      "prepare_ms": 589.6811000420712,
+      "prepare_internal_ms": 558.8518
+    },
+    {
+      "backend": "jadx-core",
+      "trial": 3,
+      "cases": {
+        "class": {
+          "status": "ok",
+          "first_ms": 29.70299997832626,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "warm_ms": [
+            14.163699990604073,
+            7.687499979510903,
+            6.271800026297569,
+            5.952800041995943,
+            5.544799962081015
+          ],
+          "median_ms": 6.271800026297569
+        },
+        "method": {
+          "status": "ok",
+          "first_ms": 296.2458999827504,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "warm_ms": [
+            76.72110002022237,
+            75.22649999009445,
+            73.13169998815283,
+            72.97679997282103,
+            71.88110001152381
+          ],
+          "median_ms": 73.13169998815283
+        },
+        "string": {
+          "status": "ok",
+          "first_ms": 204.7055999864824,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "warm_ms": [
+            158.37269998155534,
+            160.9405999770388,
+            160.6572000309825,
+            172.94929997297004,
+            170.28570000547916
+          ],
+          "median_ms": 160.9405999770388
+        }
+      },
+      "prepare_ms": 52301.542999979574,
+      "prepare_internal_ms": 52178.9356
+    }
+  ],
+  "measured_date": "2026-10-14",
+  "environment": {
+    "cpu": "AMD Ryzen 9 9950X3D",
+    "cores": 16,
+    "logical_processors": 32,
+    "os": "Windows 11 Pro 10.0.26200",
+    "visible_memory_kib": 64393564,
+    "java": "OpenJDK 26.0.1",
+    "python": "CPython 3.14.6",
+    "os_file_cache_flushed": false
+  },
+  "versions": {
+    "dexsql": "0.1.0 local release build",
+    "dexsql_source_revision": "ade2a1b0fa1e6ba7db4491ab01211d5ec7cee651",
+    "jadx": "1.5.6",
+    "jadx_ai_mcp": "V6.4.1",
+    "jadx_ai_mcp_source_revision": "d2dd72e6c0d84735b78773067075dac8cea651c1",
+    "fastmcp": "4.1.0",
+    "mcp": "2.3.0",
+    "httpx": "0.28.1"
+  },
+  "artifacts": {
+    "jadx-ai-mcp-6.4.1.jar": "df7040ee4bc724c132635e8ad906b0961829db09a35da3365cbc46a761bed983",
+    "jadx-mcp-server-6.4.1.zip": "e7cf0fa756b817cde3d3a2b6c04a6a6eb8546298eaff6a957e711fb68e53b532",
+    "JadxProbe.java": "59bd57dcff317c73176d1cf21a6f4d3a8aca2b1bb2661711d46365fda893a574"
+  },
+  "supplemental_string_runs": [
+    {
+      "backend": "jadx-mcp",
+      "trial": 1,
+      "cases": {
+        "string": {
+          "status": "timeout",
+          "elapsed_ms": 60015.40139998542
+        }
+      },
+      "prepare_ms": 82471.40979999676,
+      "prepare_internal_ms": null
+    }
+  ],
+  "summary": {
+    "dexsql": {
+      "prepare_median_ms": 509.4589000218548,
+      "cases": {
+        "class": {
+          "first_median_ms": 4.987500025890768,
+          "warm_median_ms": 0.9198000188916922,
+          "warm_min_ms": 0.5034999921917915,
+          "warm_max_ms": 1.382300048135221,
+          "warm_samples": 15,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035",
+          "jadx_native_time_ratio": 8.983909360080252
+        },
+        "method": {
+          "first_median_ms": 5.1707999664358795,
+          "warm_median_ms": 3.084600029978901,
+          "warm_min_ms": 2.6335999718867242,
+          "warm_max_ms": 3.5749999806284904,
+          "warm_samples": 15,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07",
+          "jadx_native_time_ratio": 26.19068898218209
+        },
+        "string": {
+          "first_median_ms": 31.520599965006113,
+          "warm_median_ms": 1.0774999973364174,
+          "warm_min_ms": 0.701200042385608,
+          "warm_max_ms": 1.784500025678426,
+          "warm_samples": 15,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b",
+          "jadx_native_time_ratio": 158.03777301756455
+        }
+      }
+    },
+    "jadx-core": {
+      "prepare_median_ms": 52301.542999979574,
+      "cases": {
+        "class": {
+          "first_median_ms": 36.45150002557784,
+          "warm_median_ms": 8.263399999123067,
+          "warm_min_ms": 5.544799962081015,
+          "warm_max_ms": 18.10220000334084,
+          "warm_samples": 15,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+        },
+        "method": {
+          "first_median_ms": 126.91240001004189,
+          "warm_median_ms": 80.78780001960695,
+          "warm_min_ms": 71.88110001152381,
+          "warm_max_ms": 96.78309998707846,
+          "warm_samples": 15,
+          "count": 43,
+          "answer_sha256": "d2876906e50341db217f2bc1822c6360852f60332930da7535b4c31393332e07"
+        },
+        "string": {
+          "first_median_ms": 218.40539999539033,
+          "warm_median_ms": 170.28570000547916,
+          "warm_min_ms": 157.11629996076226,
+          "warm_max_ms": 257.6404000283219,
+          "warm_samples": 15,
+          "count": 1,
+          "answer_sha256": "7713b6f4b9bd1bddfce1e21771b34522f78d299a34b32f5f59ad93d4a51f073b"
+        }
+      }
+    },
+    "jadx-mcp": {
+      "prepare_median_ms": 93167.42749995319,
+      "cases": {
+        "class": {
+          "first_median_ms": 371.0605999804102,
+          "warm_median_ms": 51.96999997133389,
+          "warm_min_ms": 46.927499992307276,
+          "warm_max_ms": 57.01819999376312,
+          "warm_samples": 15,
+          "count": 1,
+          "answer_sha256": "27b272541cbe77962e70e7f12345a290063a71f7d1686c3f7fc69c158b7ea035"
+        },
+        "method": {
+          "statuses": [
+            "timeout",
+            "timeout",
+            "timeout"
+          ]
+        },
+        "string": {
+          "statuses": [
+            "not_run",
+            "not_run",
+            "not_run"
+          ]
+        }
+      }
+    }
+  }
+}

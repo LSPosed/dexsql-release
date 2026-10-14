@@ -1,0 +1,155 @@
+DexSQL Binary License
+Version 1.0
+
+Copyright (c) 2026 LSPosed
+
+1. Scope
+
+"Software" means the specific version of the DexSQL executable distributed
+with this License in compiled, object-code form. Documentation text and code
+examples are excluded from this definition, including when embedded in the
+executable.
+
+"Licensor" means each copyright holder, or person or entity authorized by that
+holder, granting rights under this License under the collective name
+"LSPosed". Each Licensor grants only rights it is entitled to grant.
+Third-party rights holders are not Licensors under this License merely because
+their materials are included in the Software.
+
+Public skills, benchmark materials, and documentation covered by
+LICENSE-AUXILIARY are licensed separately under the MIT License. This includes
+accompanying documentation, repository README files, embedded documentation
+text and code examples, and online documentation within that file's scope.
+This Binary License does not replace or restrict those separate permissions.
+The MIT license for embedded documentation does not extend to the executable
+as a whole or its implementation.
+
+DexSQL is proprietary, closed-source software. This License is not an
+open-source license. It does not apply to unpublished source code or grant any
+right to obtain or distribute that source code. No source-code delivery or
+disclosure is promised.
+
+2. Permission
+
+Subject to the conditions below, the Licensor grants you a worldwide,
+non-exclusive, royalty-free license to:
+
+(a) use the Software for any purpose, including personal, internal business,
+    and commercial purposes;
+(b) reproduce and distribute copies of the Software in binary form;
+(c) embed, bundle, or otherwise integrate copies of the Software into
+    other software, including open-source or proprietary products; and
+(d) provide products or services using the Software, and distribute copies on
+    their own or with other products, with or without charging a fee.
+
+No license fee or royalty is payable to the Licensor for these permissions.
+You are not required by this License to disclose the source code of your own
+software. You may license your own software under terms of your choice.
+
+3. Distribution conditions
+
+When distributing copies of the Software, including within a larger
+product, you must include this License in full and retain the applicable
+copyright, license, and third-party notices. These may be supplied in the
+executable itself, accompanying documentation, or legal notices of your
+product. Embedded notices must remain accessible to recipients.
+
+You must not misrepresent the origin of the Software or imply endorsement by
+the Licensor.
+
+Each recipient receives permissions to the Software directly from the
+relevant Licensors under this License. Terms you apply to your own product
+must not remove or contradict those permissions as they apply to the
+Software itself.
+
+4. Version-specific grant; no future obligations
+
+The permissions granted for a copy of the Software continue for the duration
+of the applicable copyright, subject to the conditions of this License and
+the termination and reinstatement provisions in Section 7. They do not expire
+or become subject to new fees merely because a newer version is released, the
+project is discontinued, or licensing or pricing policies change.
+Such changes do not revoke or retroactively alter this grant for that copy.
+
+This License does not grant rights to any other or future version unless that
+version is also distributed under this License. Future versions may be offered
+under different terms or for a fee, or may not be released at all.
+
+The Licensor has no obligation under this License to provide updates, bug
+fixes, security fixes, maintenance, technical support, continued downloads,
+source code, or compatibility with any past or future API, ABI, platform,
+product, or service.
+
+5. Ownership and third-party materials
+
+The Software remains the property of its respective rights holders. Rights
+not expressly granted by this License are reserved.
+
+Third-party components and materials remain governed by their own applicable
+licenses and notices. This License does not replace or restrict rights granted
+under those licenses, or waive their requirements.
+
+The executable embeds third-party copyright and license notices in compressed
+form. Run "dexsql extract licenses" to
+display them, or "dexsql extract licenses --output THIRD_PARTY_NOTICES" to
+export a readable copy. Extraction does not require a network connection.
+
+6. No trademark license
+
+This License grants no rights in trademarks, service marks, trade names,
+product names, logos, or other branding of the Licensor or any third party,
+including the names "DexSQL" and "LSPosed" and their
+associated logos. The permissions to use, integrate, and distribute
+the Software do not include any trademark license, whether express or implied.
+
+Retaining required notices or making accurate, non-misleading textual
+references to identify the Software or describe an integration does not grant
+permission to adopt those names or marks as branding for your own products
+or services. You must not imply official status, affiliation, sponsorship,
+certification, or endorsement by the Licensor or the relevant rights holder.
+
+Any use that requires trademark permission must be separately authorized by
+the relevant rights holder. Nothing in this section restricts the retention
+of required notices or uses independently permitted by applicable law.
+
+7. Termination and reinstatement
+
+If you breach this License, the relevant Licensor may give you written notice
+identifying the breach. If you do not cure the breach within 30 days after
+receiving that notice, the rights granted to you by that Licensor under this
+License terminate automatically at the end of that period. During that period,
+you remain obligated to comply with this License and remedy the breach.
+
+If you cure the breach after termination, those rights are automatically
+reinstated as of the date the breach is cured. Until reinstatement, you must
+cease activities that require those terminated permissions. Reinstatement
+does not authorize activities during the period of termination or waive
+claims arising from past noncompliance.
+
+Termination of your rights does not terminate the rights of recipients who
+validly received the Software from you and comply with this License, subject
+to this Section's application to their own conduct. Their permissions come
+directly from the relevant Licensors. Termination under this License does not
+affect separate permissions under LICENSE-AUXILIARY or third-party licenses.
+
+Sections 5, 6, and 8, this Section, and claims arising before termination
+survive termination. Termination does not grant any additional rights.
+
+8. No warranty; limitation of liability
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE SOFTWARE IS PROVIDED
+ON AN "AS IS" AND "AS AVAILABLE" BASIS. THE LICENSOR MAKES NO WARRANTIES,
+WHETHER EXPRESS, IMPLIED, OR STATUTORY, INCLUDING WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, OR NONINFRINGEMENT.
+THE LICENSOR DOES NOT WARRANT THAT THE SOFTWARE IS ACCURATE, SECURE,
+ERROR-FREE, UNINTERRUPTED, OR SUITABLE FOR YOUR REQUIREMENTS.
+
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSOR WILL NOT BE
+LIABLE FOR ANY CLAIM, LOSS, OR DAMAGE ARISING FROM THIS LICENSE OR FROM USE
+OF, DISTRIBUTION OF, OR INABILITY TO USE THE SOFTWARE, INCLUDING DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES, LOST PROFITS, LOST
+DATA, OR BUSINESS INTERRUPTION, REGARDLESS OF THE LEGAL THEORY AND EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+Nothing in this License excludes or limits liability or rights that applicable
+law does not permit to be excluded or limited.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Install DexSQL MCP"
+  short_description: "Install DexSQL and connect a local MCP client"
+  default_prompt: "Use $install-dexsql to install DexSQL and configure it for my current local MCP client."
