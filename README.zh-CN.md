@@ -40,7 +40,7 @@ Skill 会从 [Releases](https://github.com/LSPosed/dexsql-release/releases/lates
 <details>
 <summary>手动配置 MCP</summary>
 
-下载对应平台的独立可执行文件：[Windows x64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-windows-amd64.exe)、[Linux x64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-linux-amd64) 或 [macOS 13+（Apple silicon）](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-darwin-arm64)。Windows 下重命名为 `dexsql.exe`，macOS/Linux 下重命名为 `dexsql`，并运行 `chmod +x /path/to/dexsql`。
+下载对应平台的独立可执行文件：[Windows x64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-windows-amd64.exe)、[Linux x64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-linux-amd64)、[Linux ARM64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-linux-arm64) 或 [macOS 13+（Apple silicon）](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-darwin-arm64)。Windows 下重命名为 `dexsql.exe`，macOS/Linux 下重命名为 `dexsql`，并运行 `chmod +x /path/to/dexsql`。
 
 将同一 [Release](https://github.com/LSPosed/dexsql-release/releases/latest) 中的 `LICENSE` 和 `LICENSE-AUXILIARY` 保存到可执行文件旁，再使用可执行文件的绝对路径注册。Codex：
 

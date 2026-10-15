@@ -31,6 +31,7 @@ not install the executable or register an MCP server.
 - The v0.1.0 assets are standalone executables, with these platform mappings:
   - Windows x64 (`x86_64` / `amd64`): `dexsql-windows-amd64.exe`.
   - Linux x64 (`x86_64` / `amd64`): `dexsql-linux-amd64`.
+  - Linux ARM64 (`arm64` / `aarch64`): `dexsql-linux-arm64`.
   - macOS 13+ on Apple silicon (`arm64` / `aarch64`): `dexsql-darwin-arm64`.
   Recheck the selected release's assets; this list is not a version pin or a
   complete list of platforms that future releases may support.
