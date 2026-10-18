@@ -40,7 +40,7 @@ The skill downloads a compatible binary from [Releases](https://github.com/LSPos
 <details>
 <summary>Manual MCP setup</summary>
 
-Download the standalone executable for [Windows x64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-windows-amd64.exe), [Linux x64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-linux-amd64), [Linux ARM64](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-linux-arm64), or [macOS 13+ on Apple silicon](https://github.com/LSPosed/dexsql-release/releases/latest/download/dexsql-darwin-arm64). Rename it to `dexsql.exe` on Windows or `dexsql` on macOS/Linux. On macOS/Linux, run `chmod +x /path/to/dexsql`.
+Open [Releases](https://github.com/LSPosed/dexsql-release/releases/latest) and choose the executable or archive that matches your operating system and CPU architecture. Check the selected release's assets and notes for availability and system requirements. Extract the archive if needed, then rename the executable to `dexsql.exe` on Windows or `dexsql` on macOS/Linux. On macOS/Linux, run `chmod +x /path/to/dexsql`.
 
 Save `LICENSE` and `LICENSE-AUXILIARY` from the same [Release](https://github.com/LSPosed/dexsql-release/releases/latest) alongside the executable, then register its absolute path. For Codex:
 

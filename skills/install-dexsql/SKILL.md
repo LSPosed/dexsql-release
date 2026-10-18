@@ -28,13 +28,10 @@ not install the executable or register an MCP server.
 - Select the CLI executable or archive for the detected OS/architecture. Do not
   substitute a WASM bundle, source archive, or another project's binary.
   Use the API's actual `browser_download_url`; do not invent asset names.
-- The v0.1.0 assets are standalone executables, with these platform mappings:
-  - Windows x64 (`x86_64` / `amd64`): `dexsql-windows-amd64.exe`.
-  - Linux x64 (`x86_64` / `amd64`): `dexsql-linux-amd64`.
-  - Linux ARM64 (`arm64` / `aarch64`): `dexsql-linux-arm64`.
-  - macOS 13+ on Apple silicon (`arm64` / `aarch64`): `dexsql-darwin-arm64`.
-  Recheck the selected release's assets; this list is not a version pin or a
-  complete list of platforms that future releases may support.
+- Use the selected release's actual assets and notes as the source of truth for
+  available platforms, architectures, packaging, and system requirements. Check
+  compatibility with the host before downloading; do not rely on a fixed platform
+  list or asset names from another release.
 - If the repository is inaccessible, no release exists, or there is no matching
   binary, explain the concrete issue and accept a local executable or an official
   release URL from the user. Do not claim installation succeeded or try to build
