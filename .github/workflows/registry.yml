@@ -76,15 +76,18 @@ jobs:
             server: {
               type: "binary",
               entry_point: "server/dexsql-linux",
-              mcp_config: {command: "${__dirname}/server/dexsql-linux", args: ["mcp"]},
-              platform_overrides: {
-                darwin: {command: "${__dirname}/server/dexsql-darwin", args: ["mcp"]},
-                win32: {command: "${__dirname}/server/dexsql-windows.exe", args: ["mcp"]}
+              mcp_config: {
+                command: "${__dirname}/server/dexsql-linux",
+                args: ["mcp"],
+                platform_overrides: {
+                  darwin: {command: "${__dirname}/server/dexsql-darwin", args: ["mcp"]},
+                  win32: {command: "${__dirname}/server/dexsql-windows.exe", args: ["mcp"]}
+                }
               }
             },
             compatibility: {platforms: ["darwin", "win32", "linux"]}
           }' > "$root/manifest.json"
-          npx -y @anthropic-ai/mcpb validate "$root/manifest.json" > /dev/null
+          npx -y @anthropic-ai/mcpb validate "$root/manifest.json"
           (cd "$root" && zip -qr -X ../dexsql.mcpb .)
           shasum -a 256 dexsql.mcpb
 
