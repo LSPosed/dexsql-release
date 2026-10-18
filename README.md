@@ -79,9 +79,9 @@ The server provides its schema and documentation through MCP resources. APK pars
 
 An AI agent analyzed **Douyin 40.7.0** (343 MiB, 56 DEX files) through the DexSQL MCP server. We replayed its 17 analysis goals (47 tool calls) on DexSQL 0.1.1 and on [rasc](https://github.com/MG1937/ASC/tree/rust), the Rust implementation of ASC.
 
-![Douyin 40.7.0: per-goal hot and cold times, APK open, whole-session time and cumulative time for DexSQL and rasc.](benchmarks/agent-audit/charts/session.svg)
+![Douyin 40.7.0: APK open, whole-session time and cumulative time as goals accumulate, DexSQL and rasc.](benchmarks/agent-audit/charts/session.svg)
 
-DexSQL opens the APK once (371 ms) and then answers each goal in 18.5 ms (geometric mean). rasc has no session mode and reads the APK again for every step, taking 150 ms per goal. For a single isolated question rasc is faster; from the third question on, the open DexSQL session is ahead. The observed 17-goal session took 0.86 s with DexSQL and 3.07 s with rasc. See the [replay report](benchmarks/agent-audit/README.md) for every goal, the method and the harness.
+DexSQL opens the APK once per session (371 ms), and the 17 goals then took 444 ms in total. rasc has no session mode and reads the APK again in each of its 47 steps. The observed session took 0.86 s with DexSQL and 3.07 s with rasc. Using the mean goal time from this replay, the open is recovered after two to three goals; a session with a single question finishes sooner with rasc. See the [replay report](benchmarks/agent-audit/README.md) for every goal, the method and the harness.
 
 ### Fixed queries on QQ
 

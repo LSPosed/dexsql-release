@@ -11,18 +11,18 @@ This is a single real workload, not a general ranking. The [QQ benchmark](../REA
 
 ## Results
 
-![Per-goal hot and cold times, APK open, whole-session time and cumulative time.](charts/session.svg)
+![APK open, whole-session time and cumulative time as goals accumulate.](charts/session.svg)
 
 Render with `python3 render_chart.py` (requires matplotlib).
 
 | Measurement | DexSQL 0.1.1 | rasc | Ratio |
 |---|---:|---:|---:|
 | **Whole session:** all 17 goals, observed end to end | **860 ms** | 3,068 ms | DexSQL 3.6× faster |
-| **Per goal, dataset already open:** geometric mean | — | — | DexSQL 8.1× faster |
-| **Per goal, new process each time:** geometric mean | — | — | **rasc 2.6× faster** |
+| **Opening the APK** | 371 ms, once per session | none; each step reads the APK | — |
+| **Per goal after opening:** geometric mean of 17 goals | 18.5 ms | 150.2 ms | DexSQL 8.1× faster |
 
 - The DexSQL whole-session time is one new MCP process that initializes (4 ms), opens the APK (422 ms), runs all 17 goals (444 ms) and closes. rasc runs the same goals as 47 processes. Medians of 7 trials.
-- Opening the APK in DexSQL takes 371 ms (median of 8 runs). rasc does not pay a separate open; each command reads what it needs. For one isolated question, rasc is faster. Once a few questions share the open dataset, DexSQL is faster.
+- Opening the APK in DexSQL takes 371 ms (median of 8 runs) and is paid once per session, however many goals follow. rasc does not pay a separate open; each command reads what it needs from the APK. Using the mean goal time from this replay, the open is recovered after two to three goals, so a session with a single question finishes sooner with rasc.
 - DexSQL is slower on one goal: listing exported manifest components takes 32.3 ms, compared with 9.8 ms for rasc.
 
 ### Per goal
@@ -61,7 +61,7 @@ Each goal is described in the harness (`intent` in [rasc_replay.py](harness/rasc
 ## Method
 
 - **Same evidence, each tool's own steps.** For every goal, both tools must produce the same expected evidence before timing starts; missing evidence fails the run. Step counts may differ because the interfaces differ. Goals are not merged into one precomputed scan.
-- **Each tool in its supported mode.** DexSQL keeps one dataset open across goals, which is how its MCP server is meant to be used. rasc is CLI only, so each step is a separate process. The "new process each time" row shows the comparison without DexSQL's session.
+- **Each tool in its supported mode.** DexSQL keeps one dataset open across goals, which is how its MCP server is meant to be used. rasc is CLI only, so each step is a separate process. 
 - **Threads chosen per tool.** rasc uses 12 threads, its fastest setting for whole-APK string search. DexSQL uses 16, chosen from a sweep of 0 (automatic), 1, 2, 4, 8, 12 and 16 threads using APK open plus the `ttdownloader_provider_db` goal. That goal is also part of the suite. With automatic threads, open plus that goal took 499 ms instead of 412 ms.
 - **Timing.** Goal order is shuffled with a fixed seed; each goal runs 7 times. The OS file cache was warm and not flushed. Output formatting is included; output is discarded during timing and checked in a separate validation pass.
 - **Excluded:** the full class inventory. rasc prints all classes in one command; the DexSQL MCP server pages results and cannot return all 567,192 classes in one response.

@@ -69,19 +69,11 @@ def render(args):
     style()
     open_ms = sum(m['open_ms']) / 2
     n = len(m['goals'])
-    fig = plt.figure(figsize=(11, 13.2))
-    gs = fig.add_gridspec(3, 1, height_ratios=[1.15, 1.0, 1.5], hspace=.55, left=.27, right=.94, top=.885, bottom=.115)
-    fig.text(.045, .965, 'Douyin 40.7.0 · replay of a real MCP session', fontsize=20, weight='bold', va='top')
-    fig.text(.045, .932, f'{n} analysis goals, 47 tool calls · DexSQL 0.1.1 (one MCP session) vs rasc (one CLI process per step)',
+    fig = plt.figure(figsize=(11, 9.6))
+    gs = fig.add_gridspec(2, 1, height_ratios=[1.0, 1.5], hspace=.5, left=.27, right=.94, top=.83, bottom=.155)
+    fig.text(.045, .955, 'Douyin 40.7.0 · replay of a real MCP session', fontsize=20, weight='bold', va='top')
+    fig.text(.045, .91, f'{n} analysis goals, 47 tool calls · DexSQL 0.1.1 (one MCP session) vs rasc (one CLI process per step)',
              fontsize=11, color=MUTED, va='top')
-
-    per_goal = [
-        ('DexSQL · dataset open (hot)', geomean(m['hot']), DEXSQL, None),
-        ('DexSQL · open + goal (cold)', geomean([h + open_ms for h in m['hot']]), DEXSQL, None),
-        ('rasc · per goal', geomean(m['rasc']), RASC, 'includes process start'),
-        ('rasc · excluding process start', geomean(m['rasc_nostart']), RASC, 'estimate; still reads the APK'),
-    ]
-    bars(fig.add_subplot(gs[0]), per_goal, 520, 'Per goal · geometric mean of 17 goals')
 
     w = m['whole']['medians']
     setup = [
@@ -91,9 +83,9 @@ def render(args):
         ('DexSQL · whole session', w['total_process_ms'], DEXSQL, f"open {w['open_ms']:.0f} + goals {w['hot_suite_ms']:.0f}"),
         ('rasc · whole session', m['rwhole']['median_total_process_ms'], RASC, '47 processes'),
     ]
-    bars(fig.add_subplot(gs[1]), setup, 3900, 'Opening and the whole 17-goal session')
+    bars(fig.add_subplot(gs[0]), setup, 3900, 'Opening and the whole 17-goal session')
 
-    ax = fig.add_subplot(gs[2])
+    ax = fig.add_subplot(gs[1])
     decorate(ax, grid='y')
     ax.set_title('Cumulative time as questions accumulate', loc='left', fontsize=13, weight='bold', pad=10)
     mean_hot = sum(m['hot']) / n
@@ -116,10 +108,10 @@ def render(args):
     ax.legend(loc='upper left', frameon=False, fontsize=10)
 
     notes = ['Apple M3 Pro, macOS 26.5.1, warm OS file cache. Medians of 7 randomized runs; DexSQL open is the median of 8 runs (16 threads).',
-             'Cold = DexSQL open + goal. rasc has no session mode, so each step starts a process and reads the APK again.',
-             'The line chart extrapolates from mean goal times; the observed 17-goal sessions are shown in the middle panel.']
+             'DexSQL opens the APK once per session. rasc has no session mode, so each step starts a process and reads the APK again.',
+             'The line chart extrapolates from mean goal times; the observed 17-goal sessions are shown in the top panel.']
     for i, line in enumerate(notes):
-        fig.text(.045, .05 - i * .014, line, fontsize=9, color=MUTED)
+        fig.text(.045, .07 - i * .019, line, fontsize=9, color=MUTED)
     (ROOT / 'charts').mkdir(exist_ok=True)
     svg = ROOT / 'charts' / 'session.svg'
     fig.savefig(svg, metadata={'Date': None, 'Title': 'session'}, facecolor='white')
@@ -128,7 +120,7 @@ def render(args):
         args.preview_dir.mkdir(parents=True, exist_ok=True)
         fig.savefig(args.preview_dir / 'session.png', dpi=110)
     plt.close(fig)
-    print('open', open_ms, 'cross', cross, 'geo', [round(r[1], 1) for r in per_goal])
+    print('open', open_ms, 'cross', cross)
 
 
 if __name__ == '__main__':
