@@ -181,61 +181,90 @@ def render_goals(args):
     plt.close(fig)
 
 
-SEGMENTS = [('open', 'Start + open APK', '#7f97ad'),
+SEGMENTS = [('open', 'Start + open / prepare', '#7f97ad'),
             ('query', 'Queries in the tool', '#16734a'),
-            ('external', 'Third-party tool calls (rg, grep, ...)', '#d08a2e')]
+            ('external', 'Third-party tool calls (rg)', '#d08a2e')]
+COMMON = ['manifest_exported_components', 'ttdownloader_provider_db', 'microgame_fileprovider_io',
+          'gameres_uri_permissions', 'secshare_provider_paths', 'aic_gzip_decode_limits', 'widget_confirm_action',
+          'luckycat_ssl_error_handling', 'lmhttp_tls_setup', 'cjpay_webview_config']
+
+
+def tool_rows():
+    """Open, first pass over the 10 common goals, and third-party calls for every tool."""
+    data = ROOT / 'data'
+    dx = json.loads((data / 'dexsql_benchmark.json').read_text())
+    rs = json.loads((data / 'rasc_benchmark.json').read_text())
+    m = load()
+    rows = [('DexSQL 0.1.1', {'open': m['startup']['mcp_initialize_median_ms'] + sum(m['open_ms']) / 2,
+                              'query': sum(dx['validation'][g]['wall_ms'] for g in COMMON), 'external': 0.0}, 10, 'MCP session'),
+            ('rasc (ASC rust)', {'open': 0.0, 'query': sum(sum(rs['validation'][g]['step_ms']) for g in COMMON), 'external': 0.0},
+             sum(not rs['validation'][g]['missing_tokens'] for g in COMMON), 'CLI process per step')]
+    labels = {'dexdec': ('DexDec 1.0.2', 'MCP session'), 'jadx-api': ('JADX 1.5.6 API', 'resident JVM'),
+              'ddc': ('ddc 0.1.29', 'MCP'), 'garlic': ('garlic 1.8', 'MCP + prepared DuckDB'),
+              'droidsaw': ('droidsaw 2.0.0', 'CLI process per step')}
+    for key, (label, mode) in labels.items():
+        d = json.loads((data / 'tools' / f'{key}.json').read_text())
+        calls = [c for g in COMMON for c in d['first_use'][g]['calls']]
+        opened = (d.get('initialize_ms') or 0) + (d.get('open_ms') or 0) + (d.get('preparation') or {}).get('elapsed_ms', 0)
+        parts = {'open': opened,
+                 'query': sum(c['ms'] for c in calls if 'external_tool' not in c),
+                 'external': sum(c['ms'] for c in calls if 'external_tool' in c)}
+        rows.append((label, parts, sum(not d['validation'][g]['missing_tokens'] for g in COMMON), mode))
+    return sorted(rows, key=lambda r: sum(r[1].values()))
 
 
 def render_total(args):
-    """One bar per tool for the whole 17-goal session: [open][query][third-party tool calls]."""
+    """One bar per tool: [open][queries][third-party calls] for 10 goals, log scale."""
     from matplotlib.patches import Patch
-    m = load()
     style()
-    trials = sorted(m['whole']['trials'], key=lambda t: t['total_process_ms'])
-    mid = trials[len(trials) // 2]
-    tools = [
-        ('DexSQL 0.1.1', {'open': mid['mcp_init_ms'] + mid['open_ms'],
-                          'query': mid['total_process_ms'] - mid['mcp_init_ms'] - mid['open_ms'],
-                          'external': 0.0}, 'one MCP session'),
-        ('rasc', {'open': 0.0, 'query': m['rwhole']['median_total_process_ms'], 'external': 0.0},
-         f"{m['rwhole']['trials'][0]['process_count']} CLI processes"),
-    ]
-    height = 2.9 + .95 * len(tools)
+    rows = tool_rows()
+    height = 3.0 + .78 * len(rows)
     fig, ax = plt.subplots(figsize=(11, height))
-    fig.subplots_adjust(left=.2, right=.95, top=1 - 1.75 / height, bottom=1.25 / height)
-    fig.text(.045, 1 - .3 / height, 'Douyin 40.7.0 · whole 17-goal session', fontsize=20, weight='bold', va='top')
-    fig.text(.045, 1 - .78 / height, 'Replay of a real MCP reverse-engineering session · observed end to end · median of 7 runs · lower is better',
+    fig.subplots_adjust(left=.19, right=.8, top=1 - 1.85 / height, bottom=1.75 / height)
+    fig.text(.045, 1 - .3 / height, 'Douyin 40.7.0 · open once, then 10 analysis goals', fontsize=20, weight='bold', va='top')
+    fig.text(.045, 1 - .78 / height, 'Replay of a real MCP reverse-engineering session · each goal answered once · log scale · lower is better',
              fontsize=11, color=MUTED, va='top')
     decorate(ax)
-    for y, (name, parts, note) in enumerate(tools):
-        left = 0.0
+    xmin = 100
+    for y, (name, parts, evidence, mode) in enumerate(rows):
+        left = xmin
+        total = 0.0
         for key, _, color in SEGMENTS:
             value = parts[key]
             if value <= 0:
                 continue
-            ax.barh(y, value, left=left, height=.55, color=color, zorder=3)
-            if value > 140:
-                ax.text(left + value / 2, y, f'{value:,.0f}', ha='center', va='center', fontsize=10, color='white', weight='bold', zorder=4)
-            left += value
-        ax.annotate(f'{left:,.0f} ms  ·  {note}', (left, y), xytext=(6, 0), textcoords='offset points', va='center', fontsize=10.5,
+            total += value
+            right = max(total, xmin * 1.02)
+            ax.barh(y, right - left, left=left, height=.56, color=color, zorder=3)
+            left = right
+        detail = ' + '.join(f"{parts[k] / 1000:.2f}" for k, _, _ in SEGMENTS if parts[k] > 0)
+        ax.annotate(f'{total / 1000:,.2f} s', (total, y), xytext=(6, 4), textcoords='offset points', va='bottom', fontsize=10.5,
                     weight='bold' if name.startswith('DexSQL') else 'normal')
-    ax.set_yticks(range(len(tools)), [t[0] for t in tools], fontsize=11)
-    ax.set_ylim(len(tools) - .45, -.55)
-    ax.set_xlim(0, 4400)
-    ax.set_xlabel('Milliseconds · linear scale from zero', fontsize=10, labelpad=5)
+        ax.annotate(f'{mode} · evidence {evidence}/10', (total, y), xytext=(6, -3), textcoords='offset points', va='top',
+                    fontsize=8.6, color=MUTED)
+    ax.set_xscale('log')
+    ax.set_xlim(xmin, 2e6)
+    ticks = [100, 1000, 10000, 100000, 1000000]
+    ax.set_xticks(ticks, ['0.1 s', '1 s', '10 s', '100 s', '1000 s'])
+    ax.minorticks_off()
+    ax.set_yticks(range(len(rows)), [r[0] for r in rows], fontsize=10.5)
+    ax.set_ylim(len(rows) - .45, -.55)
+    ax.set_xlabel('Total time · log scale', fontsize=10, labelpad=5)
     fig.legend(handles=[Patch(facecolor=c, label=l) for _, l, c in SEGMENTS], loc='upper left',
-               bbox_to_anchor=(.04, 1 - 1.05 / height), ncol=3, frameon=False, fontsize=10)
-    notes = ['DexSQL: MCP start + one APK open, then 47 tool calls on the open dataset (the run with the median total).',
-             'rasc reads the APK in every process. Neither tool needed third-party tools in this replay. Apple M3 Pro, warm OS file cache.']
+               bbox_to_anchor=(.04, 1 - 1.1 / height), ncol=3, frameon=False, fontsize=10)
+    notes = ['On a log scale segment lengths are not proportional; totals and the split are in the report table.',
+             'Evidence counts goals whose expected evidence tokens appeared; misses are under review and may be Java vs smali wording.',
+             'Apple M3 Pro, warm OS file cache. droidsaw has one pass; the others are first passes from runs with 3 or 7 repeats.']
     for i, line in enumerate(notes):
-        fig.text(.045, (.62 - i * .3) / height, line, fontsize=9, color=MUTED)
+        fig.text(.045, (.9 - i * .27) / height, line, fontsize=9, color=MUTED)
     svg = ROOT / 'charts' / 'total.svg'
     fig.savefig(svg, metadata={'Date': None, 'Title': 'total'}, facecolor='white')
     svg.write_text('\n'.join(line.rstrip() for line in svg.read_text(encoding='utf-8').splitlines()) + '\n', encoding='utf-8')
     if args.preview_dir:
         fig.savefig(args.preview_dir / 'total.png', dpi=110)
     plt.close(fig)
-
+    for name, parts, evidence, _ in rows:
+        print(f"{name:18s} open={parts['open']:9.0f} query={parts['query']:9.0f} ext={parts['external']:6.0f} total={sum(parts.values()):9.0f} evidence={evidence}")
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__)

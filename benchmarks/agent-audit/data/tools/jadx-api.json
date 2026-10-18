@@ -1,0 +1,326 @@
+{
+ "backend": "jadx-api",
+ "apk": "douyin-40.7.0.apk",
+ "trials": 3,
+ "first_use": {
+  "manifest_exported_components": {
+   "calls": [
+    {
+     "api": "manifest",
+     "needle": "",
+     "ms": 283.8734579854645
+    }
+   ],
+   "total_ms": 283.8734579854645
+  },
+  "ttdownloader_provider_db": {
+   "calls": [
+    {
+     "api": "string",
+     "needle": "ttdownloaderClickId",
+     "ms": 705.9616660117172
+    },
+    {
+     "api": "class",
+     "needle": "com.ss.android.downloadlib.addownload.TTDownloaderProvider",
+     "ms": 7429.092000005767
+    }
+   ],
+   "total_ms": 8135.053666017484
+  },
+  "microgame_fileprovider_io": {
+   "calls": [
+    {
+     "api": "string",
+     "needle": "gamecp.micro.order.fileprovider",
+     "ms": 1094.1202910034917
+    },
+    {
+     "api": "class",
+     "needle": "com.bytedance.android.gamecp.business.orderdownload.gameresource.preload.MicroGameContentProvider",
+     "ms": 4365.552375034895
+    }
+   ],
+   "total_ms": 5459.6726660383865
+  },
+  "gameres_uri_permissions": {
+   "calls": [
+    {
+     "api": "string",
+     "needle": "com.ss.android.ugc.aweme/res_task",
+     "ms": 1277.723999985028
+    },
+    {
+     "api": "class",
+     "needle": "com.bytedance.android.gamecp.business.download.predownload.GameResContentProvider",
+     "ms": 552.23237501923
+    }
+   ],
+   "total_ms": 1829.956375004258
+  },
+  "secshare_provider_paths": {
+   "calls": [
+    {
+     "api": "string",
+     "needle": "sec_share_data_file",
+     "ms": 746.6622909996659
+    },
+    {
+     "api": "class",
+     "needle": "com.ss.android.account.share.data.write.provider.SecShareDataProvider",
+     "ms": 153.42608297942206
+    },
+    {
+     "api": "class",
+     "needle": "X.02ju",
+     "ms": 22.053624968975782
+    }
+   ],
+   "total_ms": 922.1419989480637
+  },
+  "aic_gzip_decode_limits": {
+   "calls": [
+    {
+     "api": "string",
+     "needle": "gzip-base64url",
+     "ms": 642.9907080018893
+    },
+    {
+     "api": "class",
+     "needle": "com.ss.android.ugc.aweme.aicatom.AicAtomCardProtocolPreviewActivity",
+     "ms": 1159.1484160162508
+    },
+    {
+     "api": "class",
+     "needle": "X.0Cpb",
+     "ms": 969.949834048748
+    }
+   ],
+   "total_ms": 2772.088958066888
+  },
+  "widget_confirm_action": {
+   "calls": [
+    {
+     "api": "string",
+     "needle": "positive_action",
+     "ms": 2236.8750000023283
+    },
+    {
+     "api": "class",
+     "needle": "com.bytedance.android.ug.expore.widget.autoinstall.WidgetConfirmActivity",
+     "ms": 653.7366659613326
+    },
+    {
+     "api": "class",
+     "needle": "X.0ltK",
+     "ms": 74.36245901044458
+    }
+   ],
+   "total_ms": 2964.9741249741055
+  },
+  "luckycat_ssl_error_handling": {
+   "calls": [
+    {
+     "api": "method",
+     "needle": "onReceivedSslError",
+     "ms": 247.11095803650096
+    },
+    {
+     "api": "string",
+     "needle": "LuckyCatBridge3",
+     "ms": 799.6867500478402
+    },
+    {
+     "api": "class",
+     "needle": "com.bytedance.ug.sdk.luckycat.impl.browser.webview.LuckyCatWebViewClient",
+     "ms": 658.0472500063479
+    }
+   ],
+   "total_ms": 1704.844958090689
+  },
+  "lmhttp_tls_setup": {
+   "calls": [
+    {
+     "api": "method",
+     "needle": "setupHttpsTrust",
+     "ms": 287.6755420002155
+    },
+    {
+     "api": "class",
+     "needle": "com.bytedance.llama.cllama.engine.LMHttp",
+     "ms": 57.47466697357595
+    },
+    {
+     "api": "class",
+     "needle": "X.0mZq",
+     "ms": 16.461582970805466
+    },
+    {
+     "api": "class",
+     "needle": "X.0mZp",
+     "ms": 16.315458982717246
+    },
+    {
+     "api": "class",
+     "needle": "X.0oM3",
+     "ms": 16.616125009022653
+    }
+   ],
+   "total_ms": 394.5433759363368
+  },
+  "cjpay_webview_config": {
+   "calls": [
+    {
+     "api": "string",
+     "needle": "http://atu-pay-test.shouqianpay.com",
+     "ms": 951.3567499816418
+    },
+    {
+     "api": "class",
+     "needle": "com.ss.android.ugc.aweme.cjpay.CJWebScanResultHandler",
+     "ms": 791.4996250183322
+    },
+    {
+     "api": "class",
+     "needle": "com.bytedance.caijing.sdk.infra.base.impl.jsb.JsbServiceImpl$getH5JSBridgeHelper$1",
+     "ms": 356.4026670064777
+    }
+   ],
+   "total_ms": 2099.2590420064516
+  }
+ },
+ "hot": {
+  "manifest_exported_components": {
+   "median_ms": 203.50825000787154,
+   "samples_ms": [
+    171.55558295780793,
+    203.50825000787154,
+    217.5965000060387
+   ]
+  },
+  "ttdownloader_provider_db": {
+   "median_ms": 1187.394751003012,
+   "samples_ms": [
+    884.4942079740576,
+    1187.394751003012,
+    1247.3231659969315
+   ]
+  },
+  "microgame_fileprovider_io": {
+   "median_ms": 1721.0300419828855,
+   "samples_ms": [
+    1652.4515000055544,
+    1721.0300419828855,
+    2034.3524579657242
+   ]
+  },
+  "gameres_uri_permissions": {
+   "median_ms": 2554.0007920353673,
+   "samples_ms": [
+    798.895874992013,
+    2554.0007920353673,
+    2601.734000025317
+   ]
+  },
+  "secshare_provider_paths": {
+   "median_ms": 864.713957940694,
+   "samples_ms": [
+    701.9276669598185,
+    864.713957940694,
+    1198.5951259848662
+   ]
+  },
+  "aic_gzip_decode_limits": {
+   "median_ms": 1046.7119580716826,
+   "samples_ms": [
+    1010.4494589031674,
+    1046.7119580716826,
+    1633.4998750244267
+   ]
+  },
+  "widget_confirm_action": {
+   "median_ms": 992.7348750643432,
+   "samples_ms": [
+    878.640666953288,
+    992.7348750643432,
+    1289.1755409655161
+   ]
+  },
+  "luckycat_ssl_error_handling": {
+   "median_ms": 2743.807291961275,
+   "samples_ms": [
+    1725.9115839842707,
+    2743.807291961275,
+    3378.274834016338
+   ]
+  },
+  "lmhttp_tls_setup": {
+   "median_ms": 357.5595840229653,
+   "samples_ms": [
+    263.51599994814023,
+    357.5595840229653,
+    522.8384178481065
+   ]
+  },
+  "cjpay_webview_config": {
+   "median_ms": 1831.3106660498306,
+   "samples_ms": [
+    924.216082028579,
+    1831.3106660498306,
+    2990.491790929809
+   ]
+  }
+ },
+ "validation": {
+  "manifest_exported_components": {
+   "missing_tokens": [],
+   "output_bytes": 673099
+  },
+  "ttdownloader_provider_db": {
+   "missing_tokens": [],
+   "output_bytes": 6212
+  },
+  "microgame_fileprovider_io": {
+   "missing_tokens": [],
+   "output_bytes": 18807
+  },
+  "gameres_uri_permissions": {
+   "missing_tokens": [],
+   "output_bytes": 23374
+  },
+  "secshare_provider_paths": {
+   "missing_tokens": [],
+   "output_bytes": 10345
+  },
+  "aic_gzip_decode_limits": {
+   "missing_tokens": [],
+   "output_bytes": 75139
+  },
+  "widget_confirm_action": {
+   "missing_tokens": [],
+   "output_bytes": 17458
+  },
+  "luckycat_ssl_error_handling": {
+   "missing_tokens": [],
+   "output_bytes": 39740
+  },
+  "lmhttp_tls_setup": {
+   "missing_tokens": [],
+   "output_bytes": 45758
+  },
+  "cjpay_webview_config": {
+   "missing_tokens": [
+    "JS2NativeBridge"
+   ],
+   "output_bytes": 11499
+  }
+ },
+ "analysis_call_count_first_pass": 27,
+ "external_helpers": [],
+ "open_ms": 113046.86533298809,
+ "ready": {
+  "classes": 551220,
+  "load_ms": 112792.584833,
+  "ready": true
+ }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "phase": "first replay attempt",
+    "command": [
+      "droidsaw-install/bin/droidsaw",
+      "--no-auto-splits",
+      "decompile",
+      "douyin-40.7.0.apk",
+      "Lcom/bytedance/caijing/sdk/infra/base/impl/jsb/JsbServiceImpl$getH5JSBridgeHelper$1;"
+    ],
+    "exit_code": 1,
+    "error_code": "INTERNAL",
+    "message": "no matching class for the exact inner-class descriptor, while the same descriptor was shown as a close match",
+    "fallback": "decompile the enclosing JsbServiceImpl class"
+  }
+]

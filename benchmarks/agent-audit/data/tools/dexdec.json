@@ -1,0 +1,447 @@
+{
+ "backend": "dexdec-mcp",
+ "apk": "douyin-40.7.0.apk",
+ "trials": 3,
+ "first_use": {
+  "manifest_exported_components": {
+   "calls": [
+    {
+     "tool": "read_archive_resource",
+     "arguments": {
+      "projectId": 1,
+      "path": "AndroidManifest.xml"
+     },
+     "ms": 344.4709579925984
+    }
+   ],
+   "total_ms": 344.4709579925984
+  },
+  "ttdownloader_provider_db": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "ttdownloaderClickId",
+      "limit": 100
+     },
+     "ms": 1589.4822499831207
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/ss/android/downloadlib/addownload/TTDownloaderProvider;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 449.62029199814424
+    }
+   ],
+   "total_ms": 2039.102541981265
+  },
+  "microgame_fileprovider_io": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "gamecp.micro.order.fileprovider",
+      "limit": 100
+     },
+     "ms": 613.1809169892222
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/bytedance/android/gamecp/business/orderdownload/gameresource/preload/MicroGameContentProvider;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 514.9066669982858
+    }
+   ],
+   "total_ms": 1128.087583987508
+  },
+  "gameres_uri_permissions": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "com.ss.android.ugc.aweme/res_task",
+      "limit": 100
+     },
+     "ms": 637.4934169580229
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/bytedance/android/gamecp/business/download/predownload/GameResContentProvider;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 638.0928339785896
+    }
+   ],
+   "total_ms": 1275.5862509366125
+  },
+  "secshare_provider_paths": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "sec_share_data_file",
+      "limit": 100
+     },
+     "ms": 363.7060420005582
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/ss/android/account/share/data/write/provider/SecShareDataProvider;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 439.6084169857204
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "LX/02ju;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 370.7822909927927
+    }
+   ],
+   "total_ms": 1174.0967499790713
+  },
+  "aic_gzip_decode_limits": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "gzip-base64url",
+      "limit": 100
+     },
+     "ms": 239.87699998542666
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/ss/android/ugc/aweme/aicatom/AicAtomCardProtocolPreviewActivity;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 754.7817499726079
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "LX/0Cpb;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 724.4439580244943
+    }
+   ],
+   "total_ms": 1719.102707982529
+  },
+  "widget_confirm_action": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "positive_action",
+      "limit": 100
+     },
+     "ms": 404.8865000368096
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/bytedance/android/ug/expore/widget/autoinstall/WidgetConfirmActivity;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 540.4808750026859
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "LX/0ltK;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 451.57241699052975
+    }
+   ],
+   "total_ms": 1396.9397920300253
+  },
+  "luckycat_ssl_error_handling": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "onReceivedSslError",
+      "limit": 100
+     },
+     "ms": 318.2075420045294
+    },
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "LuckyCatBridge3",
+      "limit": 100
+     },
+     "ms": 271.43837499897927
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/bytedance/ug/sdk/luckycat/impl/browser/webview/LuckyCatWebViewClient;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 633.9296249789186
+    }
+   ],
+   "total_ms": 1223.5755419824272
+  },
+  "lmhttp_tls_setup": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "setupHttpsTrust",
+      "limit": 100
+     },
+     "ms": 269.6373750222847
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/bytedance/llama/cllama/engine/LMHttp;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 459.5239579793997
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "LX/0mZq;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 368.1334169814363
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "LX/0mZp;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 369.4161659805104
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "LX/0oM3;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 479.8548329854384
+    }
+   ],
+   "total_ms": 1946.5657489490695
+  },
+  "cjpay_webview_config": {
+   "calls": [
+    {
+     "tool": "search_symbols",
+     "arguments": {
+      "projectId": 1,
+      "query": "http://atu-pay-test.shouqianpay.com",
+      "limit": 100
+     },
+     "ms": 685.2769589750096
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/ss/android/ugc/aweme/cjpay/CJWebScanResultHandler;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 431.8269999930635
+    },
+    {
+     "tool": "decompile_class",
+     "arguments": {
+      "projectId": 1,
+      "descriptor": "Lcom/bytedance/caijing/sdk/infra/base/impl/jsb/JsbServiceImpl$getH5JSBridgeHelper$1;",
+      "language": "java",
+      "includeNested": true
+     },
+     "ms": 444.6841669850983
+    }
+   ],
+   "total_ms": 1561.7881259531714
+  }
+ },
+ "hot": {
+  "manifest_exported_components": {
+   "median_ms": 352.3805419681594,
+   "samples_ms": [
+    347.5995840271935,
+    352.3805419681594,
+    358.6479170480743
+   ]
+  },
+  "ttdownloader_provider_db": {
+   "median_ms": 735.2613330003805,
+   "samples_ms": [
+    727.556916011963,
+    735.2613330003805,
+    741.9752919813618
+   ]
+  },
+  "microgame_fileprovider_io": {
+   "median_ms": 1135.9867909923196,
+   "samples_ms": [
+    1124.2300409940071,
+    1135.9867909923196,
+    1146.8372080125846
+   ]
+  },
+  "gameres_uri_permissions": {
+   "median_ms": 1305.69149996154,
+   "samples_ms": [
+    1283.262624987401,
+    1305.69149996154,
+    1311.29579100525
+   ]
+  },
+  "secshare_provider_paths": {
+   "median_ms": 1201.4915410545655,
+   "samples_ms": [
+    1194.8504999745637,
+    1201.4915410545655,
+    1201.971875037998
+   ]
+  },
+  "aic_gzip_decode_limits": {
+   "median_ms": 1576.2403740664013,
+   "samples_ms": [
+    1556.811332993675,
+    1576.2403740664013,
+    1600.793665915262
+   ]
+  },
+  "widget_confirm_action": {
+   "median_ms": 1295.8150829654187,
+   "samples_ms": [
+    1267.7855429938063,
+    1295.8150829654187,
+    1310.682208975777
+   ]
+  },
+  "luckycat_ssl_error_handling": {
+   "median_ms": 1229.0110409958288,
+   "samples_ms": [
+    1220.368583977688,
+    1229.0110409958288,
+    1265.4334590188228
+   ]
+  },
+  "lmhttp_tls_setup": {
+   "median_ms": 1987.220501061529,
+   "samples_ms": [
+    1980.4475830751471,
+    1987.220501061529,
+    2014.93483298691
+   ]
+  },
+  "cjpay_webview_config": {
+   "median_ms": 1588.6486250092275,
+   "samples_ms": [
+    1564.2553339712322,
+    1588.6486250092275,
+    1589.5441670436412
+   ]
+  }
+ },
+ "validation": {
+  "manifest_exported_components": {
+   "missing_tokens": [],
+   "output_bytes": 1438668
+  },
+  "ttdownloader_provider_db": {
+   "missing_tokens": [
+    "downloadUrl TEXT"
+   ],
+   "output_bytes": 14332
+  },
+  "microgame_fileprovider_io": {
+   "missing_tokens": [],
+   "output_bytes": 46340
+  },
+  "gameres_uri_permissions": {
+   "missing_tokens": [],
+   "output_bytes": 45566
+  },
+  "secshare_provider_paths": {
+   "missing_tokens": [],
+   "output_bytes": 29250
+  },
+  "aic_gzip_decode_limits": {
+   "missing_tokens": [],
+   "output_bytes": 119549
+  },
+  "widget_confirm_action": {
+   "missing_tokens": [],
+   "output_bytes": 41392
+  },
+  "luckycat_ssl_error_handling": {
+   "missing_tokens": [
+    "LuckyCatAuthBridge"
+   ],
+   "output_bytes": 117594
+  },
+  "lmhttp_tls_setup": {
+   "missing_tokens": [],
+   "output_bytes": 69757
+  },
+  "cjpay_webview_config": {
+   "missing_tokens": [],
+   "output_bytes": 56196
+  }
+ },
+ "analysis_call_count_first_pass": 27,
+ "external_helpers": [],
+ "initialize_ms": 40.75216699857265,
+ "open_ms": 2187.6050420105457
+}

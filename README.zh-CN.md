@@ -77,11 +77,11 @@ Windows 使用 `dexsql.exe`，JSON 路径中的反斜杠要转义，例如 `"D:\
 
 ### 一次真实的 MCP 会话
 
-AI agent 通过 DexSQL MCP 分析了 **抖音 40.7.0**（343 MiB，56 个 DEX）。我们把这次会话里的 17 个分析目标（47 次工具调用）在 DexSQL 0.1.1 和 [rasc](https://github.com/MG1937/ASC/tree/rust)（ASC 的 Rust 实现）上重放。
+AI agent 通过 DexSQL MCP 分析了 **抖音 40.7.0**（343 MiB，56 个 DEX）。我们把这次会话的分析目标在 DexSQL 0.1.1 和另外六个工具上重放：[rasc](https://github.com/MG1937/ASC/tree/rust)（ASC 的 Rust 实现）、[DexDec](https://github.com/asLody/dexdec)、[ddc](https://github.com/ejfkdev/ddc)、[JADX](https://github.com/skylot/jadx) API、[garlic](https://github.com/neocanable/garlic) 和 [droidsaw](https://github.com/droidsaw/droidsaw)。
 
-![抖音 40.7.0：完整 17 个目标的会话总耗时，按启动与打开 APK、工具内查询、第三方工具调用分段。](benchmarks/agent-audit/charts/total.svg)
+![抖音 40.7.0：七个工具打开一次后完成 10 个分析目标的总耗时，按启动与打开、工具内查询、第三方工具调用分段，对数坐标。](benchmarks/agent-audit/charts/total.svg)
 
-热查询（两边都不算启动成本），单个目标 DexSQL 18.5 ms，rasc 142 ms（几何平均）；冷查询（两边都算上启动成本）分别是 397 ms 和 150 ms。DexSQL 每次会话只打开一次 APK（371 ms），之后 17 个目标合计 444 ms。rasc 没有会话模式，47 个步骤每一步都重新读取 APK。实测整场会话 DexSQL 用时 0.86 s，rasc 3.07 s。按这次重放的平均单目标耗时，打开成本在两到三个目标后就能收回；如果一次会话只问一个问题，rasc 更快结束。每个目标的数据、测试方法和脚本见[重放报告](benchmarks/agent-audit/README.md)。
+打开 APK 一次并完成 10 个目标，DexSQL 用时 0.71 s，rasc 1.69 s，DexDec 16 s，其余工具在 75 s 到 449 s 之间。DexSQL 每次会话只打开一次 APK（0.38 s）；rasc 没有打开步骤，但每一步都重新读取 APK，所以只问一个问题时 rasc 更快结束。部分工具的输出没有包含全部预期证据，这些缺失还在核对中。每个目标的数据、各工具的接口、测试方法和脚本见[重放报告](benchmarks/agent-audit/README.md)。
 
 ### QQ 上的固定查询
 

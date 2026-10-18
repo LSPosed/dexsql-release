@@ -77,11 +77,11 @@ The server provides its schema and documentation through MCP resources. APK pars
 
 ### A real MCP session
 
-An AI agent analyzed **Douyin 40.7.0** (343 MiB, 56 DEX files) through the DexSQL MCP server. We replayed its 17 analysis goals (47 tool calls) on DexSQL 0.1.1 and on [rasc](https://github.com/MG1937/ASC/tree/rust), the Rust implementation of ASC.
+An AI agent analyzed **Douyin 40.7.0** (343 MiB, 56 DEX files) through the DexSQL MCP server. We replayed its analysis goals on DexSQL 0.1.1 and six other tools: [rasc](https://github.com/MG1937/ASC/tree/rust) (the Rust implementation of ASC), [DexDec](https://github.com/asLody/dexdec), [ddc](https://github.com/ejfkdev/ddc), the [JADX](https://github.com/skylot/jadx) API, [garlic](https://github.com/neocanable/garlic) and [droidsaw](https://github.com/droidsaw/droidsaw).
 
-![Douyin 40.7.0: whole 17-goal session for DexSQL and rasc, split into start and APK open, queries and third-party tool calls.](benchmarks/agent-audit/charts/total.svg)
+![Douyin 40.7.0: seven tools, open once then 10 analysis goals, split into start-up, queries and third-party tool calls, log scale.](benchmarks/agent-audit/charts/total.svg)
 
-Hot, with start-up excluded on both sides, a goal takes 18.5 ms in DexSQL and 142 ms in rasc (geometric means). Cold, with start-up included on both sides, it takes 397 ms and 150 ms. DexSQL opens the APK once per session (371 ms), and the 17 goals then took 444 ms in total. rasc has no session mode and reads the APK again in each of its 47 steps. The observed session took 0.86 s with DexSQL and 3.07 s with rasc. Using the mean goal time from this replay, the open is recovered after two to three goals; a session with a single question finishes sooner with rasc. See the [replay report](benchmarks/agent-audit/README.md) for every goal, the method and the harness.
+Opening the APK once and answering 10 goals took 0.71 s with DexSQL, 1.69 s with rasc, 16 s with DexDec and from 75 s to 449 s with the others. DexSQL pays 0.38 s to open the APK once per session; rasc has no open but rereads the APK in every step, so a session with a single question finishes sooner with rasc. Some tools did not show all expected evidence; those misses are still under review. See the [replay report](benchmarks/agent-audit/README.md) for every goal, each tool's interface, the method and the harness.
 
 ### Fixed queries on QQ
 

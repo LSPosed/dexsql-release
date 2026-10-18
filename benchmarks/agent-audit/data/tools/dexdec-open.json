@@ -1,0 +1,24 @@
+{
+  "elapsed_ms": 2816.211208992172,
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"classCount\":551080,\"name\":\"tt.apk\",\"packageName\":\"com.ss.android.ugc.aweme\",\"path\":\"douyin-40.7.0.apk\",\"projectId\":1,\"resourceCount\":47035}"
+        }
+      ],
+      "structuredContent": {
+        "classCount": 551080,
+        "name": "tt.apk",
+        "packageName": "com.ss.android.ugc.aweme",
+        "path": "douyin-40.7.0.apk",
+        "projectId": 1,
+        "resourceCount": 47035
+      },
+      "isError": false
+    }
+  }
+}
