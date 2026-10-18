@@ -11,17 +11,19 @@ This is a single real workload, not a general ranking. The [QQ benchmark](../REA
 
 ## Results
 
-![APK open, whole-session time and cumulative time as goals accumulate.](charts/session.svg)
+![Hot and cold per-goal times, APK open, whole-session time and cumulative time as goals accumulate.](charts/session.svg)
 
 Render with `python3 render_chart.py` (requires matplotlib).
 
 | Measurement | DexSQL 0.1.1 | rasc | Ratio |
 |---|---:|---:|---:|
 | **Whole session:** all 17 goals, observed end to end | **860 ms** | 3,068 ms | DexSQL 3.6× faster |
+| **Per goal, hot:** start-up excluded on both sides, geometric mean | 18.5 ms | 142.4 ms | DexSQL 7.7× faster |
+| **Per goal, cold:** start-up included on both sides, geometric mean | 396.8 ms | 150.2 ms | **rasc 2.6× faster** |
 | **Opening the APK** | 371 ms, once per session | none; each step reads the APK | — |
-| **Per goal after opening:** geometric mean of 17 goals | 18.5 ms | 150.2 ms | DexSQL 8.1× faster |
 
 - The DexSQL whole-session time is one new MCP process that initializes (4 ms), opens the APK (422 ms), runs all 17 goals (444 ms) and closes. rasc runs the same goals as 47 processes. Medians of 7 trials.
+- Hot: DexSQL runs the goal on the open dataset; rasc runs it with its 2.4 ms per-process start subtracted, still reading the APK as it always does. Cold: DexSQL starts the MCP server (3.4 ms), opens the APK and runs the goal; rasc starts a new process for every step.
 - Opening the APK in DexSQL takes 371 ms (median of 8 runs) and is paid once per session, however many goals follow. rasc does not pay a separate open; each command reads what it needs from the APK. Using the mean goal time from this replay, the open is recovered after two to three goals, so a session with a single question finishes sooner with rasc.
 - DexSQL is slower on one goal: listing exported manifest components takes 32.3 ms, compared with 9.8 ms for rasc.
 
