@@ -1,0 +1,123 @@
+name: MCP Registry
+
+# Packs a published release into an MCP Bundle (dexsql.mcpb), attaches it to the
+# release, and publishes `org.lsposed/dexsql` to the official MCP Registry.
+#
+# MCPB selects binaries by OS only, so the bundle carries a universal macOS binary,
+# the x86_64 Linux binary and the x86_64 Windows binary (Windows on Arm runs it
+# under emulation). Platform-specific binaries remain on the release page.
+#
+# Secret MCP_REGISTRY_PRIVATE_KEY: hex Ed25519 private key whose public half is in
+# the lsposed.org TXT record `v=MCPv1; k=ed25519; p=...`.
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        required: true
+    secrets:
+      MCP_REGISTRY_PRIVATE_KEY:
+        required: true
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Released tag to bundle and publish (e.g. v0.1.1)"
+        required: true
+
+concurrency:
+  group: registry
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  registry:
+    runs-on: macos-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TAG: ${{ inputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download release binaries
+        run: |
+          set -euo pipefail
+          mkdir -p dl
+          gh release download "$TAG" -R "$GITHUB_REPOSITORY" -D dl \
+            -p dexsql-darwin-arm64 -p dexsql-darwin-amd64 -p dexsql-linux-amd64 \
+            -p dexsql-windows-amd64.exe -p SHA256SUMS
+          (cd dl && shasum -a 256 -c SHA256SUMS --ignore-missing)
+
+      - name: Pack dexsql.mcpb
+        run: |
+          set -euo pipefail
+          version="${TAG#v}"
+          root=bundle
+          mkdir -p "$root/server"
+          lipo -create -output "$root/server/dexsql-darwin" dl/dexsql-darwin-arm64 dl/dexsql-darwin-amd64
+          cp dl/dexsql-linux-amd64 "$root/server/dexsql-linux"
+          cp dl/dexsql-windows-amd64.exe "$root/server/dexsql-windows.exe"
+          chmod +x "$root/server/dexsql-darwin" "$root/server/dexsql-linux"
+          cp LICENSE LICENSE-AUXILIARY "$root/"
+          jq -n --arg version "$version" '{
+            manifest_version: "0.3",
+            name: "dexsql",
+            display_name: "DexSQL",
+            version: $version,
+            description: "SQL for Android APK and DEX files: classes, methods, strings, references and smali.",
+            author: {name: "LSPosed", url: "https://github.com/LSPosed"},
+            homepage: "https://dexsql.lsposed.org",
+            documentation: "https://dexsql.lsposed.org/docs",
+            support: "https://github.com/LSPosed/dexsql-release/issues",
+            license: "LicenseRef-DexSQL-Binary",
+            keywords: ["android", "apk", "dex", "smali", "reverse-engineering", "sql"],
+            server: {
+              type: "binary",
+              entry_point: "server/dexsql-linux",
+              mcp_config: {command: "${__dirname}/server/dexsql-linux", args: ["mcp"]},
+              platform_overrides: {
+                darwin: {command: "${__dirname}/server/dexsql-darwin", args: ["mcp"]},
+                win32: {command: "${__dirname}/server/dexsql-windows.exe", args: ["mcp"]}
+              }
+            },
+            compatibility: {platforms: ["darwin", "win32", "linux"]}
+          }' > "$root/manifest.json"
+          npx -y @anthropic-ai/mcpb validate "$root/manifest.json" > /dev/null
+          (cd "$root" && zip -qr -X ../dexsql.mcpb .)
+          shasum -a 256 dexsql.mcpb
+
+      - name: Attach bundle to release
+        run: gh release upload "$TAG" dexsql.mcpb -R "$GITHUB_REPOSITORY" --clobber
+
+      - name: Write server.json
+        run: |
+          set -euo pipefail
+          sha="$(shasum -a 256 dexsql.mcpb | cut -d' ' -f1)"
+          jq -n --arg version "${TAG#v}" --arg sha "$sha" \
+            --arg url "https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/dexsql.mcpb" '{
+            "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+            name: "org.lsposed/dexsql",
+            title: "DexSQL",
+            description: "SQL for Android APK and DEX files: classes, methods, strings, references and smali.",
+            version: $version,
+            websiteUrl: "https://dexsql.lsposed.org",
+            repository: {url: "https://github.com/LSPosed/dexsql-release", source: "github"},
+            packages: [{
+              registryType: "mcpb",
+              identifier: $url,
+              fileSha256: $sha,
+              transport: {type: "stdio"}
+            }]
+          }' > server.json
+          cat server.json
+
+      - name: Publish to MCP Registry
+        env:
+          MCP_REGISTRY_PRIVATE_KEY: ${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          curl -fsSL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher login dns --domain lsposed.org --private-key "$MCP_REGISTRY_PRIVATE_KEY"
+          ./mcp-publisher publish

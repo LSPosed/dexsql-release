@@ -229,3 +229,11 @@ jobs:
             --target "$GITHUB_SHA" \
             --title "$TAG" \
             --notes "Release notes will follow. Built from dexsql \`${COMMIT}\`."
+
+  registry:
+    needs: [resolve, release]
+    uses: ./.github/workflows/registry.yml
+    with:
+      tag: ${{ needs.resolve.outputs.tag }}
+    secrets:
+      MCP_REGISTRY_PRIVATE_KEY: ${{ secrets.MCP_REGISTRY_PRIVATE_KEY }}
