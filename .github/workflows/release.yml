@@ -1,0 +1,200 @@
+name: Release
+
+# Builds the `dexsql` CLI from a tag of the private LSPosed/dexsql repository and
+# publishes it as a release of this repository under the same tag name.
+#
+# Triggers:
+# - schedule: polls the private repository and releases its newest `v*` tag once
+#   (tags that already have a release here are skipped);
+# - workflow_dispatch: build a given tag (or the newest), optionally without publishing;
+# - repository_dispatch (type `dexsql-tag`, payload `{"tag": "vX.Y.Z"}`): lets the
+#   private repository request a release immediately after pushing a tag.
+#
+# Requires the secret DEXSQL_DEPLOY_KEY: the private half of a read-only deploy key
+# registered on LSPosed/dexsql.
+
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "dexsql tag to build (empty = newest v* tag)"
+        required: false
+        default: ""
+      publish:
+        description: "Publish a GitHub release (off = build artifacts only)"
+        type: boolean
+        default: true
+  repository_dispatch:
+    types: [dexsql-tag]
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  SOURCE_REPO: LSPosed/dexsql
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.pick.outputs.tag }}
+      commit: ${{ steps.pick.outputs.commit }}
+      build: ${{ steps.pick.outputs.build }}
+      publish: ${{ steps.pick.outputs.publish }}
+    steps:
+      - name: Configure deploy key
+        env:
+          DEPLOY_KEY: ${{ secrets.DEXSQL_DEPLOY_KEY }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
+
+      - id: pick
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_TAG: ${{ github.event.inputs.tag || github.event.client_payload.tag }}
+          INPUT_PUBLISH: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true' }}
+        run: |
+          set -euo pipefail
+          remote="git@github.com:${SOURCE_REPO}.git"
+          tags="$(git ls-remote --tags --refs "$remote" 'v*' | sed 's#.*refs/tags/##')"
+          if [[ -n "$INPUT_TAG" ]]; then
+            tag="$INPUT_TAG"
+          else
+            tag="$(grep -E '^v[0-9]+(\.[0-9]+)*$' <<<"$tags" | sort -V | tail -n1 || true)"
+          fi
+          if [[ -z "$tag" ]] || ! grep -qxF "$tag" <<<"$tags"; then
+            echo "::error::tag '${tag}' not found in ${SOURCE_REPO}"
+            exit 1
+          fi
+          commit="$(git ls-remote "$remote" "refs/tags/${tag}^{}" | cut -f1)"
+          [[ -n "$commit" ]] || commit="$(git ls-remote "$remote" "refs/tags/${tag}" | cut -f1)"
+          build=true
+          if [[ "$INPUT_PUBLISH" == "true" ]] && gh release view "$tag" -R "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release ${tag} already exists; nothing to do."
+            build=false
+          fi
+          {
+            echo "tag=$tag"
+            echo "commit=$commit"
+            echo "build=$build"
+            echo "publish=$INPUT_PUBLISH"
+          } >> "$GITHUB_OUTPUT"
+          echo "tag=$tag commit=$commit build=$build publish=$INPUT_PUBLISH"
+
+  build:
+    needs: resolve
+    if: needs.resolve.outputs.build == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-amd64
+            os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+            zig: true
+          - name: linux-arm64
+            os: ubuntu-latest
+            target: aarch64-unknown-linux-gnu
+            zig: true
+          - name: darwin-amd64
+            os: macos-latest
+            target: x86_64-apple-darwin
+          - name: darwin-arm64
+            os: macos-latest
+            target: aarch64-apple-darwin
+            smoke: true
+          - name: windows-amd64
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
+            ext: .exe
+            smoke: true
+          - name: windows-arm64
+            os: windows-latest
+            target: aarch64-pc-windows-msvc
+            ext: .exe
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+    env:
+      DEXSQL_BUILD_COMMIT: ${{ needs.resolve.outputs.commit }}
+      CARGO_TERM_COLOR: always
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ env.SOURCE_REPO }}
+          ref: refs/tags/${{ needs.resolve.outputs.tag }}
+          ssh-key: ${{ secrets.DEXSQL_DEPLOY_KEY }}
+          persist-credentials: false
+
+      - name: Install Rust (pinned by rust-toolchain.toml)
+        run: |
+          rustup toolchain install
+          rustup target add ${{ matrix.target }}
+
+      - uses: mlugg/setup-zig@v2
+        if: matrix.zig
+      - uses: taiki-e/install-action@v2
+        if: matrix.zig
+        with:
+          tool: cargo-zigbuild
+
+      - name: Build
+        run: |
+          if [[ "${{ matrix.zig }}" == "true" ]]; then
+            # Link against glibc 2.17 so the binary runs on old distributions.
+            cargo zigbuild --release --locked -p dexsql-cli --bin dexsql --target ${{ matrix.target }}.2.17
+          else
+            cargo build --release --locked -p dexsql-cli --bin dexsql --target ${{ matrix.target }}
+          fi
+          mkdir -p dist
+          cp target/${{ matrix.target }}/release/dexsql${{ matrix.ext }} dist/dexsql-${{ matrix.name }}${{ matrix.ext }}
+
+      - name: Smoke test
+        if: matrix.smoke || matrix.name == 'linux-amd64'
+        run: |
+          ./dist/dexsql-${{ matrix.name }}${{ matrix.ext }} --version
+          ./dist/dexsql-${{ matrix.name }}${{ matrix.ext }} --help >/dev/null
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dexsql-${{ matrix.name }}
+          path: dist/*
+          if-no-files-found: error
+
+  release:
+    needs: [resolve, build]
+    if: needs.resolve.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ needs.resolve.outputs.tag }}
+          COMMIT: ${{ needs.resolve.outputs.commit }}
+        run: |
+          set -euo pipefail
+          cp LICENSE LICENSE-AUXILIARY dist/
+          (cd dist && sha256sum -- * > SHA256SUMS)
+          ls -l dist
+          gh release create "$TAG" dist/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "$TAG" \
+            --notes "Release notes will follow. Built from dexsql \`${COMMIT}\`."
