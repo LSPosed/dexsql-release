@@ -1,6 +1,6 @@
 # Douyin 40.7.0: replay of a real MCP reverse-engineering session
 
-[Benchmarks](../README.md) · [Harness](harness/) · [Measurements](data/)
+[Benchmarks](../README.md) · [Harness](harness/) · [Measurements](data/) · [Chart](render_chart.py)
 
 An AI agent analyzed Douyin 40.7.0 through the DexSQL MCP server, using DexSQL as its only APK and code analysis tool. From that session we took **17 analysis goals**, the steps the agent used to reach the evidence for each one (**47 tool calls** in total), and replayed them on:
 
@@ -10,6 +10,10 @@ An AI agent analyzed Douyin 40.7.0 through the DexSQL MCP server, using DexSQL a
 This is a single real workload, not a general ranking. The [QQ benchmark](../README.md) covers more tools on fixed queries.
 
 ## Results
+
+![Per-goal hot and cold times, APK open, whole-session time and cumulative time.](charts/session.svg)
+
+Render with `python3 render_chart.py` (requires matplotlib).
 
 | Measurement | DexSQL 0.1.1 | rasc | Ratio |
 |---|---:|---:|---:|

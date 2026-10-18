@@ -75,6 +75,16 @@ Windows 使用 `dexsql.exe`，JSON 路径中的反斜杠要转义，例如 `"D:\
 
 ## 性能
 
+### 一次真实的 MCP 会话
+
+AI agent 通过 DexSQL MCP 分析了 **抖音 40.7.0**（343 MiB，56 个 DEX）。我们把这次会话里的 17 个分析目标（47 次工具调用）在 DexSQL 0.1.1 和 [rasc](https://github.com/MG1937/ASC/tree/rust)（ASC 的 Rust 实现）上重放。
+
+![抖音 40.7.0：DexSQL 与 rasc 的单目标冷热耗时、APK 打开耗时、整场会话耗时和累计耗时。](benchmarks/agent-audit/charts/session.svg)
+
+DexSQL 打开 APK 一次（371 ms），之后每个目标平均 18.5 ms（几何平均）。rasc 没有会话模式，每一步都重新读取 APK，每个目标约 150 ms。只问一个问题时 rasc 更快；从第三个问题起，已打开的 DexSQL 会话领先。实测完整 17 个目标的会话，DexSQL 用时 0.86 s，rasc 3.07 s。每个目标的数据、测试方法和脚本见[重放报告](benchmarks/agent-audit/README.md)。
+
+### QQ 上的固定查询
+
 在同一份 **QQ 9.3.55**（约 372 MiB）上跑了 8 条查询：类与方法定位、字符串引用、直接调用者、两跳调用链，以及几种组合条件。对比工具包括 [JADX](https://github.com/skylot/jadx)、[zinja-coder 的 JADX-MCP](https://github.com/zinja-coder/jadx-ai-mcp)、[ASC](https://github.com/MG1937/ASC)、[DexDec](https://github.com/asLody/dexdec)、[ddc](https://github.com/ejfkdev/ddc)、[garlic](https://github.com/neocanable/garlic) 和 [droidsaw](https://github.com/droidsaw/droidsaw)。
 
 ![八种工具从进程启动、加载准备到首次类定位的总耗时。](benchmarks/charts/startup.svg)
