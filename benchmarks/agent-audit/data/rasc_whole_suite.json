@@ -1,0 +1,44 @@
+{
+ "threads": 12,
+ "excluded": [
+  "class_inventory"
+ ],
+ "trials": [
+  {
+   "trial": 1,
+   "total_process_ms": 3058.7072080234066,
+   "process_count": 47
+  },
+  {
+   "trial": 2,
+   "total_process_ms": 3064.327041967772,
+   "process_count": 47
+  },
+  {
+   "trial": 3,
+   "total_process_ms": 2979.3929579900578,
+   "process_count": 47
+  },
+  {
+   "trial": 4,
+   "total_process_ms": 3073.662458045874,
+   "process_count": 47
+  },
+  {
+   "trial": 5,
+   "total_process_ms": 3067.9354580352083,
+   "process_count": 47
+  },
+  {
+   "trial": 6,
+   "total_process_ms": 3150.855167012196,
+   "process_count": 47
+  },
+  {
+   "trial": 7,
+   "total_process_ms": 3100.8153329603374,
+   "process_count": 47
+  }
+ ],
+ "median_total_process_ms": 3067.9354580352083
+}

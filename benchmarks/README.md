@@ -2,6 +2,8 @@
 
 [English README](../README.md) · [中文 README](../README.zh-CN.md) · [Measurements](qq-9.3.55-expanded.json) · [Runner](harness/expanded.py)
 
+> See also: [replay of a real MCP reverse-engineering session](agent-audit/README.md) on Douyin 40.7.0 (DexSQL 0.1.1 and rasc, 17 goals).
+
 The comparison includes DexSQL, JADX's native APIs, zinja-coder's JADX-MCP, ASC, DexDec, ddc, garlic, and droidsaw. It measures code-location queries and their process memory, not Java output quality or an AI model's reasoning time.
 
 ## Query time

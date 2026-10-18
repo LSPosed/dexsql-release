@@ -1,0 +1,595 @@
+{
+ "version": "0.1.1+6ac7870875a519ec471e41c93fc86d80e8e2bce7",
+ "binary_sha256": "d983de33007e11c56e681aaa238ae15637eff961623335f1131527f8d2c82a77",
+ "best_threads": 16,
+ "thread_sweep": {
+  "0": {
+   "open_median_ms": 404.936374980025,
+   "hot_probe_median_ms": 81.04912500130013,
+   "prepare_median_ms": 402.427166,
+   "composite_median_ms": 498.75891697593033,
+   "samples": {
+    "open_ms": [
+     662.3723750235513,
+     404.936374980025,
+     360.3871670202352
+    ],
+    "hot_ms": [
+     81.04912500130013,
+     93.82254199590534,
+     54.3265410233289
+    ],
+    "prepare_ms": [
+     657.5641250000001,
+     402.427166,
+     357.896083
+    ]
+   }
+  },
+  "1": {
+   "open_median_ms": 2116.8095000321046,
+   "hot_probe_median_ms": 222.4609999684617,
+   "prepare_median_ms": 2114.4543329999997,
+   "composite_median_ms": 2345.2515420503914,
+   "samples": {
+    "open_ms": [
+     2060.720000008587,
+     2116.8095000321046,
+     2165.6902090180665
+    ],
+    "hot_ms": [
+     209.35304096201435,
+     228.44204201828688,
+     222.4609999684617
+    ],
+    "prepare_ms": [
+     2058.356542,
+     2114.4543329999997,
+     2163.247375
+    ]
+   }
+  },
+  "2": {
+   "open_median_ms": 1103.7289999658242,
+   "hot_probe_median_ms": 111.21870798524469,
+   "prepare_median_ms": 1101.190042,
+   "composite_median_ms": 1213.5474999668077,
+   "samples": {
+    "open_ms": [
+     1113.385584030766,
+     1103.7289999658242,
+     1099.5063749724068
+    ],
+    "hot_ms": [
+     111.73808295279741,
+     109.81850000098348,
+     111.21870798524469
+    ],
+    "prepare_ms": [
+     1111.184875,
+     1101.190042,
+     1097.052542
+    ]
+   }
+  },
+  "4": {
+   "open_median_ms": 609.2559579992667,
+   "hot_probe_median_ms": 69.59920801455155,
+   "prepare_median_ms": 606.7917080000001,
+   "composite_median_ms": 678.5693329875357,
+   "samples": {
+    "open_ms": [
+     609.2559579992667,
+     624.9800410005264,
+     604.2402500170283
+    ],
+    "hot_ms": [
+     69.31337498826906,
+     69.59920801455155,
+     72.76283297687769
+    ],
+    "prepare_ms": [
+     606.7917080000001,
+     622.533791,
+     601.7513749999999
+    ]
+   }
+  },
+  "8": {
+   "open_median_ms": 483.93870797008276,
+   "hot_probe_median_ms": 62.59712501196191,
+   "prepare_median_ms": 481.060167,
+   "composite_median_ms": 551.3757489970885,
+   "samples": {
+    "open_ms": [
+     384.85000003129244,
+     483.93870797008276,
+     493.808250001166
+    ],
+    "hot_ms": [
+     53.10241604456678,
+     67.43704102700576,
+     62.59712501196191
+    ],
+    "prepare_ms": [
+     382.5865,
+     481.060167,
+     491.372375
+    ]
+   }
+  },
+  "12": {
+   "open_median_ms": 377.18712497735396,
+   "hot_probe_median_ms": 61.254958040080965,
+   "prepare_median_ms": 374.490208,
+   "composite_median_ms": 469.67608301201835,
+   "samples": {
+    "open_ms": [
+     373.1477080145851,
+     457.99154095584527,
+     377.18712497735396
+    ],
+    "hot_ms": [
+     96.52837499743327,
+     56.302167009562254,
+     61.254958040080965
+    ],
+    "prepare_ms": [
+     370.010917,
+     455.379542,
+     374.490208
+    ]
+   }
+  },
+  "16": {
+   "open_median_ms": 358.50716702407226,
+   "hot_probe_median_ms": 55.12041604379192,
+   "prepare_median_ms": 356.06725,
+   "composite_median_ms": 412.1654169866815,
+   "samples": {
+    "open_ms": [
+     358.50716702407226,
+     337.8472499898635,
+     426.92562501179054
+    ],
+    "hot_ms": [
+     53.65824996260926,
+     55.12041604379192,
+     65.16816699877381
+    ],
+    "prepare_ms": [
+     356.06725,
+     335.269541,
+     424.274041
+    ]
+   }
+  }
+ },
+ "startup": {
+  "cli_version_median_ms": 2.9540830000769347,
+  "cli_version_samples_ms": [
+   2.7148329536430538,
+   2.7653329889290035,
+   2.782333001960069,
+   2.79016699641943,
+   2.794583037029952,
+   2.845583949238062,
+   2.856500039342791,
+   2.8727080207318068,
+   2.8759590350091457,
+   2.8799170395359397,
+   2.8829160146415234,
+   2.8848330257460475,
+   2.8966660029254854,
+   2.9360410408116877,
+   2.952749957330525,
+   2.9554160428233445,
+   2.985334023833275,
+   3.0152079998515546,
+   3.0236250022426248,
+   3.0294160242192447,
+   3.0417079688049853,
+   3.062250034417957,
+   3.10400000307709,
+   3.126916999462992,
+   3.1761249992996454,
+   3.186625021044165,
+   3.19612497696653,
+   3.3032080391421914,
+   3.820915997494012,
+   4.236417007632554
+  ],
+  "mcp_initialize_median_ms": 3.3671245037112385,
+  "mcp_initialize_samples_ms": [
+   3.0395000358112156,
+   3.054416971281171,
+   3.056167042814195,
+   3.057084046304226,
+   3.0606670188717544,
+   3.0837919912301004,
+   3.1147500267252326,
+   3.1307919998653233,
+   3.176083031576127,
+   3.2046670094132423,
+   3.253249975387007,
+   3.2928750151768327,
+   3.309040970634669,
+   3.3149999799206853,
+   3.3277079928666353,
+   3.4065410145558417,
+   3.407625015825033,
+   3.4382090088911355,
+   3.449249954428524,
+   3.4527499810792506,
+   3.4876249847002327,
+   3.5012500011362135,
+   3.546791966073215,
+   3.565333958249539,
+   3.6161249736323953,
+   3.6461669951677322,
+   3.663291980046779,
+   3.7700420361943543,
+   3.9463749853894114,
+   4.201625008136034
+  ]
+ },
+ "open_wall_ms": 525.1162080094218,
+ "open_result": {
+  "archive_inputs": [
+   0
+  ],
+  "dataset_id": "dataset-1",
+  "has_dex": true,
+  "input_bytes": 359908938,
+  "inputs": [
+   "douyin-40.7.0.apk"
+  ],
+  "prepare_ms": 522.79775
+ },
+ "trials": 7,
+ "compact": true,
+ "scenarios": {
+  "manifest_exported_components": {
+   "median_wall_ms": 32.33454201836139,
+   "min_ms": 32.149999984540045,
+   "max_ms": 37.089790974278,
+   "samples_ms": [
+    32.149999984540045,
+    32.23862498998642,
+    32.32083300827071,
+    32.33454201836139,
+    32.39233302883804,
+    34.796083986293525,
+    37.089790974278
+   ],
+   "intent": "Decode the manifest and list exported components."
+  },
+  "ttdownloader_provider_db": {
+   "median_wall_ms": 10.714749980252236,
+   "min_ms": 10.60862501617521,
+   "max_ms": 14.048458018805832,
+   "samples_ms": [
+    10.60862501617521,
+    10.651124990545213,
+    10.692707961425185,
+    10.714749980252236,
+    11.258959013503045,
+    11.342000041622669,
+    14.048458018805832
+   ],
+   "intent": "Locate the downloader table name, then inspect the provider that serves it."
+  },
+  "microgame_fileprovider_io": {
+   "median_wall_ms": 34.43608299130574,
+   "min_ms": 33.43254094943404,
+   "max_ms": 46.10841698013246,
+   "samples_ms": [
+    33.43254094943404,
+    33.84595800889656,
+    33.952875004615635,
+    34.43608299130574,
+    35.03799997270107,
+    42.00579202733934,
+    46.10841698013246
+   ],
+   "intent": "Locate the microgame file provider authority, then inspect its open/mode/delete methods."
+  },
+  "gameres_uri_permissions": {
+   "median_wall_ms": 27.75112504605204,
+   "min_ms": 27.613667014520615,
+   "max_ms": 28.00266700796783,
+   "samples_ms": [
+    27.613667014520615,
+    27.617875020951033,
+    27.723625011276454,
+    27.75112504605204,
+    27.815790963359177,
+    27.91783300926909,
+    28.00266700796783
+   ],
+   "intent": "Locate the game-resource endpoint, then inspect file lookup, URI permission and delete handling."
+  },
+  "secshare_provider_paths": {
+   "median_wall_ms": 14.682666980661452,
+   "min_ms": 13.673292007297277,
+   "max_ms": 33.86720799608156,
+   "samples_ms": [
+    13.673292007297277,
+    13.981666008476168,
+    14.308749989140779,
+    14.682666980661452,
+    19.56770900869742,
+    25.73766600107774,
+    33.86720799608156
+   ],
+   "intent": "Locate the shared-file root, inspect path construction, then find the caller-signature allowlist."
+  },
+  "appwidget_install_state": {
+   "median_wall_ms": 9.964084019884467,
+   "min_ms": 9.295334049966186,
+   "max_ms": 20.89520898880437,
+   "samples_ms": [
+    9.295334049966186,
+    9.70149994827807,
+    9.832874988205731,
+    9.964084019884467,
+    10.260167007800192,
+    15.927917032968253,
+    20.89520898880437
+   ],
+   "intent": "Locate the widget install-state key, then inspect the provider call that reads it."
+  },
+  "honor_feedback_file_write": {
+   "median_wall_ms": 10.077124985400587,
+   "min_ms": 9.862541977781802,
+   "max_ms": 12.658249994274229,
+   "samples_ms": [
+    9.862541977781802,
+    9.918666968587786,
+    10.033584025222808,
+    10.077124985400587,
+    10.13687503291294,
+    10.809040977619588,
+    12.658249994274229
+   ],
+   "intent": "Locate the OEM feedback file name, then inspect the provider method that writes it."
+  },
+  "data_union_prefs_read": {
+   "median_wall_ms": 16.51291601592675,
+   "min_ms": 16.034833039157093,
+   "max_ms": 19.94324999395758,
+   "samples_ms": [
+    16.034833039157093,
+    16.18733402574435,
+    16.398875042796135,
+    16.51291601592675,
+    16.526666993740946,
+    17.223707982338965,
+    19.94324999395758
+   ],
+   "intent": "Locate the data-union preference store, then inspect how its values are returned."
+  },
+  "aic_gzip_decode_limits": {
+   "median_wall_ms": 26.028624968603253,
+   "min_ms": 25.265999953262508,
+   "max_ms": 26.864915969781578,
+   "samples_ms": [
+    25.265999953262508,
+    25.815209024585783,
+    25.882790971081704,
+    26.028624968603253,
+    26.251500006765127,
+    26.27358300378546,
+    26.864915969781578
+   ],
+   "intent": "Locate the gzip-base64 preview entry, then inspect the decode path and its size handling."
+  },
+  "widget_confirm_action": {
+   "median_wall_ms": 48.00970799988136,
+   "min_ms": 47.48387500876561,
+   "max_ms": 58.32033295882866,
+   "samples_ms": [
+    47.48387500876561,
+    47.612791997380555,
+    47.8255829657428,
+    48.00970799988136,
+    48.17254201043397,
+    49.04679098399356,
+    58.32033295882866
+   ],
+   "intent": "Locate the confirmation action key, then inspect the dialog construction and deep-link dispatch."
+  },
+  "redbadge_update_path": {
+   "median_wall_ms": 21.324708010070026,
+   "min_ms": 20.800250000320375,
+   "max_ms": 28.83266599383205,
+   "samples_ms": [
+    20.800250000320375,
+    21.01841598050669,
+    21.127124957274646,
+    21.324708010070026,
+    21.634417003951967,
+    28.09291600715369,
+    28.83266599383205
+   ],
+   "intent": "Locate the desktop badge message key, then inspect the service and badge-count updates."
+  },
+  "crossover_token_handling": {
+   "median_wall_ms": 23.30816601170227,
+   "min_ms": 22.45099999709055,
+   "max_ms": 32.77049999451265,
+   "samples_ms": [
+    22.45099999709055,
+    22.920833027455956,
+    23.261499998625368,
+    23.30816601170227,
+    23.47808296326548,
+    23.57637498062104,
+    32.77049999451265
+   ],
+   "intent": "Locate crossover token handling, then inspect the Messenger service and activation reporting."
+  },
+  "account_sync_adapter": {
+   "median_wall_ms": 24.68212496023625,
+   "min_ms": 24.328375002369285,
+   "max_ms": 30.349917011335492,
+   "samples_ms": [
+    24.328375002369285,
+    24.395083950366825,
+    24.470167001709342,
+    24.68212496023625,
+    24.995165993459523,
+    25.143291044514626,
+    30.349917011335492
+   ],
+   "intent": "Locate the SyncAdapter service, then inspect its binder and sync action."
+  },
+  "luckycat_ssl_error_handling": {
+   "median_wall_ms": 10.896499967202544,
+   "min_ms": 10.335083992686123,
+   "max_ms": 13.322125014383346,
+   "samples_ms": [
+    10.335083992686123,
+    10.395459015853703,
+    10.531459003686905,
+    10.896499967202544,
+    11.022290971595794,
+    12.488708016462624,
+    13.322125014383346
+   ],
+   "intent": "Locate the WebView SSL-error handler and the JavaScript bridge names registered nearby."
+  },
+  "lmhttp_tls_setup": {
+   "median_wall_ms": 42.4416660098359,
+   "min_ms": 41.704832983668894,
+   "max_ms": 46.63104104110971,
+   "samples_ms": [
+    41.704832983668894,
+    42.183415964245796,
+    42.33541601570323,
+    42.4416660098359,
+    42.722541955299675,
+    42.84487501718104,
+    46.63104104110971
+   ],
+   "intent": "Locate the native-engine HTTP helper, then inspect its certificate, hostname and download handling."
+  },
+  "cjpay_webview_config": {
+   "median_wall_ms": 24.75374995265156,
+   "min_ms": 24.30633397307247,
+   "max_ms": 25.053707999177277,
+   "samples_ms": [
+    24.30633397307247,
+    24.32516700355336,
+    24.668042024131864,
+    24.75374995265156,
+    24.77433398598805,
+    24.907458981033415,
+    25.053707999177277
+   ],
+   "intent": "Locate the payment WebView URL allowlist, QR routing and bridge registration."
+  },
+  "dynamic_loading_census": {
+   "median_wall_ms": 2.5477499584667385,
+   "min_ms": 2.347125031519681,
+   "max_ms": 3.906541969627142,
+   "samples_ms": [
+    2.347125031519681,
+    2.4325839476659894,
+    2.4543339968658984,
+    2.5477499584667385,
+    2.666999993380159,
+    3.2350830151699483,
+    3.906541969627142
+   ],
+   "intent": "Count direct references to dynamic class loading, System.load and Runtime.exec."
+  }
+ },
+ "validation": {
+  "manifest_exported_components": {
+   "wall_ms": 37.79825003584847,
+   "result_bytes": 138329,
+   "intent": "Decode the manifest and list exported components."
+  },
+  "ttdownloader_provider_db": {
+   "wall_ms": 62.993791012559086,
+   "result_bytes": 4535,
+   "intent": "Locate the downloader table name, then inspect the provider that serves it."
+  },
+  "microgame_fileprovider_io": {
+   "wall_ms": 34.505332994740456,
+   "result_bytes": 18503,
+   "intent": "Locate the microgame file provider authority, then inspect its open/mode/delete methods."
+  },
+  "gameres_uri_permissions": {
+   "wall_ms": 28.965083009097725,
+   "result_bytes": 36169,
+   "intent": "Locate the game-resource endpoint, then inspect file lookup, URI permission and delete handling."
+  },
+  "secshare_provider_paths": {
+   "wall_ms": 15.892583993263543,
+   "result_bytes": 6509,
+   "intent": "Locate the shared-file root, inspect path construction, then find the caller-signature allowlist."
+  },
+  "appwidget_install_state": {
+   "wall_ms": 9.531292016617954,
+   "result_bytes": 3433,
+   "intent": "Locate the widget install-state key, then inspect the provider call that reads it."
+  },
+  "honor_feedback_file_write": {
+   "wall_ms": 10.33479196485132,
+   "result_bytes": 8015,
+   "intent": "Locate the OEM feedback file name, then inspect the provider method that writes it."
+  },
+  "data_union_prefs_read": {
+   "wall_ms": 16.73679199302569,
+   "result_bytes": 5694,
+   "intent": "Locate the data-union preference store, then inspect how its values are returned."
+  },
+  "aic_gzip_decode_limits": {
+   "wall_ms": 26.913125009741634,
+   "result_bytes": 31399,
+   "intent": "Locate the gzip-base64 preview entry, then inspect the decode path and its size handling."
+  },
+  "widget_confirm_action": {
+   "wall_ms": 48.938249994535,
+   "result_bytes": 27444,
+   "intent": "Locate the confirmation action key, then inspect the dialog construction and deep-link dispatch."
+  },
+  "redbadge_update_path": {
+   "wall_ms": 22.062707983423024,
+   "result_bytes": 15155,
+   "intent": "Locate the desktop badge message key, then inspect the service and badge-count updates."
+  },
+  "crossover_token_handling": {
+   "wall_ms": 23.961792001500726,
+   "result_bytes": 11205,
+   "intent": "Locate crossover token handling, then inspect the Messenger service and activation reporting."
+  },
+  "account_sync_adapter": {
+   "wall_ms": 24.204791989177465,
+   "result_bytes": 4253,
+   "intent": "Locate the SyncAdapter service, then inspect its binder and sync action."
+  },
+  "luckycat_ssl_error_handling": {
+   "wall_ms": 11.548916983883828,
+   "result_bytes": 8999,
+   "intent": "Locate the WebView SSL-error handler and the JavaScript bridge names registered nearby."
+  },
+  "lmhttp_tls_setup": {
+   "wall_ms": 41.732832964044064,
+   "result_bytes": 15850,
+   "intent": "Locate the native-engine HTTP helper, then inspect its certificate, hostname and download handling."
+  },
+  "cjpay_webview_config": {
+   "wall_ms": 24.133875034749508,
+   "result_bytes": 14247,
+   "intent": "Locate the payment WebView URL allowlist, QR routing and bridge registration."
+  },
+  "dynamic_loading_census": {
+   "wall_ms": 4.316209000535309,
+   "result_bytes": 4663,
+   "intent": "Count direct references to dynamic class loading, System.load and Runtime.exec."
+  }
+ }
+}

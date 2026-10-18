@@ -1,0 +1,939 @@
+{
+ "binary": "rasc",
+ "apk": "douyin-40.7.0.apk",
+ "threads": 12,
+ "trials": 7,
+ "startup_median_ms": 2.444,
+ "scenarios": {
+  "manifest_exported_components": {
+   "step_count": 1,
+   "median_end_to_end_ms": 9.754790982697159,
+   "median_minus_startup_ms_estimate": 7.310790982697159,
+   "min_ms": 8.878666965756565,
+   "max_ms": 11.716792010702193,
+   "samples_ms": [
+    8.878666965756565,
+    9.464832954108715,
+    9.643999976105988,
+    9.754790982697159,
+    9.761375025846064,
+    9.899707976728678,
+    11.716792010702193
+   ],
+   "commands": [
+    [
+     "rasc",
+     "manifest",
+     "douyin-40.7.0.apk"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Decode the manifest and list exported components."
+  },
+  "class_inventory": {
+   "step_count": 1,
+   "median_end_to_end_ms": 83.81458302028477,
+   "median_minus_startup_ms_estimate": 81.37058302028477,
+   "min_ms": 76.45420799963176,
+   "max_ms": 101.69791697990149,
+   "samples_ms": [
+    76.45420799963176,
+    80.57741599623114,
+    81.35479100747034,
+    83.81458302028477,
+    85.31116595258936,
+    91.47687494987622,
+    101.69791697990149
+   ],
+   "commands": [
+    [
+     "rasc",
+     "classes",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Build the class inventory used for APK scale and class location."
+  },
+  "ttdownloader_provider_db": {
+   "step_count": 2,
+   "median_end_to_end_ms": 117.94912500772625,
+   "median_minus_startup_ms_estimate": 113.06112500772625,
+   "min_ms": 109.78804103797302,
+   "max_ms": 142.6334580173716,
+   "samples_ms": [
+    109.78804103797302,
+    114.14912500185892,
+    114.88187499344349,
+    117.94912500772625,
+    124.62945905281231,
+    125.39158301660791,
+    142.6334580173716
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "ttdownloaderClickId"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/ss/android/downloadlib/addownload/TTDownloaderProvider;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the downloader table name, then inspect the provider that serves it."
+  },
+  "microgame_fileprovider_io": {
+   "step_count": 2,
+   "median_end_to_end_ms": 131.06320798397064,
+   "median_minus_startup_ms_estimate": 126.17520798397064,
+   "min_ms": 113.31358301686123,
+   "max_ms": 140.33429202390835,
+   "samples_ms": [
+    113.31358301686123,
+    115.06183299934492,
+    126.86108303023502,
+    131.06320798397064,
+    131.30454096244648,
+    137.82487501157448,
+    140.33429202390835
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "gamecp.micro.order.fileprovider"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/android/gamecp/business/orderdownload/gameresource/preload/MicroGameContentProvider;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the microgame file provider authority, then inspect its open/mode/delete methods."
+  },
+  "gameres_uri_permissions": {
+   "step_count": 2,
+   "median_end_to_end_ms": 120.81966694677249,
+   "median_minus_startup_ms_estimate": 115.93166694677248,
+   "min_ms": 114.65670901816338,
+   "max_ms": 129.51624998822808,
+   "samples_ms": [
+    114.65670901816338,
+    116.86908296542242,
+    119.21804200392216,
+    120.81966694677249,
+    124.70650003524497,
+    126.16633402649313,
+    129.51624998822808
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "com.ss.android.ugc.aweme/res_task"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/android/gamecp/business/download/predownload/GameResContentProvider;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the game-resource endpoint, then inspect file lookup, URI permission and delete handling."
+  },
+  "secshare_provider_paths": {
+   "step_count": 4,
+   "median_end_to_end_ms": 280.65712499665096,
+   "median_minus_startup_ms_estimate": 270.88112499665095,
+   "min_ms": 241.79533298593014,
+   "max_ms": 317.38175003556535,
+   "samples_ms": [
+    241.79533298593014,
+    274.14762502303347,
+    275.0270830001682,
+    280.65712499665096,
+    285.37041699746624,
+    314.73733304301277,
+    317.38175003556535
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "sec_share_data_file"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/ss/android/account/share/data/write/provider/SecShareDataProvider;"
+    ],
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "842F074BE474D152663F64DBA4B6321EE82F56361D5183EDD79E3026048C591A"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/02ju;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the shared-file root, inspect path construction, then find the caller-signature allowlist."
+  },
+  "appwidget_install_state": {
+   "step_count": 2,
+   "median_end_to_end_ms": 127.00279097771272,
+   "median_minus_startup_ms_estimate": 122.11479097771272,
+   "min_ms": 110.95616599777713,
+   "max_ms": 139.68716701492667,
+   "samples_ms": [
+    110.95616599777713,
+    121.78708304418251,
+    126.06991699431092,
+    127.00279097771272,
+    134.56450001103804,
+    139.67929099453613,
+    139.68716701492667
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "desktop_app_install_status"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/example/ug/explore/api/widget/utils/AppWidgetInstallFromOther;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the widget install-state key, then inspect the provider call that reads it."
+  },
+  "honor_feedback_file_write": {
+   "step_count": 2,
+   "median_end_to_end_ms": 124.8790419776924,
+   "median_minus_startup_ms_estimate": 119.99104197769239,
+   "min_ms": 112.84025001805276,
+   "max_ms": 143.4845000039786,
+   "samples_ms": [
+    112.84025001805276,
+    116.11462500877678,
+    124.56204096088186,
+    124.8790419776924,
+    125.54170895600691,
+    131.44283299334347,
+    143.4845000039786
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "scalpel/message.dat"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/ss/android/ugc/aweme/legoImp/task/scalpel/HonorFeedbackCP;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the OEM feedback file name, then inspect the provider method that writes it."
+  },
+  "data_union_prefs_read": {
+   "step_count": 2,
+   "median_end_to_end_ms": 133.78329202532768,
+   "median_minus_startup_ms_estimate": 128.89529202532768,
+   "min_ms": 111.43637500936165,
+   "max_ms": 164.84279197175056,
+   "samples_ms": [
+    111.43637500936165,
+    131.16058299783617,
+    133.647334005218,
+    133.78329202532768,
+    137.3667920124717,
+    145.4132089857012,
+    164.84279197175056
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "sp_luckydog_union"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/ug/sdk/luckydog/tokenunion/dataunion/DataUnionActivity;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the data-union preference store, then inspect how its values are returned."
+  },
+  "aic_gzip_decode_limits": {
+   "step_count": 3,
+   "median_end_to_end_ms": 174.18237501988187,
+   "median_minus_startup_ms_estimate": 166.85037501988188,
+   "min_ms": 153.59904197975993,
+   "max_ms": 189.88079199334607,
+   "samples_ms": [
+    153.59904197975993,
+    154.58083304110914,
+    157.78441698057577,
+    174.18237501988187,
+    174.9352079932578,
+    182.58749996311963,
+    189.88079199334607
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "gzip-base64url"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/ss/android/ugc/aweme/aicatom/AicAtomCardProtocolPreviewActivity;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0Cpb;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the gzip-base64 preview entry, then inspect the decode path and its size handling."
+  },
+  "widget_confirm_action": {
+   "step_count": 3,
+   "median_end_to_end_ms": 216.47408400895074,
+   "median_minus_startup_ms_estimate": 209.14208400895075,
+   "min_ms": 169.02220796328038,
+   "max_ms": 223.22758298832923,
+   "samples_ms": [
+    169.02220796328038,
+    170.17549998126924,
+    210.7990410295315,
+    216.47408400895074,
+    218.6765830265358,
+    219.93650001240894,
+    223.22758298832923
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "positive_action"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/android/ug/expore/widget/autoinstall/WidgetConfirmActivity;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0ltK;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the confirmation action key, then inspect the dialog construction and deep-link dispatch."
+  },
+  "redbadge_update_path": {
+   "step_count": 3,
+   "median_end_to_end_ms": 182.6526249642484,
+   "median_minus_startup_ms_estimate": 175.3206249642484,
+   "min_ms": 158.27087499201298,
+   "max_ms": 197.2782090306282,
+   "samples_ms": [
+    158.27087499201298,
+    169.14820799138397,
+    179.5525829656981,
+    182.6526249642484,
+    191.2487919908017,
+    196.1387079791166,
+    197.2782090306282
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "desktop_red_badge"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/ss/android/newmedia/redbadge/RedbadgeHandler;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0kOC;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the desktop badge message key, then inspect the service and badge-count updates."
+  },
+  "crossover_token_handling": {
+   "step_count": 4,
+   "median_end_to_end_ms": 251.31054199300706,
+   "median_minus_startup_ms_estimate": 241.53454199300705,
+   "min_ms": 213.36920897010714,
+   "max_ms": 311.51408300502226,
+   "samples_ms": [
+    213.36920897010714,
+    219.4537909817882,
+    247.88799998350441,
+    251.31054199300706,
+    267.8350420319475,
+    272.373333980795,
+    311.51408300502226
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "TOKEN_CONSUME"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/ug/sdk/luckydog/task/CrossoverService;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/ug/sdk/luckydog/task/CrossoverService$mHandler$1;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0lK7;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate crossover token handling, then inspect the Messenger service and activation reporting."
+  },
+  "account_sync_adapter": {
+   "step_count": 3,
+   "median_end_to_end_ms": 192.17529200250283,
+   "median_minus_startup_ms_estimate": 184.84329200250284,
+   "min_ms": 174.639833974652,
+   "max_ms": 231.35149996960536,
+   "samples_ms": [
+    174.639833974652,
+    184.0746250236407,
+    184.64858300285414,
+    192.17529200250283,
+    205.81512502394617,
+    220.9289579768665,
+    231.35149996960536
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     ".account.sync.adapter.service"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/sdk/account/sync/AccountSyncService;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0lt0;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the SyncAdapter service, then inspect its binder and sync action."
+  },
+  "luckycat_ssl_error_handling": {
+   "step_count": 3,
+   "median_end_to_end_ms": 227.84816601779312,
+   "median_minus_startup_ms_estimate": 220.51616601779313,
+   "min_ms": 190.55833300808445,
+   "max_ms": 244.1309579880908,
+   "samples_ms": [
+    190.55833300808445,
+    220.06625001085922,
+    227.3333339835517,
+    227.84816601779312,
+    228.37516700383276,
+    240.21329201059416,
+    244.1309579880908
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "method",
+     "onReceivedSslError",
+     "--class",
+     "LuckyCatWebViewClient"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/ug/sdk/luckycat/impl/browser/webview/LuckyCatWebViewClient;"
+    ],
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "LuckyCatBridge3"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the WebView SSL-error handler and the JavaScript bridge names registered nearby."
+  },
+  "lmhttp_tls_setup": {
+   "step_count": 5,
+   "median_end_to_end_ms": 256.93670799955726,
+   "median_minus_startup_ms_estimate": 244.71670799955726,
+   "min_ms": 237.85904102260247,
+   "max_ms": 286.3255830015987,
+   "samples_ms": [
+    237.85904102260247,
+    238.322084012907,
+    248.63004201324657,
+    256.93670799955726,
+    261.66083302814513,
+    272.49079098692164,
+    286.3255830015987
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "method",
+     "setupHttpsTrust",
+     "--class",
+     "LMHttp"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/llama/cllama/engine/LMHttp;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0mZq;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0mZp;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "LX/0oM3;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the native-engine HTTP helper, then inspect its certificate, hostname and download handling."
+  },
+  "cjpay_webview_config": {
+   "step_count": 3,
+   "median_end_to_end_ms": 206.92579098977149,
+   "median_minus_startup_ms_estimate": 199.5937909897715,
+   "min_ms": 178.6467080237344,
+   "max_ms": 218.72333297505975,
+   "samples_ms": [
+    178.6467080237344,
+    183.33016702672467,
+    189.92437497945502,
+    206.92579098977149,
+    209.3346249894239,
+    213.4740420151502,
+    218.72333297505975
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "string",
+     "http://atu-pay-test.shouqianpay.com"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/ss/android/ugc/aweme/cjpay/CJWebScanResultHandler;"
+    ],
+    [
+     "rasc",
+     "getclass",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "Lcom/bytedance/caijing/sdk/infra/base/impl/jsb/JsbServiceImpl$getH5JSBridgeHelper$1;"
+    ]
+   ],
+   "capability_note": null,
+   "intent": "Locate the payment WebView URL allowlist, QR routing and bridge registration."
+  },
+  "dynamic_loading_census": {
+   "step_count": 3,
+   "median_end_to_end_ms": 231.4720419817604,
+   "median_minus_startup_ms_estimate": 224.14004198176042,
+   "min_ms": 223.80037500988692,
+   "max_ms": 262.60170800378546,
+   "samples_ms": [
+    223.80037500988692,
+    226.140332990326,
+    226.4082920155488,
+    231.4720419817604,
+    233.5746670141816,
+    241.62320903269574,
+    262.60170800378546
+   ],
+   "commands": [
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "type",
+     "DexClassLoader"
+    ],
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "method",
+     "load",
+     "--class",
+     "java.lang.System"
+    ],
+    [
+     "rasc",
+     "findrefs",
+     "--threads",
+     "12",
+     "douyin-40.7.0.apk",
+     "method",
+     "exec",
+     "--class",
+     "java.lang.Runtime"
+    ]
+   ],
+   "capability_note": "rasc can census direct references but cannot express DexSQL multi-hop call-graph joins.",
+   "intent": "Count direct references to dynamic class loading, System.load and Runtime.exec."
+  }
+ },
+ "validation": {
+  "manifest_exported_components": {
+   "step_ms": [
+    8.936917001847178
+   ],
+   "missing_tokens": [],
+   "intent": "Decode the manifest and list exported components."
+  },
+  "class_inventory": {
+   "step_ms": [
+    177.400334039703
+   ],
+   "missing_tokens": [],
+   "intent": "Build the class inventory used for APK scale and class location."
+  },
+  "ttdownloader_provider_db": {
+   "step_ms": [
+    81.1629579984583,
+    39.880708034615964
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the downloader table name, then inspect the provider that serves it."
+  },
+  "microgame_fileprovider_io": {
+   "step_ms": [
+    74.76370799122378,
+    42.80879202997312
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the microgame file provider authority, then inspect its open/mode/delete methods."
+  },
+  "gameres_uri_permissions": {
+   "step_ms": [
+    73.58979200944304,
+    41.56737501034513
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the game-resource endpoint, then inspect file lookup, URI permission and delete handling."
+  },
+  "secshare_provider_paths": {
+   "step_ms": [
+    72.30383396381512,
+    65.5339160002768,
+    75.10158297372982,
+    53.21379197994247
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the shared-file root, inspect path construction, then find the caller-signature allowlist."
+  },
+  "appwidget_install_state": {
+   "step_ms": [
+    75.94704098301008,
+    72.69858301151544
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the widget install-state key, then inspect the provider call that reads it."
+  },
+  "honor_feedback_file_write": {
+   "step_ms": [
+    73.91741703031585,
+    73.70762497885153
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the OEM feedback file name, then inspect the provider method that writes it."
+  },
+  "data_union_prefs_read": {
+   "step_ms": [
+    101.79854201851413,
+    56.62774998927489
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the data-union preference store, then inspect how its values are returned."
+  },
+  "aic_gzip_decode_limits": {
+   "step_ms": [
+    84.56362498691306,
+    37.90912503609434,
+    38.32104103639722
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the gzip-base64 preview entry, then inspect the decode path and its size handling."
+  },
+  "widget_confirm_action": {
+   "step_ms": [
+    87.25204196525738,
+    78.13174999319017,
+    67.83800001721829
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the confirmation action key, then inspect the dialog construction and deep-link dispatch."
+  },
+  "redbadge_update_path": {
+   "step_ms": [
+    79.938790993765,
+    57.1676249965094,
+    42.52583399647847
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the desktop badge message key, then inspect the service and badge-count updates."
+  },
+  "crossover_token_handling": {
+   "step_ms": [
+    82.32287497958168,
+    66.56454200856388,
+    58.504833024926484,
+    43.464082991704345
+   ],
+   "missing_tokens": [],
+   "intent": "Locate crossover token handling, then inspect the Messenger service and activation reporting."
+  },
+  "account_sync_adapter": {
+   "step_ms": [
+    95.33720801118761,
+    89.00916599668562,
+    45.915499969851226
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the SyncAdapter service, then inspect its binder and sync action."
+  },
+  "luckycat_ssl_error_handling": {
+   "step_ms": [
+    71.5214999509044,
+    78.42775003518909,
+    76.6878750291653
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the WebView SSL-error handler and the JavaScript bridge names registered nearby."
+  },
+  "lmhttp_tls_setup": {
+   "step_ms": [
+    71.93083397578448,
+    45.10870896046981,
+    37.26545802783221,
+    41.23587498907,
+    46.60158301703632
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the native-engine HTTP helper, then inspect its certificate, hostname and download handling."
+  },
+  "cjpay_webview_config": {
+   "step_ms": [
+    71.36037503369153,
+    71.83570798952132,
+    56.19324999861419
+   ],
+   "missing_tokens": [],
+   "intent": "Locate the payment WebView URL allowlist, QR routing and bridge registration."
+  },
+  "dynamic_loading_census": {
+   "step_ms": [
+    77.77570799225941,
+    115.41525000939146,
+    90.38220799993724
+   ],
+   "missing_tokens": [],
+   "intent": "Count direct references to dynamic class loading, System.load and Runtime.exec."
+  }
+ },
+ "external_helpers": [
+  "python3: subprocess orchestration, timing, randomization, medians, output-token validation",
+  "No external APK parser, decompiler, SQL engine, JADX, or disassembler is used for rasc evidence"
+ ]
+}
