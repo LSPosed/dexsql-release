@@ -132,7 +132,58 @@ def render(args):
     print('open', open_ms, 'cross', cross, [round(r[1], 1) for r in per_goal])
 
 
+def render_goals(args):
+    """One row per goal: DexSQL stacked (hot query + start/open), third-party tool beside it."""
+    from matplotlib.patches import Patch
+    m = load()
+    style()
+    open_ms = sum(m['open_ms']) / 2
+    start = m['startup']['mcp_initialize_median_ms'] + open_ms
+    rows = [('All 17 goals · geometric mean', geomean(m['hot']), geomean(m['rasc']))]
+    rows += list(zip(m['goals'], m['hot'], m['rasc']))
+    height = 2.6 + .62 * len(rows)
+    fig, ax = plt.subplots(figsize=(11, height))
+    fig.subplots_adjust(left=.3, right=.95, top=1 - 1.75 / height, bottom=1.25 / height)
+    fig.text(.045, 1 - .3 / height, 'Douyin 40.7.0 · time per analysis goal', fontsize=20, weight='bold', va='top')
+    fig.text(.045, 1 - .78 / height, 'Replay of a real MCP session · DexSQL 0.1.1 vs rasc · medians of 7 runs · lower is better',
+             fontsize=11, color=MUTED, va='top')
+    decorate(ax)
+    bar = .34
+    labels = []
+    for y, (name, hot, rasc) in enumerate(rows):
+        dy, ry = y - bar / 2 - .02, y + bar / 2 + .02
+        ax.barh(dy, hot, height=bar, color=DEXSQL, zorder=3)
+        ax.barh(dy, start, left=hot, height=bar, color=DEXSQL, alpha=.22, zorder=3)
+        ax.annotate(f'{hot:,.1f} ms', (hot + start, dy), xytext=(5, 0), textcoords='offset points', va='center',
+                    fontsize=9.5, weight='bold', color=DEXSQL)
+        ax.barh(ry, rasc, height=bar, color=RASC, zorder=3)
+        ax.annotate(f'{rasc:,.1f} ms', (rasc, ry), xytext=(5, 0), textcoords='offset points', va='center', fontsize=9.5, color=RASC)
+        labels.append(name)
+    ax.set_yticks(range(len(rows)), labels, fontsize=10)
+    ax.get_yticklabels()[0].set_weight('bold')
+    ax.axhline(.5, color='#bac2ca', linewidth=.8)
+    ax.set_ylim(len(rows) - .45, -.55)
+    ax.set_xlim(0, 480)
+    ax.set_xlabel('Milliseconds · linear scale from zero', fontsize=10, labelpad=5)
+    fig.legend(handles=[Patch(facecolor=DEXSQL, label='DexSQL query, dataset open'),
+                        Patch(facecolor=DEXSQL, alpha=.22, label=f'DexSQL start + open APK, {start:.0f} ms once per session'),
+                        Patch(facecolor=RASC, label='rasc, new process per step')],
+               loc='upper left', bbox_to_anchor=(.04, 1 - 1.05 / height), ncol=3, frameon=False, fontsize=10)
+    notes = ['Labels on DexSQL bars give the query time only; the light segment is the one-time start-up, the same for every row.',
+             'rasc has no session mode: its bar includes process start and reading the APK for every step. Apple M3 Pro, warm OS file cache.']
+    for i, line in enumerate(notes):
+        fig.text(.045, (.62 - i * .3) / height, line, fontsize=9, color=MUTED)
+    svg = ROOT / 'charts' / 'goals.svg'
+    fig.savefig(svg, metadata={'Date': None, 'Title': 'goals'}, facecolor='white')
+    svg.write_text('\n'.join(line.rstrip() for line in svg.read_text(encoding='utf-8').splitlines()) + '\n', encoding='utf-8')
+    if args.preview_dir:
+        fig.savefig(args.preview_dir / 'goals.png', dpi=110)
+    plt.close(fig)
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--preview-dir', type=Path)
-    render(ap.parse_args())
+    args = ap.parse_args()
+    render(args)
+    render_goals(args)

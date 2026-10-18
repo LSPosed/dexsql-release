@@ -79,7 +79,7 @@ Windows 使用 `dexsql.exe`，JSON 路径中的反斜杠要转义，例如 `"D:\
 
 AI agent 通过 DexSQL MCP 分析了 **抖音 40.7.0**（343 MiB，56 个 DEX）。我们把这次会话里的 17 个分析目标（47 次工具调用）在 DexSQL 0.1.1 和 [rasc](https://github.com/MG1937/ASC/tree/rust)（ASC 的 Rust 实现）上重放。
 
-![抖音 40.7.0：DexSQL 与 rasc 的单目标冷热耗时、APK 打开耗时、整场会话耗时，以及随目标数增长的累计耗时。](benchmarks/agent-audit/charts/session.svg)
+![抖音 40.7.0：每个分析目标的耗时，DexSQL 分为查询和一次性的启动与打开 APK，rasc 每一步都起新进程。](benchmarks/agent-audit/charts/goals.svg)
 
 热查询（两边都不算启动成本），单个目标 DexSQL 18.5 ms，rasc 142 ms（几何平均）；冷查询（两边都算上启动成本）分别是 397 ms 和 150 ms。DexSQL 每次会话只打开一次 APK（371 ms），之后 17 个目标合计 444 ms。rasc 没有会话模式，47 个步骤每一步都重新读取 APK。实测整场会话 DexSQL 用时 0.86 s，rasc 3.07 s。按这次重放的平均单目标耗时，打开成本在两到三个目标后就能收回；如果一次会话只问一个问题，rasc 更快结束。每个目标的数据、测试方法和脚本见[重放报告](benchmarks/agent-audit/README.md)。
 
