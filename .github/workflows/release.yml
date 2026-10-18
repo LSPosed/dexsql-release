@@ -152,6 +152,9 @@ jobs:
 
       - name: Build
         run: |
+          # The CLI build script runs `cargo metadata --offline` to collect licenses,
+          # which needs every locked crate, not only those this target compiles.
+          cargo fetch --locked > "$LOG_DIR/fetch.log" 2>&1
           if [[ "${{ matrix.zig }}" == "true" ]]; then
             # Link against glibc 2.17 so the binary runs on old distributions.
             cargo zigbuild --release --locked -p dexsql-cli --bin dexsql --target ${{ matrix.target }}.2.17 \
