@@ -6,8 +6,9 @@ name: Release
 # Triggers:
 # - repository_dispatch (type `dexsql-tag`, payload `{"tag": "vX.Y.Z"}`): sent by the
 #   private repository's release-dispatch workflow when a `v*` tag is pushed;
-# - workflow_dispatch: build a given tag (or the newest), optionally without publishing.
-# A tag that already has a release here is skipped when publishing.
+# - workflow_dispatch: build a given tag (or the newest) without publishing.
+# Every build uploads its binaries as workflow artifacts. Only repository_dispatch
+# publishes a release, and it skips a tag that already has one.
 #
 # Secrets:
 # - DEXSQL_DEPLOY_KEY: private half of a read-only deploy key on LSPosed/dexsql;
@@ -20,10 +21,6 @@ on:
         description: "dexsql tag to build (empty = newest v* tag)"
         required: false
         default: ""
-      publish:
-        description: "Publish a GitHub release (off = build artifacts only)"
-        type: boolean
-        default: true
   repository_dispatch:
     types: [dexsql-tag]
 
@@ -59,7 +56,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           INPUT_TAG: ${{ github.event.inputs.tag || github.event.client_payload.tag }}
-          INPUT_PUBLISH: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.publish == 'true' }}
+          INPUT_PUBLISH: ${{ github.event_name == 'repository_dispatch' }}
         run: |
           set -euo pipefail
           remote="git@github.com:${SOURCE_REPO}.git"
