@@ -4,18 +4,16 @@ name: Release
 # publishes it as a release of this repository under the same tag name.
 #
 # Triggers:
-# - schedule: polls the private repository and releases its newest `v*` tag once
-#   (tags that already have a release here are skipped);
-# - workflow_dispatch: build a given tag (or the newest), optionally without publishing;
-# - repository_dispatch (type `dexsql-tag`, payload `{"tag": "vX.Y.Z"}`): lets the
-#   private repository request a release immediately after pushing a tag.
+# - repository_dispatch (type `dexsql-tag`, payload `{"tag": "vX.Y.Z"}`): sent by the
+#   private repository's release-dispatch workflow when a `v*` tag is pushed;
+# - workflow_dispatch: build a given tag (or the newest), optionally without publishing.
+# A tag that already has a release here is skipped when publishing.
 #
-# Requires the secret DEXSQL_DEPLOY_KEY: the private half of a read-only deploy key
-# registered on LSPosed/dexsql.
+# Secrets:
+# - DEXSQL_DEPLOY_KEY: private half of a read-only deploy key on LSPosed/dexsql;
+# - BUILD_LOG_PASSWORD: password of the 7z archive holding logs of a failed build.
 
 on:
-  schedule:
-    - cron: "17,47 * * * *"
   workflow_dispatch:
     inputs:
       tag:
@@ -127,7 +125,8 @@ jobs:
         shell: bash
     env:
       DEXSQL_BUILD_COMMIT: ${{ needs.resolve.outputs.commit }}
-      CARGO_TERM_COLOR: always
+      CARGO_TERM_COLOR: never
+      LOG_DIR: build-logs
     steps:
       - uses: actions/checkout@v4
         with:
@@ -136,10 +135,16 @@ jobs:
           ssh-key: ${{ secrets.DEXSQL_DEPLOY_KEY }}
           persist-credentials: false
 
+      # Tool and compiler output stays out of the public job log: it goes to
+      # $LOG_DIR, which is uploaded only on failure, inside a password-protected
+      # 7z archive (password: secret BUILD_LOG_PASSWORD).
       - name: Install Rust (pinned by rust-toolchain.toml)
         run: |
-          rustup toolchain install
-          rustup target add ${{ matrix.target }}
+          mkdir -p "$LOG_DIR"
+          {
+            rustup toolchain install
+            rustup target add ${{ matrix.target }}
+          } > "$LOG_DIR/rustup.log" 2>&1
 
       - uses: mlugg/setup-zig@v2
         if: matrix.zig
@@ -152,9 +157,11 @@ jobs:
         run: |
           if [[ "${{ matrix.zig }}" == "true" ]]; then
             # Link against glibc 2.17 so the binary runs on old distributions.
-            cargo zigbuild --release --locked -p dexsql-cli --bin dexsql --target ${{ matrix.target }}.2.17
+            cargo zigbuild --release --locked -p dexsql-cli --bin dexsql --target ${{ matrix.target }}.2.17 \
+              > "$LOG_DIR/build.log" 2>&1
           else
-            cargo build --release --locked -p dexsql-cli --bin dexsql --target ${{ matrix.target }}
+            cargo build --release --locked -p dexsql-cli --bin dexsql --target ${{ matrix.target }} \
+              > "$LOG_DIR/build.log" 2>&1
           fi
           mkdir -p dist
           cp target/${{ matrix.target }}/release/dexsql${{ matrix.ext }} dist/dexsql-${{ matrix.name }}${{ matrix.ext }}
@@ -162,14 +169,38 @@ jobs:
       - name: Smoke test
         if: matrix.smoke || matrix.name == 'linux-amd64'
         run: |
-          ./dist/dexsql-${{ matrix.name }}${{ matrix.ext }} --version
-          ./dist/dexsql-${{ matrix.name }}${{ matrix.ext }} --help >/dev/null
+          {
+            ./dist/dexsql-${{ matrix.name }}${{ matrix.ext }} --version
+            ./dist/dexsql-${{ matrix.name }}${{ matrix.ext }} --help
+          } > "$LOG_DIR/smoke.log" 2>&1
 
       - uses: actions/upload-artifact@v4
         with:
           name: dexsql-${{ matrix.name }}
           path: dist/*
           if-no-files-found: error
+
+      - name: Encrypt logs
+        if: failure()
+        env:
+          LOG_PASSWORD: ${{ secrets.BUILD_LOG_PASSWORD }}
+        run: |
+          mkdir -p "$LOG_DIR"
+          sevenzip="$(command -v 7z || command -v 7zz || true)"
+          if [[ -z "$sevenzip" ]]; then
+            brew install sevenzip > /dev/null 2>&1
+            sevenzip="$(command -v 7zz)"
+          fi
+          # -mhe=on also encrypts the file names inside the archive.
+          "$sevenzip" a -t7z -mhe=on -p"$LOG_PASSWORD" \
+            "build-logs-${{ matrix.name }}.7z" "$LOG_DIR" > /dev/null
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: build-logs-${{ matrix.name }}
+          path: build-logs-${{ matrix.name }}.7z
+          if-no-files-found: ignore
 
   release:
     needs: [resolve, build]
