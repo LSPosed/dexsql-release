@@ -27,6 +27,8 @@ flowchart LR
 
 ## Use with an AI agent
 
+DexSQL is listed in the [official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=org.lsposed/dexsql) as `org.lsposed/dexsql`. Clients that install servers from the registry can add it directly, and Claude Desktop can open the `dexsql.mcpb` bundle from [Releases](https://github.com/LSPosed/dexsql-release/releases/latest). The bundle covers macOS, x86_64 Linux and x86_64 Windows; on other platforms, use the skill or manual setup below.
+
 Install the setup skill with the [Skills CLI](https://github.com/vercel-labs/skills):
 
 ```sh

@@ -27,6 +27,8 @@ flowchart LR
 
 ## 接入 AI
 
+DexSQL 已在[官方 MCP 注册表](https://registry.modelcontextprotocol.io/v0/servers?search=org.lsposed/dexsql)登记为 `org.lsposed/dexsql`。支持从注册表安装的客户端可以直接添加；Claude Desktop 可以打开 [Releases](https://github.com/LSPosed/dexsql-release/releases/latest) 中的 `dexsql.mcpb`。该安装包支持 macOS、x86_64 Linux 和 x86_64 Windows，其他平台请使用下面的 Skill 或手动配置。
+
 通过 [Skills CLI](https://github.com/vercel-labs/skills) 安装配置 Skill：
 
 ```sh
