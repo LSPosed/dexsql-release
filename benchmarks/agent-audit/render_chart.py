@@ -181,9 +181,66 @@ def render_goals(args):
     plt.close(fig)
 
 
+SEGMENTS = [('open', 'Start + open APK', '#7f97ad'),
+            ('query', 'Queries in the tool', '#16734a'),
+            ('external', 'Third-party tool calls (rg, grep, ...)', '#d08a2e')]
+
+
+def render_total(args):
+    """One bar per tool for the whole 17-goal session: [open][query][third-party tool calls]."""
+    from matplotlib.patches import Patch
+    m = load()
+    style()
+    trials = sorted(m['whole']['trials'], key=lambda t: t['total_process_ms'])
+    mid = trials[len(trials) // 2]
+    tools = [
+        ('DexSQL 0.1.1', {'open': mid['mcp_init_ms'] + mid['open_ms'],
+                          'query': mid['total_process_ms'] - mid['mcp_init_ms'] - mid['open_ms'],
+                          'external': 0.0}, 'one MCP session'),
+        ('rasc', {'open': 0.0, 'query': m['rwhole']['median_total_process_ms'], 'external': 0.0},
+         f"{m['rwhole']['trials'][0]['process_count']} CLI processes"),
+    ]
+    height = 2.9 + .95 * len(tools)
+    fig, ax = plt.subplots(figsize=(11, height))
+    fig.subplots_adjust(left=.2, right=.95, top=1 - 1.75 / height, bottom=1.25 / height)
+    fig.text(.045, 1 - .3 / height, 'Douyin 40.7.0 · whole 17-goal session', fontsize=20, weight='bold', va='top')
+    fig.text(.045, 1 - .78 / height, 'Replay of a real MCP reverse-engineering session · observed end to end · median of 7 runs · lower is better',
+             fontsize=11, color=MUTED, va='top')
+    decorate(ax)
+    for y, (name, parts, note) in enumerate(tools):
+        left = 0.0
+        for key, _, color in SEGMENTS:
+            value = parts[key]
+            if value <= 0:
+                continue
+            ax.barh(y, value, left=left, height=.55, color=color, zorder=3)
+            if value > 140:
+                ax.text(left + value / 2, y, f'{value:,.0f}', ha='center', va='center', fontsize=10, color='white', weight='bold', zorder=4)
+            left += value
+        ax.annotate(f'{left:,.0f} ms  ·  {note}', (left, y), xytext=(6, 0), textcoords='offset points', va='center', fontsize=10.5,
+                    weight='bold' if name.startswith('DexSQL') else 'normal')
+    ax.set_yticks(range(len(tools)), [t[0] for t in tools], fontsize=11)
+    ax.set_ylim(len(tools) - .45, -.55)
+    ax.set_xlim(0, 4400)
+    ax.set_xlabel('Milliseconds · linear scale from zero', fontsize=10, labelpad=5)
+    fig.legend(handles=[Patch(facecolor=c, label=l) for _, l, c in SEGMENTS], loc='upper left',
+               bbox_to_anchor=(.04, 1 - 1.05 / height), ncol=3, frameon=False, fontsize=10)
+    notes = ['DexSQL: MCP start + one APK open, then 47 tool calls on the open dataset (the run with the median total).',
+             'rasc reads the APK in every process. Neither tool needed third-party tools in this replay. Apple M3 Pro, warm OS file cache.']
+    for i, line in enumerate(notes):
+        fig.text(.045, (.62 - i * .3) / height, line, fontsize=9, color=MUTED)
+    svg = ROOT / 'charts' / 'total.svg'
+    fig.savefig(svg, metadata={'Date': None, 'Title': 'total'}, facecolor='white')
+    svg.write_text('\n'.join(line.rstrip() for line in svg.read_text(encoding='utf-8').splitlines()) + '\n', encoding='utf-8')
+    if args.preview_dir:
+        fig.savefig(args.preview_dir / 'total.png', dpi=110)
+    plt.close(fig)
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--preview-dir', type=Path)
     args = ap.parse_args()
     render(args)
     render_goals(args)
+    render_total(args)

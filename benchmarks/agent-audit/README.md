@@ -11,6 +11,8 @@ This is a single real workload, not a general ranking. The [QQ benchmark](../REA
 
 ## Results
 
+![Whole 17-goal session split into start and APK open, queries and third-party tool calls.](charts/total.svg)
+
 ![Per-goal time: DexSQL query plus its one-time start and APK open, and rasc with a new process per step.](charts/goals.svg)
 
 ![Hot and cold per-goal times, APK open, whole-session time and cumulative time as goals accumulate.](charts/session.svg)
