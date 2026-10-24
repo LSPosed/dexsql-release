@@ -1,5 +1,7 @@
 # DexSQL
 
+[![Featured on Made with REA](https://madewithrea.com/badges/featured.svg)](https://madewithrea.com/builds/dexsql-sql-queries-and-mcp-server-for-apk-dex-analysis-by-ai-agents)
+
 English | [简体中文](README.zh-CN.md)
 
 **SQL for Android binaries.**
